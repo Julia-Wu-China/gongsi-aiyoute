@@ -1,3 +1,119 @@
+// ==================== 选型规则配置 ====================
+// 当前选型规则：'ac' = 按空调箱选型（旧规则），'fc' = 按风机盘管选型（新规则）
+let currentSelectionRule = 'ac';
+
+// 设置选型规则
+function onSelectionRuleChange() {
+    const select = document.getElementById('selectionRuleSelect');
+    currentSelectionRule = select.value;
+    
+    // 更新选型说明文本
+    updateSelectionExplanation();
+    
+    // 重新计算所有行
+    recalculateAllBatchRows();
+}
+
+// ==================== 配件数据配置 ====================
+// 默认的配件数据（风机盘管场景）
+const defaultFcAccessories = [
+    { id: 'eaf1-if', model: 'EAF1-IF', name: '内法固定件_A1型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 105, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['1'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf1-of', model: 'EAF1-OF', name: '外法固定件_B1型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 92, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['1'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'eaf2-if', model: 'EAF2-IF', name: '内法固定件_A2型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 105, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf2-of', model: 'EAF2-OF', name: '外法固定件_B2型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 92, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'afs003', model: 'AFS003', name: '风动开关', config: '/', price: 420, note: '单台 EAF 用作 FFC 时，必须配置 1 个风动开关', category: 'fc', styles: ['1', '2'], visible: true, quantity: 0, backgroundColor: 'gray' },
+    { id: 'mft-20-5-fc', model: 'MFT-20-5', name: '密封条', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', price: 118, note: '', category: 'fc', styles: ['1', '2'], visible: true, quantity: 0, backgroundColor: 'white' }
+];
+
+// 默认的配件数据（空调箱场景）
+const defaultAhuAccessories = [
+    { id: 'sus301-2', model: 'EAF-SWF-2', name: 'EAF-2英寸钢丝扣', config: 'SUS301', price: 14, note: '空调箱田字格框架内正抽式安装，如现场有则无需选购。<br>一个EAF需选配4根，本价格仅包括1根钢丝扣。', category: 'ahu', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'white' },
+    { id: 'sus301-4', model: 'EAF-SWF-4', name: 'EAF-4英寸钢丝扣', config: 'SUS301', price: 15, note: '空调箱田字格框架内正抽式安装，如现场有则无需选购。<br>一个EAF需选配4根，本价格仅包括1根钢丝扣。<br>原装4英寸介质过滤器可直接更换为4"板式EAF，无需配钢丝扣。<br>如原装2英寸介质过滤器要更换为4"板式EAF，则需增加EAF-4英寸钢丝扣。', category: 'ahu', styles: ['4home', '4biz'], visible: true, quantity: 0, backgroundColor: 'white' },
+    { id: 'dc5525', model: 'DC5525 Power Cord', name: 'EAF 1米连接线', config: '1m', price: 40, note: '单台 EAF 卧装和每层 EAF 均各配 1 根连接线', category: 'ahu', styles: ['2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'gray' },
+    { id: 'eaf-box-c', model: 'EAF-BOX-C', name: 'EAF-BOX 接线盒', config: '/', price: 120, note: '中国经济款，需要搭配电源适配器EAF-PS05M-60W使用', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf-ps05m-60w', model: 'EAF-PS05M-60W', name: 'DC12V电源适配器', config: '引线式 100-240V, 50/60Hz', price: 235, note: '全球通用', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf-ps03m-60w', model: 'EAF-PS03M-60W', name: 'DC12V电源适配器', config: '插头式（美标三叉）100-240V, 50/60Hz', price: 200, note: '美国专用，用完不备货', category: 'ahu', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf-box1-dc12v', model: 'EAF-BOX1-DC12V', name: 'EAF-BOX 电控箱', config: '/', price: 5650, note: '适用于 EAF2"', category: 'ahu', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'eaf-box1-dc24v', model: 'EAF-BOX1-DC24V', name: 'EAF-BOX 电控箱', config: '/', price: 5650, note: '适用于 EAF4"+5"', category: 'ahu', styles: ['4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'mft-20-5-ahu', model: 'MFT-20-5', name: '密封条', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', price: 118, note: '', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'white' }
+];
+
+// 全局配件数据变量
+let fcAccessories = [];
+let ahuAccessories = [];
+
+// 更新尺寸范围说明
+function updateSizeRange() {
+    const rangeContent = document.getElementById('rangeContent');
+    if (!rangeContent) return;
+    
+    // 获取等价关系数据（从localStorage读取）
+    const equivalentMap = JSON.parse(localStorage.getItem('equivalentMap') || '{}');
+    
+    // 获取所有标准英寸值和对应的mm值
+    const inchValues = Object.keys(equivalentMap).filter(key => !isNaN(parseInt(key)));
+    const mmValues = inchValues.map(key => parseInt(equivalentMap[key]));
+    
+    // 计算最小和最大尺寸
+    const minInch = inchValues.length > 0 ? Math.min(...inchValues.map(v => parseInt(v))) : 0;
+    const maxInch = inchValues.length > 0 ? Math.max(...inchValues.map(v => parseInt(v))) : 0;
+    const minMm = mmValues.length > 0 ? Math.min(...mmValues) : 0;
+    const maxMm = mmValues.length > 0 ? Math.max(...mmValues) : 0;
+    
+    // 定义各款式的尺寸范围规则
+    const styleRanges = {
+        '1': { widthMin: minInch, widthMax: maxInch, heightMin: 12, heightMax: Math.min(32, maxInch) },
+        '2': { widthMin: minInch, widthMax: maxInch, heightMin: 12, heightMax: maxInch },
+        '4': { widthMin: Math.max(12, minInch), widthMax: maxInch, heightMin: Math.max(12, minInch), heightMax: maxInch },
+        '5': { widthMin: Math.max(12, minInch), widthMax: maxInch, heightMin: Math.max(12, minInch), heightMax: maxInch }
+    };
+    
+    let html = '';
+    for (const [style, range] of Object.entries(styleRanges)) {
+        const widthMinMm = equivalentMap[range.widthMin.toString().padStart(2, '0')] || range.widthMin * 25.4;
+        const widthMaxMm = equivalentMap[range.widthMax.toString().padStart(2, '0')] || range.widthMax * 25.4;
+        const heightMinMm = equivalentMap[range.heightMin.toString().padStart(2, '0')] || range.heightMin * 25.4;
+        const heightMaxMm = equivalentMap[range.heightMax.toString().padStart(2, '0')] || range.heightMax * 25.4;
+        
+        html += `<div class="range-item">EAF${style}"：宽${range.widthMin.toString().padStart(2, '0')}~${range.widthMax.toString().padStart(2, '0')}（${Math.round(widthMinMm)}~${Math.round(widthMaxMm)}mm）、高${range.heightMin.toString().padStart(2, '0')}~${range.heightMax.toString().padStart(2, '0')}（${Math.round(heightMinMm)}~${Math.round(heightMaxMm)}mm）</div>`;
+    }
+    
+    rangeContent.innerHTML = html;
+}
+
+// 更新选型说明文本
+function updateSelectionExplanation() {
+    const explanationContent = document.querySelector('.selection-explanation .explanation-content');
+    if (explanationContent) {
+        const baseText = '输入现场介质过滤器的尺寸（mm）和数量，自动匹配对应的EAF型号。';
+        if (currentSelectionRule === 'ac') {
+            explanationContent.innerHTML = baseText + '<br>' + '空调箱选型（降档匹配法）<br>按实际安装尺寸匹配标准规格，只要实际尺寸大于或等于某一档标准值，就选用该标准对应的型号。<br>例：尺寸为600mm×495mm，因600≥592（对应型号 24）、495≥490（对应型号 20），故选用 EAF2420。';
+        } else if (currentSelectionRule === 'fc') {
+            explanationContent.innerHTML = baseText + '<br>' + '风机盘管选型（就近匹配法）<br>按实际安装尺寸匹配标准规格，优先选用数值最接近的标准型号；若实际尺寸正好卡在两档标准值中间，则取较小档。<br>例：尺寸为590mm×495mm，因590最接近 592（对应型号 24）、495最接近490（对应型号 20），故选用 EAF2420。';
+        } else {
+            explanationContent.innerHTML = baseText + '<br>' + '非标选型（升档匹配法）<br>实际安装尺寸不对应标准规格时，统一向上取整到最近的大一档标准值，再选用对应型号。<br>例：尺寸为489mm×491mm，因489mm上一档490（对应型号 20）、491mm上一档515（对应型号 21），故选用 EAF2021。';
+        }
+    }
+}
+
+// 重新计算所有批量行
+function recalculateAllBatchRows() {
+    const tbody = document.querySelector('#batchTable tbody');
+    const rows = tbody.querySelectorAll('tr:not(.empty-row)');
+    
+    rows.forEach((row) => {
+        const widthInput = row.querySelector('input.width-input');
+        const heightInput = row.querySelector('input.height-input');
+        const quantityInput = row.querySelector('input.quantity-input');
+        
+        if (widthInput && heightInput && quantityInput) {
+            updateBatchRow(row);
+        }
+    });
+    
+    updateBatchTotal();
+}
+
 // ==================== 语言国际化配置 ====================
 // 多语言支持对象，包含中文、英文、法语、德语、西班牙语、日语、韩语、葡萄牙语、意大利语、俄语、阿拉伯语
 // 每个语言对象包含系统中所有需要显示的文本字符串
@@ -7,7 +123,8 @@ const languages = {
         title: 'EAF自动报价查询系统',                 // 系统标题
         subtitle: '选择参数，快速查询产品报价',        // 系统副标题
         warning_tip: '⚠️ 官方温馨提示：EAF2016与EAF1620为两款完全不同的产品，请勿混淆选型及使用。',  // 温馨提示
-        query_quote: '🔍 查询报价',                  // 查询报价按钮
+        query_single_quote: '🔍 查询单个报价',         // 查询单个报价按钮
+        query_batch_quote: '📦 批量查询报价',          // 批量查询报价按钮
         admin: '🔧 管理员基础数据管理',              // 管理员按钮文本
         admin_show: '🔧 查看数据管理',               // 显示管理员面板按钮
         admin_hide: '🔧 隐藏数据管理',               // 隐藏管理员面板按钮
@@ -59,6 +176,8 @@ const languages = {
         equivalent_title: '数值等价关系（输入值 → 实际mm值）',  // 数值等价关系标题
         style_config_title: '款式参数配置',          // 款式参数配置标题
         price_title: '面价数据管理',                 // 面价数据管理标题
+        fc_accessory_title: '风机盘管配件管理',      // 风机盘管配件管理标题
+        ahu_accessory_title: '空调箱配件管理',       // 空调箱配件管理标题
 
         save_success: '✓ 所有数据已保存',           // 保存成功提示
         reset_success: '✓ 已恢复默认值',             // 恢复默认值成功提示
@@ -76,7 +195,20 @@ const languages = {
         remark: '备注',                            // 备注标签
         height_width: '高度\\宽度',                 // 高度宽度标签
         no_five_pack: '无五台包装',                 // 无五台包装提示
+        no_part_number: '无零件号',                  // 无零件号提示
+        part_number: '零件号',                      // 零件号标签
         unavailable: '无法生产',                   // 无法生产提示
+        // 表格列标题
+        operation: '操作',                         // 操作列
+        product_model_short: '产品型号',            // 产品型号列
+        product_name: '产品名称',                   // 产品名称列
+        standard_config: '标准配置',                // 标准配置列
+        price_col: '价格',                         // 价格列
+        compatible_style: '适配款式',               // 适配款式列
+        background_color: '背景色',                // 背景色列
+        remarks: '备注',                           // 备注列
+        add_accessory: '+ 添加配件',               // 添加配件按钮
+        delete: '删除',                             // 删除按钮
         // 计算公式说明
         calc_product_model: '产品型号：EAF+宽度+高度+后缀（1"：1M-E；2"：2M-E；4"家用：4M-E；4"商用：4MA-E；5"：5MB-E）',
         calc_air_flow: '标示风量：4"/5"款式=MROUND(宽度×25.4×高度×25.4×风速2.54×3600/1000000, 10)；1"/2"款式=MROUND((宽度×25.4-13-30)×(高度×25.4-13-65)×风速1.5×3600/1000000×系数1.018, 10)',
@@ -92,7 +224,8 @@ const languages = {
         title: 'EAF Automatic Quotation Query System',     // System title
         subtitle: 'Select parameters to quickly query product quotations',  // System subtitle
         warning_tip: '⚠️ Official Reminder: EAF2016 and EAF1620 are two completely different products. Please do not confuse them when selecting and using.',  // Warning tip
-        query_quote: '🔍 Query Quote',                    // Query quote button
+        query_single_quote: '🔍 Query Single Quote',      // Query single quote button
+        query_batch_quote: '📦 Batch Query Quote',         // Batch query quote button
         admin: '🔧 Admin Basic Data Management',           // Admin button text
         admin_show: '🔧 Show Data Management',            // Show admin panel button
         admin_hide: '🔧 Hide Data Management',            // Hide admin panel button
@@ -145,6 +278,19 @@ const languages = {
         equivalent_title: 'Value Equivalence (Input → Actual mm)',  // Value equivalence title
         style_config_title: 'Style Parameter Configuration', // Style config title
         price_title: 'Price Data Management',             // Price data management title
+        fc_accessory_title: 'FC Accessory Management',    // FC accessory management title
+        ahu_accessory_title: 'AHU Accessory Management',  // AHU accessory management title
+        // Table column headers
+        operation: 'Operation',                           // Operation column
+        product_model_short: 'Model',                     // Product model column
+        product_name: 'Product Name',                     // Product name column
+        standard_config: 'Standard Config',               // Standard config column
+        price_col: 'Price',                               // Price column
+        compatible_style: 'Compatible Style',             // Compatible style column
+        background_color: 'Background',                   // Background color column
+        remarks: 'Remarks',                               // Remarks column
+        add_accessory: '+ Add Accessory',                 // Add accessory button
+        delete: 'Delete',                                 // Delete button
         save_success: '✓ All data saved',                 // Save success hint
         reset_success: '✓ Reset to default',              // Reset success hint
         download_success: '✓ Template downloaded successfully', // Download success hint
@@ -178,7 +324,8 @@ const languages = {
         title: 'EAF Système de requête de devis automatique',
         subtitle: 'Sélectionnez les paramètres pour rechercher rapidement les devis de produits',
         warning_tip: '⚠️ Avertissement officiel: EAF2016 et EAF1620 sont deux produits complètement différents. Veuillez ne pas les confondre lors de la sélection et de l\'utilisation.',
-        query_quote: '🔍 Demander un devis',              // 查询报价按钮
+        query_single_quote: '🔍 Demander un devis',        // 查询单个报价按钮
+        query_batch_quote: '📦 Demander des devis groupés', // 批量查询报价按钮
         admin: '🔧 Gestion des données de base de l\'administrateur',
         admin_show: '🔧 Afficher la gestion des données',
         admin_hide: '🔧 Cacher la gestion des données',
@@ -231,6 +378,19 @@ const languages = {
         equivalent_title: 'Équivalence de valeur (Entrée → mm réel)',
         style_config_title: 'Configuration des paramètres de style',
         price_title: 'Gestion des données de prix',
+        fc_accessory_title: 'Gestion des accessoires FC',
+        ahu_accessory_title: 'Gestion des accessoires AHU',
+        // Table column headers
+        operation: 'Opération',                           // Operation column
+        product_model_short: 'Modèle',                    // Product model column
+        product_name: 'Nom du produit',                   // Product name column
+        standard_config: 'Configuration standard',        // Standard config column
+        price_col: 'Prix',                               // Price column
+        compatible_style: 'Style compatible',             // Compatible style column
+        background_color: 'Arrière-plan',                 // Background color column
+        remarks: 'Remarques',                             // Remarks column
+        add_accessory: '+ Ajouter accessoire',            // Add accessory button
+        delete: 'Supprimer',                               // Delete button
         save_success: '✓ Toutes les données enregistrées',
         reset_success: '✓ Réinitialisé par défaut',
         download_success: '✓ Modèle téléchargé avec succès',
@@ -262,7 +422,8 @@ const languages = {
         title: 'EAF Automatisches Angebotsabfragesystem',
         subtitle: 'Wählen Sie Parameter aus, um Produktangebote schnell abzufragen',
         warning_tip: '⚠️ Offizielle Erinnerung: EAF2016 und EAF1620 sind zwei völlig unterschiedliche Produkte. Bitte nicht verwechseln bei Auswahl und Verwendung.',
-        query_quote: '🔍 Angebot anfragen',             // 查询报价按钮
+        query_single_quote: '🔍 Einzelangebot anfragen',  // 查询单个报价按钮
+        query_batch_quote: '📦 Gruppenangebot anfragen',   // 批量查询报价按钮
         admin: '🔧 Admin Grunddatenverwaltung',
         admin_show: '🔧 Datenverwaltung anzeigen',
         admin_hide: '🔧 Datenverwaltung ausblenden',
@@ -315,6 +476,19 @@ const languages = {
         equivalent_title: 'Wertequivalenz (Eingabe → Tatsächliches mm)',
         style_config_title: 'Stilparameterkonfiguration',
         price_title: 'Preisdatenverwaltung',
+        fc_accessory_title: 'FC-Zubehörverwaltung',
+        ahu_accessory_title: 'AHU-Zubehörverwaltung',
+        // Table column headers
+        operation: 'Operation',                           // Operation column
+        product_model_short: 'Modell',                    // Product model column
+        product_name: 'Produktname',                      // Product name column
+        standard_config: 'Standardkonfiguration',         // Standard config column
+        price_col: 'Preis',                               // Price column
+        compatible_style: 'Kompatibler Stil',             // Compatible style column
+        background_color: 'Hintergrund',                  // Background color column
+        remarks: 'Bemerkungen',                           // Remarks column
+        add_accessory: '+ Zubehör hinzufügen',            // Add accessory button
+        delete: 'Löschen',                                 // Delete button
         save_success: '✓ Alle Daten gespeichert',
         reset_success: '✓ Auf Standard zurückgesetzt',
         download_success: '✓ Vorlage erfolgreich heruntergeladen',
@@ -347,7 +521,8 @@ const languages = {
         title: 'EAF Sistema de consulta de cotizaciones automáticas',
         subtitle: 'Seleccione parámetros para consultar rápidamente cotizaciones de productos',
         warning_tip: '⚠️ Recordatorio oficial: EAF2016 y EAF1620 son dos productos completamente diferentes. Por favor, no los confunda al seleccionar y usar.',
-        query_quote: '🔍 Consultar cotización',           // 查询报价按钮
+        query_single_quote: '🔍 Consultar cotización',     // 查询单个报价按钮
+        query_batch_quote: '📦 Consultar cotizaciones grupales', // 批量查询报价按钮
         admin: '🔧 Gestión de datos básicos del administrador',
         admin_show: '🔧 Mostrar gestión de datos',
         admin_hide: '🔧 Ocultar gestión de datos',
@@ -400,6 +575,19 @@ const languages = {
         equivalent_title: 'Equivalencia de valor (Entrada → mm real)',
         style_config_title: 'Configuración de parámetros de estilo',
         price_title: 'Gestión de datos de precios',
+        fc_accessory_title: 'Gestión de accesorios FC',
+        ahu_accessory_title: 'Gestión de accesorios AHU',
+        // Table column headers
+        operation: 'Operación',                            // Operation column
+        product_model_short: 'Modelo',                     // Product model column
+        product_name: 'Nombre del producto',               // Product name column
+        standard_config: 'Configuración estándar',         // Standard config column
+        price_col: 'Precio',                               // Price column
+        compatible_style: 'Estilo compatible',             // Compatible style column
+        background_color: 'Fondo',                         // Background color column
+        remarks: 'Comentarios',                            // Remarks column
+        add_accessory: '+ Agregar accesorio',              // Add accessory button
+        delete: 'Eliminar',                                // Delete button
         save_success: '✓ Todos los datos guardados',
         reset_success: '✓ Restablecido por defecto',
         download_success: '✓ Plantilla descargada correctamente',
@@ -432,7 +620,8 @@ const languages = {
         title: 'EAF 自動見積り照会システム',
         subtitle: 'パラメータを選択し、製品の見積りを迅速に照会',
         warning_tip: '⚠️ 公式リマインダー: EAF2016とEAF1620は全く異なる二つの製品です。選択と使用時に混同しないでください。',
-        query_quote: '🔍 見積りを照会',                  // 查询报价按钮
+        query_single_quote: '🔍 単一見積りを照会',         // 查询单个报价按钮
+        query_batch_quote: '📦 一括見積りを照会',           // 批量查询报价按钮
         admin: '🔧 管理者基本データ管理',
         admin_show: '🔧 データ管理を表示',
         admin_hide: '🔧 データ管理を非表示',
@@ -485,6 +674,19 @@ const languages = {
         equivalent_title: '数値等価関係（入力値 → 実際のmm値）',
         style_config_title: 'スタイルパラメータ設定',
         price_title: '定価データ管理',
+        fc_accessory_title: 'FCアクセサリー管理',
+        ahu_accessory_title: 'AHUアクセサリー管理',
+        // Table column headers
+        operation: '操作',                                 // Operation column
+        product_model_short: '製品モデル',                  // Product model column
+        product_name: '製品名',                             // Product name column
+        standard_config: '標準構成',                        // Standard config column
+        price_col: '価格',                                 // Price column
+        compatible_style: '互換スタイル',                   // Compatible style column
+        background_color: '背景色',                        // Background color column
+        remarks: '備考',                                   // Remarks column
+        add_accessory: '+ アクセサリーを追加',              // Add accessory button
+        delete: '削除',                                     // Delete button
         save_success: '✓ すべてのデータを保存しました',
         reset_success: '✓ デフォルトにリセットしました',
         download_success: '✓ テンプレートを正常にダウンロードしました',
@@ -517,7 +719,8 @@ const languages = {
         title: 'EAF 자동 견적 조회 시스템',
         subtitle: '매개변수를 선택하고 제품 견적을 빠르게 조회',
         warning_tip: '⚠️ 공식 알림: EAF2016과 EAF1620은 완전히 다른 두 제품입니다. 선택 및 사용 시 혼동하지 마십시오.',
-        query_quote: '🔍 견적 조회',                      // 查询报价按钮
+        query_single_quote: '🔍 단일 견적 조회',           // 查询单个报价按钮
+        query_batch_quote: '📦 일괄 견적 조회',           // 批量查询报价按钮
         admin: '🔧 관리자 기본 데이터 관리',
         admin_show: '🔧 데이터 관리 보기',
         admin_hide: '🔧 데이터 관리 숨기기',
@@ -570,6 +773,19 @@ const languages = {
         equivalent_title: '수치 등가 관계（입력값 → 실제 mm값）',
         style_config_title: '스타일 매개변수 구성',
         price_title: '정가 데이터 관리',
+        fc_accessory_title: 'FC 액세서리 관리',
+        ahu_accessory_title: 'AHU 액세서리 관리',
+        // Table column headers
+        operation: '조작',                                  // Operation column
+        product_model_short: '제품 모델',                    // Product model column
+        product_name: '제품 이름',                           // Product name column
+        standard_config: '표준 구성',                        // Standard config column
+        price_col: '가격',                                  // Price column
+        compatible_style: '호환 스타일',                     // Compatible style column
+        background_color: '배경색',                         // Background color column
+        remarks: '비고',                                    // Remarks column
+        add_accessory: '+ 액세서리 추가',                   // Add accessory button
+        delete: '삭제',                                     // Delete button
         save_success: '✓ 모든 데이터가 저장되었습니다',
         reset_success: '✓ 기본값으로 재설정되었습니다',
         download_success: '✓ 템플릿이 성공적으로 다운로드되었습니다',
@@ -602,7 +818,8 @@ const languages = {
         title: 'EAF Sistema de Consulta de Cotação Automática',
         subtitle: 'Selecione parâmetros para consultar rapidamente cotações de produtos',
         warning_tip: '⚠️ Aviso oficial: EAF2016 e EAF1620 são dois produtos completamente diferentes. Por favor, não os confunda ao selecionar e usar.',
-        query_quote: '🔍 Consultar cotação',               // 查询报价按钮
+        query_single_quote: '🔍 Consultar cotação',         // 查询单个报价按钮
+        query_batch_quote: '📦 Consultar cotações em lote', // 批量查询报价按钮
         admin: '🔧 Gerenciamento de Dados Básicos do Administrador',
         admin_show: '🔧 Mostrar Gerenciamento de Dados',
         admin_hide: '🔧 Ocultar Gerenciamento de Dados',
@@ -655,6 +872,19 @@ const languages = {
         equivalent_title: 'Equivalência de Valor (Entrada → mm Real)',
         style_config_title: 'Configuração de Parâmetros de Estilo',
         price_title: 'Gerenciamento de Dados de Preço',
+        fc_accessory_title: 'Gerenciamento de Acessórios FC',
+        ahu_accessory_title: 'Gerenciamento de Acessórios AHU',
+        // Table column headers
+        operation: 'Operação',                              // Operation column
+        product_model_short: 'Modelo',                      // Product model column
+        product_name: 'Nome do Produto',                    // Product name column
+        standard_config: 'Configuração Padrão',             // Standard config column
+        price_col: 'Preço',                                 // Price column
+        compatible_style: 'Estilo Compatível',              // Compatible style column
+        background_color: 'Fundo',                          // Background color column
+        remarks: 'Comentários',                             // Remarks column
+        add_accessory: '+ Adicionar Acessório',             // Add accessory button
+        delete: 'Excluir',                                  // Delete button
         save_success: '✓ Todos os dados salvos',
         reset_success: '✓ Redefinido para padrão',
         download_success: '✓ Modelo baixado com sucesso',
@@ -687,7 +917,8 @@ const languages = {
         title: 'EAF Sistema di Ricerca Automatica di Preventivi',
         subtitle: 'Seleziona i parametri per cercare rapidamente i preventivi dei prodotti',
         warning_tip: '⚠️ Avviso ufficiale: EAF2016 e EAF1620 sono due prodotti completamente diversi. Si prega di non confonderli durante la selezione e l\'uso.',
-        query_quote: '🔍 Richiedi preventivo',             // 查询报价按钮
+        query_single_quote: '🔍 Richiedi preventivo',       // 查询单个报价按钮
+        query_batch_quote: '📦 Richiedi preventivi in batch', // 批量查询报价按钮
         admin: '🔧 Gestione Dati Base Amministratore',
         admin_show: '🔧 Mostra Gestione Dati',
         admin_hide: '🔧 Nascondi Gestione Dati',
@@ -740,6 +971,19 @@ const languages = {
         equivalent_title: 'Equivalenza di Valore (Ingresso → mm Reale)',
         style_config_title: 'Configurazione Parametri Stile',
         price_title: 'Gestione Dati Prezzo',
+        fc_accessory_title: 'Gestione Accessori FC',
+        ahu_accessory_title: 'Gestione Accessori AHU',
+        // Table column headers
+        operation: 'Operazione',                            // Operation column
+        product_model_short: 'Modello',                     // Product model column
+        product_name: 'Nome Prodotto',                      // Product name column
+        standard_config: 'Configurazione Standard',         // Standard config column
+        price_col: 'Prezzo',                                // Price column
+        compatible_style: 'Stile Compatibile',              // Compatible style column
+        background_color: 'Sfondo',                         // Background color column
+        remarks: 'Note',                                    // Remarks column
+        add_accessory: '+ Aggiungi Accessorio',             // Add accessory button
+        delete: 'Elimina',                                  // Delete button
         save_success: '✓ Tutti i dati salvati',
         reset_success: '✓ Ripristinato alle impostazioni predefinite',
         download_success: '✓ Modello scaricato con successo',
@@ -772,7 +1016,8 @@ const languages = {
         title: 'EAF Автоматизированная система запроса котировок',
         subtitle: 'Выберите параметры для быстрого запроса котировок продуктов',
         warning_tip: '⚠️ Официальное напоминание: EAF2016 и EAF1620 - это два совершенно разных продукта. Пожалуйста, не путайте их при выборе и использовании.',
-        query_quote: '🔍 Запросить котировку',            // 查询报价按钮
+        query_single_quote: '🔍 Запросить котировку',       // 查询单个报价按钮
+        query_batch_quote: '📦 Запросить котировки пакетно', // 批量查询报价按钮
         admin: '🔧 Управление базовыми данными администратора',
         admin_show: '🔧 Показать управление данными',
         admin_hide: '🔧 Скрыть управление данными',
@@ -825,6 +1070,19 @@ const languages = {
         equivalent_title: 'Эквивалентность значений (Вход → Фактическое мм)',
         style_config_title: 'Конфигурация параметров стиля',
         price_title: 'Управление ценовыми данными',
+        fc_accessory_title: 'Управление аксессуарами FC',
+        ahu_accessory_title: 'Управление аксессуарами AHU',
+        // Table column headers
+        operation: 'Операция',                              // Operation column
+        product_model_short: 'Модель',                      // Product model column
+        product_name: 'Название продукта',                  // Product name column
+        standard_config: 'Стандартная конфигурация',        // Standard config column
+        price_col: 'Цена',                                  // Price column
+        compatible_style: 'Совместимый стиль',              // Compatible style column
+        background_color: 'Фон',                            // Background color column
+        remarks: 'Примечания',                              // Remarks column
+        add_accessory: '+ Добавить аксессуар',              // Add accessory button
+        delete: 'Удалить',                                  // Delete button
         save_success: '✓ Все данные сохранены',
         reset_success: '✓ Сброшено по умолчанию',
         download_success: '✓ Шаблон успешно загружен',
@@ -857,7 +1115,8 @@ const languages = {
         title: 'EAF نظام استعلام الاقتراحات التلقائي',
         subtitle: 'حدد المعلمات لاستعلام أسعار المنتجات بسرعة',
         warning_tip: '⚠️ ملاحظة رسمية: EAF2016 و EAF1620 هما منتجات مختلفة تمامًا. يرجى عدم الخلط بينهما عند الاختيار والاستخدام.',
-        query_quote: '🔍 استعلام السعر',                   // 查询报价按钮
+        query_single_quote: '🔍 استعلام سعر واحد',          // 查询单个报价按钮
+        query_batch_quote: '📦 استعلام أسعار جماعي',       // 批量查询报价按钮
         admin: '🔧 إدارة بيانات الأدمن الأساسية',
         admin_show: '🔧 عرض إدارة البيانات',
         admin_hide: '🔧 إخفاء إدارة البيانات',
@@ -910,6 +1169,19 @@ const languages = {
         equivalent_title: 'التكافؤ القيمة (الإدخال → مم الفعلي)',
         style_config_title: 'تهيئة معلمات النمط',
         price_title: 'إدارة بيانات السعر',
+        fc_accessory_title: 'إدارة ملحقات FC',
+        ahu_accessory_title: 'إدارة ملحقات AHU',
+        // Table column headers
+        operation: 'عملية',                                 // Operation column
+        product_model_short: 'نموذج المنتج',                // Product model column
+        product_name: 'اسم المنتج',                         // Product name column
+        standard_config: 'التكوين القياسي',                 // Standard config column
+        price_col: 'السعر',                                 // Price column
+        compatible_style: 'النمط المتوافق',                 // Compatible style column
+        background_color: 'لون الخلفية',                    // Background color column
+        remarks: 'ملاحظات',                                 // Remarks column
+        add_accessory: '+ إضافة ملحق',                      // Add accessory button
+        delete: 'حذف',                                     // Delete button
         save_success: '✓ لقد تم حفظ جميع البيانات',
         reset_success: '✓ تم إعادة التعيين إلى الافتراضي',
         download_success: '✓ تم تنزيل القالب بنجاح',
@@ -1051,7 +1323,7 @@ const defaultEquivalentMap = {
     '24': '592', '25': '618', '26': '642', '27': '668', '28': '693', '29': '718', '30': '745', '31': '770',
     '32': '795', '33': '825', '34': '850', '35': '875', '36': '900', '37': '925', '38': '950', '39': '975',
     '40': '1000', '41': '1025', '42': '1050', '43': '1075', '44': '1100', '45': '1125', '46': '1150', '47': '1075',
-    '48': '1200', '49': '1225', '50': '1500', '51': '1275', '52': '1300', '53': '1325', '54': '1350', '55': '1375', '56': '1400'
+    '48': '1200', '49': '1225', '50': '1250', '51': '1275', '52': '1300', '53': '1325', '54': '1350', '55': '1375', '56': '1400'
 };
 
 /**
@@ -1544,7 +1816,7 @@ function calculateResults(width, height, style, brand, currency = 'CNY', exchang
     if (originalPrice !== 'NA' && currency === '外币(如美元)') {
         const priceValue = parseFloat(originalPrice);
         if (!isNaN(priceValue) && exchangeRate > 0) {
-            price = Math.floor(priceValue / exchangeRate);  // 面价 ÷ 汇率
+            price = Math.round(priceValue / exchangeRate);  // 面价 ÷ 汇率，四舍五入取整
         }
     }
     
@@ -1623,6 +1895,8 @@ function loadData() {
     const savedEquivalent = localStorage.getItem('equivalentMap');
     const savedStyle = localStorage.getItem('styleConfig');
     const savedPrice = localStorage.getItem('priceData');
+    const savedFcAccessories = localStorage.getItem('fcAccessories');
+    const savedAhuAccessories = localStorage.getItem('ahuAccessories');
     
     // 加载数值等价关系映射表
     if (savedEquivalent) {
@@ -1654,49 +1928,78 @@ function loadData() {
     } else {
         priceData = JSON.parse(JSON.stringify(defaultPriceData));
     }
+    
+    // 加载风机盘管配件数据
+    if (savedFcAccessories) {
+        try {
+            fcAccessories = JSON.parse(savedFcAccessories);
+        } catch {
+            fcAccessories = JSON.parse(JSON.stringify(defaultFcAccessories));
+        }
+    } else {
+        fcAccessories = JSON.parse(JSON.stringify(defaultFcAccessories));
+    }
+    
+    // 加载空调箱配件数据
+    if (savedAhuAccessories) {
+        try {
+            ahuAccessories = JSON.parse(savedAhuAccessories);
+        } catch {
+            ahuAccessories = JSON.parse(JSON.stringify(defaultAhuAccessories));
+        }
+    } else {
+        ahuAccessories = JSON.parse(JSON.stringify(defaultAhuAccessories));
+    }
 }
 
 /**
  * 保存所有数据到localStorage
  */
 function saveAllData() {
-    // 将所有数据保存到localStorage
     localStorage.setItem('equivalentMap', JSON.stringify(equivalentMap));
     localStorage.setItem('styleConfig', JSON.stringify(styleConfig));
     localStorage.setItem('priceData', JSON.stringify(priceData));
+    localStorage.setItem('fcAccessories', JSON.stringify(fcAccessories));
+    localStorage.setItem('ahuAccessories', JSON.stringify(ahuAccessories));
     
-    // 显示保存成功提示
+    updateSizeRange();
+    searchData();
+    renderFcAccessoryTable();
+    renderAhuAccessoryTable();
+    renderAccessoryTables();
+    updateFanCoilAccessories();
+    
     document.getElementById('saveStatus').textContent = getLang('save_success');
     document.getElementById('saveStatus').className = 'status success';
     
-    // 3秒后清除提示信息
     setTimeout(() => {
         document.getElementById('saveStatus').textContent = '';
         document.getElementById('saveStatus').className = 'status';
     }, 3000);
-    
-    // 重新搜索数据以更新显示
-    searchData();
 }
 
 /**
  * 重置所有数据为默认值
  */
 function resetAllData() {
-    // 恢复为默认数据
     equivalentMap = { ...defaultEquivalentMap };
     styleConfig = JSON.parse(JSON.stringify(defaultStyleConfig));
     priceData = JSON.parse(JSON.stringify(defaultPriceData));
+    fcAccessories = JSON.parse(JSON.stringify(defaultFcAccessories));
+    ahuAccessories = JSON.parse(JSON.stringify(defaultAhuAccessories));
     
-    // 重新渲染管理面板和搜索数据
+    // 清除 localStorage 中的旧数据，确保下次加载时使用新的默认数据
+    localStorage.removeItem('fcAccessories');
+    localStorage.removeItem('ahuAccessories');
+    
     renderAdminPanel();
     searchData();
+    renderFcAccessoryTable();
+    renderAhuAccessoryTable();
     
-    // 显示重置成功提示
     document.getElementById('saveStatus').textContent = getLang('reset_success');
     document.getElementById('saveStatus').className = 'status success';
     
-    // 3秒后清除提示信息
     setTimeout(() => {
         document.getElementById('saveStatus').textContent = '';
         document.getElementById('saveStatus').className = 'status';
@@ -1711,6 +2014,7 @@ function toggleAdminPanel() {
     const inputSection = document.querySelector('.input-section');
     const resultSection = document.getElementById('resultSection');
     const productListSection = document.getElementById('productListSection');
+    const batchQuerySection = document.getElementById('batchQuerySection');
     const btn = document.getElementById('adminBtn');
     
     if (panel.style.display === 'none') {
@@ -1719,6 +2023,7 @@ function toggleAdminPanel() {
         inputSection.style.display = 'none';
         resultSection.style.display = 'none';
         productListSection.style.display = 'none';
+        batchQuerySection.style.display = 'none';
         btn.textContent = getLang('admin_hide');  // 按钮文本改为"隐藏"
     } else {
         // 隐藏管理员面板，显示输入和结果区域
@@ -1737,6 +2042,7 @@ function toggleProductList() {
     const inputSection = document.querySelector('.input-section');
     const resultSection = document.getElementById('resultSection');
     const adminPanel = document.getElementById('adminPanel');
+    const batchQuerySection = document.getElementById('batchQuerySection');
     const btn = document.getElementById('listBtn');
     
     if (productListSection.style.display === 'none' || productListSection.style.display === '') {
@@ -1756,6 +2062,7 @@ function toggleProductList() {
         if (inputSection) inputSection.style.display = 'none';
         if (resultSection) resultSection.style.display = 'none';
         if (adminPanel) adminPanel.style.display = 'none';
+        if (batchQuerySection) batchQuerySection.style.display = 'none';
         btn.textContent = getLang('product_list_hide');  // 按钮文本改为"隐藏"
         
         // 渲染产品列表
@@ -1868,12 +2175,14 @@ function renderProductList() {
     };
     const currency = currencyMap[currencyCode] || getLang('not_selected');
     
-    // 构建筛选条件显示区域
-    let html = '<div style="margin-bottom: 15px; padding: 8px 15px; background: #f8f9fa; border-radius: 6px; text-align: left; color: #666; font-size: 13px;">';
-    html += getLang('filter_condition') + ': ' + getLang('style') + '=' + styleMap[filterStyle] + ' | ' + getLang('currency') + '=' + currency;
+    // 构建筛选条件和导出按钮区域（同一行）
+    let html = '<div style="margin-bottom: 15px; padding: 8px 15px; background: #f8f9fa; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">';
+    html += '<span style="color: #666; font-size: 13px;">' + getLang('filter_condition') + ': ' + getLang('style') + '=' + styleMap[filterStyle] + ' | ' + getLang('currency') + '=' + currency;
     if (currencyCode !== '本币(人民币)') {
         html += ' | ' + getLang('exchange_rate') + '=' + exchangeRate;
     }
+    html += '</span>';
+    html += '<button id="downloadListBtn" class="admin-btn" onclick="downloadProductList()" data-lang="export_excel">📤 导出Excel</button>';
     html += '</div>';
     
     // 构建表格头部
@@ -2021,6 +2330,8 @@ function renderAdminPanel() {
     renderEquivalentTable();
     renderStyleTable();
     renderPriceTable();
+    renderFcAccessoryTable();
+    renderAhuAccessoryTable();
 }
 
 function renderEquivalentTable() {
@@ -2429,6 +2740,19 @@ function downloadTemplate() {
     try {
         let csvContent = '';
         
+        // CSV单元格转义函数：处理包含逗号、换行符、双引号的内容
+        function escapeCsv(value) {
+            if (typeof value !== 'string') {
+                value = String(value || '');
+            }
+            // 如果包含逗号、换行符或双引号，需要用双引号包裹
+            if (value.includes(',') || value.includes('\n') || value.includes('\r') || value.includes('"')) {
+                // 将双引号转义为两个双引号
+                return '"' + value.replace(/"/g, '""') + '"';
+            }
+            return value;
+        }
+        
         // 导出数值等价关系数据
         csvContent += '数值等价关系（输入值 → 实际mm值）\n';
         csvContent += '输入值,实际mm值,输入值,实际mm值,输入值,实际mm值,输入值,实际mm值\n';
@@ -2506,6 +2830,74 @@ function downloadTemplate() {
                 csvContent += row.join(',') + '\n';
             }
         }
+        
+        // 导出风机盘管配件数据
+        csvContent += '\n';
+        csvContent += '风机盘管配件\n';
+        csvContent += [
+            escapeCsv('产品型号'),
+            escapeCsv('产品名称'),
+            escapeCsv('标准配置'),
+            escapeCsv('价格'),
+            escapeCsv('适配款式'),
+            escapeCsv('背景色'),
+            escapeCsv('备注')
+        ].join(',') + '\n';
+        fcAccessories.forEach(item => {
+            const styleLabels = {
+                '1': '1"',
+                '2': '2"',
+                '4home': '4"家用',
+                '4biz': '4"商用',
+                '5': '5"'
+            };
+            const styles = item.styles || [];
+            const styleStr = styles.map(s => styleLabels[s] || s).join(';');
+            const bgColor = item.backgroundColor || 'white';
+            csvContent += [
+                escapeCsv(item.model),
+                escapeCsv(item.name),
+                escapeCsv((item.config || '').replace(/<br>/g, '\n')),
+                escapeCsv(item.price),
+                escapeCsv(styleStr),
+                escapeCsv(bgColor),
+                escapeCsv((item.note || '').replace(/<br>/g, '\n'))
+            ].join(',') + '\n';
+        });
+        
+        // 导出空调箱配件数据
+        csvContent += '\n';
+        csvContent += '空调箱配件\n';
+        csvContent += [
+            escapeCsv('产品型号'),
+            escapeCsv('产品名称'),
+            escapeCsv('标准配置'),
+            escapeCsv('价格'),
+            escapeCsv('适配款式'),
+            escapeCsv('背景色'),
+            escapeCsv('备注')
+        ].join(',') + '\n';
+        ahuAccessories.forEach(item => {
+            const styleLabels = {
+                '1': '1"',
+                '2': '2"',
+                '4home': '4"家用',
+                '4biz': '4"商用',
+                '5': '5"'
+            };
+            const styles = item.styles || [];
+            const styleStr = styles.map(s => styleLabels[s] || s).join(';');
+            const bgColor = item.backgroundColor || 'white';
+            csvContent += [
+                escapeCsv(item.model),
+                escapeCsv(item.name),
+                escapeCsv((item.config || '').replace(/<br>/g, '\n')),
+                escapeCsv(item.price),
+                escapeCsv(styleStr),
+                escapeCsv(bgColor),
+                escapeCsv((item.note || '').replace(/<br>/g, '\n'))
+            ].join(',') + '\n';
+        });
         
         const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
@@ -2782,6 +3174,8 @@ function uploadExcelData() {
             renderEquivalentTable();
             renderStyleTable();
             renderPriceTable();
+            renderFcAccessoryTable();
+            renderAhuAccessoryTable();
             
             const status = document.getElementById('saveStatus');
             if (status) {
@@ -2820,10 +3214,12 @@ function toggleQuerySection() {
     const productListSection = document.getElementById('productListSection');
     const inputSection = document.querySelector('.input-section');
     const resultSection = document.getElementById('resultSection');
+    const batchQuerySection = document.getElementById('batchQuerySection');
     
     // 隐藏其他面板
     if (adminPanel) adminPanel.style.display = 'none';
     if (productListSection) productListSection.style.display = 'none';
+    if (batchQuerySection) batchQuerySection.style.display = 'none';
     
     // 显示查询区域
     if (inputSection) inputSection.style.display = 'block';
@@ -2835,4 +3231,904 @@ function toggleQuerySection() {
     
     // 显示后立即执行一次查询，显示默认结果
     searchData();
+}
+
+// ==================== 批量查询功能 ====================
+
+/**
+ * 切换批量查询区域的显示/隐藏状态
+ */
+function toggleBatchQuerySection() {
+    const batchSection = document.getElementById('batchQuerySection');
+    const adminPanel = document.getElementById('adminPanel');
+    const productListSection = document.getElementById('productListSection');
+    const inputSection = document.querySelector('.input-section');
+    const resultSection = document.getElementById('resultSection');
+    
+    if (batchSection.style.display === 'none' || batchSection.style.display === '') {
+        // 显示批量查询区域，隐藏其他区域
+        batchSection.style.display = 'block';
+        if (adminPanel) adminPanel.style.display = 'none';
+        if (productListSection) productListSection.style.display = 'none';
+        if (inputSection) inputSection.style.display = 'none';
+        if (resultSection) resultSection.style.display = 'none';
+        
+        // 初始化表格，添加一行
+        const tbody = document.querySelector('#batchTable tbody');
+        if (tbody && tbody.children.length === 0) {
+            addBatchRow();
+        }
+    } else {
+        // 隐藏批量查询区域，显示输入和结果区域
+        batchSection.style.display = 'none';
+        if (inputSection) inputSection.style.display = 'block';
+        if (resultSection) resultSection.style.display = 'block';
+    }
+}
+
+/**
+ * 当款式改变时更新所有行的数据
+ */
+function onBatchStyleChange() {
+    const rows = document.querySelectorAll('#batchTable tbody tr');
+    rows.forEach(row => {
+        updateBatchRow(row);
+    });
+    calculateBatchTotals();
+}
+
+/**
+ * 添加一行新的批量查询
+ */
+function addBatchRow() {
+    const tbody = document.querySelector('#batchTable tbody');
+    if (!tbody) return;
+    
+    const rowIndex = tbody.children.length + 1;
+    const row = document.createElement('tr');
+    row.setAttribute('data-row-index', rowIndex);
+    
+    row.innerHTML = `
+        <td><input type="number" class="batch-input width-input" placeholder="宽度" min="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
+        <td><input type="number" class="batch-input height-input" placeholder="高度" min="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
+        <td><input type="number" class="batch-input quantity-input" placeholder="数量" min="1" value="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
+        <td class="product-info-cell model-cell">-</td>
+        <td class="product-info-cell air-flow-cell">-</td>
+        <td class="product-info-cell dimensions-cell">-</td>
+        <td class="product-info-cell net-weight-cell">-</td>
+        <td class="product-info-cell price-cell">-</td>
+        <td class="product-info-cell eaf-quantity-cell">-</td>
+        <td class="product-info-cell subtotal-cell">-</td>
+        <td><button class="delete-row-btn" onclick="deleteBatchRow(this.parentElement.parentElement)">✕</button></td>
+    `;
+    
+    tbody.appendChild(row);
+}
+
+/**
+ * 删除指定行
+ */
+function deleteBatchRow(row) {
+    const tbody = document.querySelector('#batchTable tbody');
+    if (tbody && tbody.children.length > 1) {
+        row.remove();
+        calculateBatchTotals();
+    } else if (tbody && tbody.children.length === 1) {
+        // 至少保留一行，清空内容
+        const inputs = row.querySelectorAll('input');
+        inputs.forEach(input => input.value = '');
+        const infoCells = row.querySelectorAll('.product-info-cell');
+        infoCells.forEach(cell => cell.textContent = 'NA');
+        calculateBatchTotals();
+    }
+}
+
+/**
+ * 更新行数据（自动匹配产品型号等）
+ */
+function updateBatchRow(row) {
+    const widthInput = row.querySelector('.width-input');
+    const heightInput = row.querySelector('.height-input');
+    const quantityInput = row.querySelector('.quantity-input');
+    
+    const width = parseInt(widthInput.value) || 0;
+    const height = parseInt(heightInput.value) || 0;
+    const quantity = parseInt(quantityInput.value) || 1;
+    
+    const styleSelect = document.getElementById('batchStyleSelect');
+    const style = styleSelect ? styleSelect.value : '4biz';
+    
+    // 获取款式配置
+    const styleConfigItem = styleConfig.find(s => s.style === style);
+    if (!styleConfigItem) return;
+    
+    // 获取显示名称
+    const styleDisplayMap = {
+        '1': '1"',
+        '2': '2"', 
+        '4home': '4"家用',
+        '4biz': '4"商用',
+        '5': '5"'
+    };
+    const styleDisplay = styleDisplayMap[style] || style;
+    
+    // 根据实际mm尺寸匹配标准规格
+    // 支持三种规则：
+    // 'ac'（空调箱）：实际尺寸≥标准值即选用对应型号，选择满足条件的最大规格
+    // 'fc'（风机盘管）：实际尺寸最接近标准值即选用对应型号，如果卡在正中间的取小的那个
+    // 'custom'（非标）：向上取整到下一档标准规格
+    const getStandardInch = (mmValue) => {
+        if (mmValue <= 0) return 0;
+        // 获取所有标准规格并按英寸值升序排序
+        const standards = Object.keys(equivalentMap).map(key => ({
+            inch: parseInt(key),
+            mm: parseInt(equivalentMap[key])
+        })).sort((a, b) => a.inch - b.inch);
+        
+        if (currentSelectionRule === 'ac') {
+            // 空调箱规则：找到所有满足实际尺寸 >= 标准mm值的规格，取最大的那个
+            let matchedInch = 0;
+            for (const standard of standards) {
+                if (mmValue >= standard.mm) {
+                    matchedInch = standard.inch;
+                }
+            }
+            return matchedInch;
+        } else if (currentSelectionRule === 'fc') {
+            // 风机盘管规则：找到最接近的标准规格，若数值处于两档中间，则取较小值
+            let closestInch = standards[0].inch;
+            let minDifference = Math.abs(mmValue - standards[0].mm);
+            
+            for (const standard of standards) {
+                const difference = Math.abs(mmValue - standard.mm);
+                if (difference < minDifference) {
+                    minDifference = difference;
+                    closestInch = standard.inch;
+                } else if (difference === minDifference) {
+                    // 刚好卡在中间，取较小的那个
+                    if (standard.inch < closestInch) {
+                        closestInch = standard.inch;
+                    }
+                }
+            }
+            return closestInch;
+        } else {
+            // 非标规则：向上取整到下一档标准规格
+            // 如果正好等于某个标准尺寸，就用该尺寸；否则向上取整
+            for (let i = 0; i < standards.length; i++) {
+                if (mmValue === standards[i].mm) {
+                    return standards[i].inch;
+                } else if (mmValue < standards[i].mm) {
+                    // 找到第一个比实际尺寸大的标准规格
+                    return standards[i].inch;
+                }
+            }
+            // 如果实际尺寸大于所有标准规格，返回最大的
+            return standards[standards.length - 1].inch;
+        }
+    };
+    
+    const widthInch = getStandardInch(width);
+    const heightInch = getStandardInch(height);
+    const widthKey = widthInch.toString().padStart(2, '0');
+    const heightKey = heightInch.toString().padStart(2, '0');
+    
+    const widthMm = equivalentMap[widthKey] || width;
+    const heightMm = equivalentMap[heightKey] || height;
+    
+    // 计算产品型号（使用英寸值，确保两位数字）
+    const model = width && height ? `EAF${widthKey}${heightKey}${styleConfigItem.suffix}` : 'NA';
+    
+    // 计算标示风量（使用英寸值计算）
+    let airFlow = 'NA';
+    if (width && height && styleConfigItem) {
+        if (style === '1' || style === '2') {
+            // 1"/2"款式公式：MROUND((宽度×25.4-13-30)×(高度×25.4-13-65)×风速1.5×3600/1000000×系数1.018, 10)
+            const effectiveWidth = widthInch * 25.4 - 13 - 30;
+            const effectiveHeight = heightInch * 25.4 - 13 - 65;
+            if (effectiveWidth > 0 && effectiveHeight > 0) {
+                airFlow = Math.round((effectiveWidth * effectiveHeight * 1.5 * 3600 / 1000000 * 1.018) / 10) * 10;
+            }
+        } else {
+            // 4"/5"款式公式：MROUND(宽度×25.4×高度×25.4×风速2.54×3600/1000000, 10)
+            airFlow = Math.round((widthInch * 25.4 * heightInch * 25.4 * 2.54 * 3600 / 1000000) / 10) * 10;
+        }
+    }
+    
+    // 外形尺寸
+    const dimensions = width && height ? `${widthMm}×${heightMm}×${styleConfigItem.thickness}` : 'NA';
+    
+    // 净重（精确到0.1）
+    let netWeight = 'NA';
+    if (width && height && styleConfigItem.kgFactor) {
+        netWeight = (widthMm * heightMm * styleConfigItem.kgFactor / 1000000).toFixed(1);
+    }
+    
+    // 面价
+    let price = 'NA';
+    if (width && height) {
+        const priceDataForStyle = priceData[styleDisplay];
+        if (priceDataForStyle && priceDataForStyle[heightInch] && priceDataForStyle[heightInch][widthKey]) {
+            const priceValue = priceDataForStyle[heightInch][widthKey];
+            price = priceValue === 'NA' ? '无法生产' : priceValue;
+        }
+    }
+    
+    // 如果面价为NA或无法生产，其他字段也显示NA
+    const isPriceAvailable = price !== 'NA' && price !== '无法生产';
+    
+    // EAF数量（与输入数量相同）
+    const eafQuantity = isPriceAvailable && quantity ? quantity : 'NA';
+    
+    // 小计
+    let subtotal = 'NA';
+    if (isPriceAvailable && quantity) {
+        subtotal = (parseFloat(price) * quantity).toFixed(0);
+    }
+    
+    // 更新单元格
+    row.querySelector('.model-cell').textContent = isPriceAvailable ? model : 'NA';
+    row.querySelector('.air-flow-cell').textContent = isPriceAvailable ? airFlow : 'NA';
+    row.querySelector('.dimensions-cell').textContent = isPriceAvailable ? dimensions : 'NA';
+    row.querySelector('.net-weight-cell').textContent = isPriceAvailable ? netWeight : 'NA';
+    row.querySelector('.price-cell').textContent = price;
+    row.querySelector('.eaf-quantity-cell').textContent = eafQuantity;
+    row.querySelector('.subtotal-cell').textContent = subtotal;
+    
+    calculateBatchTotals();
+}
+
+/**
+ * 计算合计
+ */
+function calculateBatchTotals() {
+    const rows = document.querySelectorAll('#batchTable tbody tr');
+    
+    let totalAirFlow = 0;
+    let totalNetWeight = 0;
+    let totalQuantity = 0;
+    let totalSubtotal = 0;
+    
+    rows.forEach(row => {
+        const airFlow = parseFloat(row.querySelector('.air-flow-cell').textContent);
+        const netWeight = parseFloat(row.querySelector('.net-weight-cell').textContent);
+        const quantity = parseFloat(row.querySelector('.eaf-quantity-cell').textContent);
+        const subtotal = parseFloat(row.querySelector('.subtotal-cell').textContent);
+        
+        const qty = isNaN(quantity) ? 0 : quantity;
+        
+        if (!isNaN(airFlow)) totalAirFlow += airFlow * qty;
+        if (!isNaN(netWeight)) totalNetWeight += netWeight * qty;
+        if (!isNaN(quantity)) totalQuantity += quantity;
+        if (!isNaN(subtotal)) totalSubtotal += subtotal;
+    });
+    
+    // 更新合计行
+    document.getElementById('totalAirFlow').textContent = totalAirFlow || 'NA';
+    document.getElementById('totalNetWeight').textContent = totalNetWeight ? totalNetWeight.toFixed(1) : 'NA';
+    document.getElementById('totalQuantity').textContent = totalQuantity || 'NA';
+    document.getElementById('totalSubtotal').textContent = totalSubtotal || 'NA';
+    
+    // 重新计算配件总合计，确保总合计 = EAF合计 + 配件合计
+    calculateAccessoryTotal();
+}
+
+/**
+ * 根据款式更新风机盘管配件的显示
+ */
+function updateFanCoilAccessories() {
+    const styleSelect = document.getElementById('batchStyleSelect');
+    const style = styleSelect ? styleSelect.value : '4biz';
+    
+    // 处理风机盘管配件
+    const fcCategory = document.getElementById('fcCategory');
+    if (fcCategory) {
+        // 始终显示风机盘管配件区域
+        fcCategory.style.display = 'block';
+        
+        // 根据当前选择的款式过滤配件
+        fcAccessories.forEach(item => {
+            const row = document.getElementById(`row-${item.id}`);
+            if (row) {
+                const styles = item.styles || [];
+                const isVisible = styles.includes(style);
+                row.style.display = isVisible ? 'table-row' : 'none';
+                
+                // 更新输入框的值为保存在配件数据中的数量（保留用户之前设置的值）
+                const quantityInput = row.querySelector('.accessory-quantity');
+                const subtotalCell = row.querySelector('.accessory-subtotal');
+                if (quantityInput) {
+                    quantityInput.value = item.quantity || 0;
+                }
+                if (subtotalCell) {
+                    const subtotal = (item.quantity || 0) * item.price;
+                    subtotalCell.textContent = '¥' + subtotal.toFixed(0);
+                }
+            }
+        });
+    }
+    
+    // 处理空调箱配件
+    const ahuCategory = document.getElementById('ahuCategory');
+    if (ahuCategory) {
+        // 根据当前选择的款式过滤配件
+        ahuAccessories.forEach(item => {
+            const row = document.getElementById(`row-${item.id}`);
+            if (row) {
+                const styles = item.styles || [];
+                const isVisible = styles.includes(style);
+                row.style.display = isVisible ? 'table-row' : 'none';
+                
+                // 更新输入框的值为保存在配件数据中的数量（保留用户之前设置的值）
+                const quantityInput = row.querySelector('.accessory-quantity');
+                const subtotalCell = row.querySelector('.accessory-subtotal');
+                if (quantityInput) {
+                    quantityInput.value = item.quantity || 0;
+                }
+                if (subtotalCell) {
+                    const subtotal = (item.quantity || 0) * item.price;
+                    subtotalCell.textContent = '¥' + subtotal.toFixed(0);
+                }
+            }
+        });
+    }
+    
+    // 重新计算合计
+    calculateAccessoryTotal();
+}
+
+/**
+ * 显示元素数组
+ */
+function showElements(elements) {
+    elements.forEach(el => {
+        if (el) el.style.display = '';
+    });
+}
+
+/**
+ * 隐藏元素数组
+ */
+function hideElements(elements) {
+    elements.forEach(el => {
+        if (el) el.style.display = 'none';
+    });
+}
+
+/**
+ * 计算配件合计价格
+ */
+function calculateAccessoryTotal() {
+    const quantities = document.querySelectorAll('.accessory-quantity');
+    let total = 0;
+    let fcTotal = 0;  // 风机盘管场景合计
+    let fcQuantityTotal = 0;  // 风机盘管场景数量合计
+    let ahuTotal = 0;  // 空调箱场景合计
+    let ahuQuantityTotal = 0;  // 空调箱场景数量合计
+    
+    quantities.forEach(input => {
+        const quantity = parseInt(input.value) || 0;
+        const quantityCell = input.parentElement;  // 获取数量单元格
+        const priceCell = quantityCell.previousElementSibling;  // 获取价格单元格（数量单元格的前一个）
+        const priceText = priceCell ? priceCell.textContent : '';
+        const price = parseFloat(priceText.replace('¥', '')) || 0;
+        const subtotal = quantity * price;
+        
+        // 更新单项小计（数量单元格的下一个单元格）
+        const subtotalCell = quantityCell.nextElementSibling;
+        if (subtotalCell && subtotalCell.classList.contains('accessory-subtotal')) {
+            subtotalCell.textContent = '¥' + subtotal.toFixed(0);
+        }
+        
+        // 保存数量到配件数据对象中
+        const row = quantityCell.parentElement;
+        if (row.id && row.id.startsWith('row-')) {
+            const accessoryId = row.id.replace('row-', '');
+            // 在风机盘管配件中查找
+            const fcAccessory = fcAccessories.find(a => a.id === accessoryId);
+            if (fcAccessory) {
+                fcAccessory.quantity = quantity;
+            }
+            // 在空调箱配件中查找
+            const ahuAccessory = ahuAccessories.find(a => a.id === accessoryId);
+            if (ahuAccessory) {
+                ahuAccessory.quantity = quantity;
+            }
+        }
+        
+        // 只计算可见行的数量到合计中
+        if (row.style.display !== 'none') {
+            total += subtotal;
+            
+            // 判断是否为风机盘管场景的配件（根据行ID）
+            if (row.id && (row.id.startsWith('row-eaf1') || row.id.startsWith('row-eaf2') || row.id === 'row-afs003' || row.id === 'row-mft-20-5-fc')) {
+                fcTotal += subtotal;
+                fcQuantityTotal += quantity;
+            } else if (row.id && row.id.startsWith('row-')) {
+                // 其他配件归为空调箱场景
+                ahuTotal += subtotal;
+                ahuQuantityTotal += quantity;
+            }
+        }
+    });
+    
+    // 更新风机盘管场景表格内的数量合计
+    const fcQuantityTotalEl = document.getElementById('fcQuantityTotal');
+    if (fcQuantityTotalEl) {
+        fcQuantityTotalEl.textContent = fcQuantityTotal;
+    }
+    
+    // 更新风机盘管场景表格内的总合计
+    const fcTotalEl = document.getElementById('fcTotal');
+    if (fcTotalEl) {
+        fcTotalEl.textContent = '¥' + fcTotal.toFixed(0);
+    }
+    
+    // 更新空调箱场景表格内的数量合计
+    const ahuQuantityTotalEl = document.getElementById('ahuQuantityTotal');
+    if (ahuQuantityTotalEl) {
+        ahuQuantityTotalEl.textContent = ahuQuantityTotal;
+    }
+    
+    // 更新空调箱场景表格内的总合计
+    const ahuTotalEl = document.getElementById('ahuTotal');
+    if (ahuTotalEl) {
+        ahuTotalEl.textContent = '¥' + ahuTotal.toFixed(0);
+    }
+    
+    // 获取EAF产品的合计（从批量查询表格的合计行获取）
+    const batchTotalEl = document.getElementById('totalSubtotal');
+    const batchTotal = batchTotalEl ? parseFloat(batchTotalEl.textContent.replace('¥', '').replace('-', '0')) || 0 : 0;
+    
+    // 总合计 = EAF产品合计 + 风机盘管配件合计 + 空调箱配件合计
+    const grandTotal = batchTotal + fcTotal + ahuTotal;
+    
+    // 更新总合计
+    const totalEl = document.getElementById('accessoryTotal');
+    if (totalEl) {
+        totalEl.textContent = '¥' + grandTotal.toFixed(0);
+    }
+}
+
+/**
+ * 监听批量查询款式变化
+ */
+function setupBatchStyleListener() {
+    const styleSelect = document.getElementById('batchStyleSelect');
+    if (styleSelect) {
+        styleSelect.addEventListener('change', updateFanCoilAccessories);
+    }
+}
+
+// 页面加载完成后初始化配件显示
+document.addEventListener('DOMContentLoaded', function() {
+    loadData();
+    renderAdminPanel();
+    renderAccessoryTables();
+    updateFanCoilAccessories();
+    setupBatchStyleListener();
+    updateSelectionExplanation();
+    updateSizeRange();
+});
+
+/**
+ * 导出批量查询结果到Excel
+ */
+function exportBatchToExcel() {
+    const rows = document.querySelectorAll('#batchTable tbody tr');
+    if (rows.length === 0) {
+        alert('没有数据可导出');
+        return;
+    }
+    
+    // 获取当前选中的款式
+    const styleSelect = document.getElementById('batchStyleSelect');
+    const currentStyle = styleSelect ? styleSelect.value : '4biz';
+    
+    // 准备数据
+    const data = [];
+    
+    // 添加表头
+    data.push([
+        '宽度', '高度', '数量', '产品型号', '标示风量(m³/h)', 
+        '外形尺寸', '净重', '面价', 'EAF数量', '小计'
+    ]);
+    
+    // 添加数据行
+    rows.forEach(row => {
+        const width = row.querySelector('.width-input').value || '-';
+        const height = row.querySelector('.height-input').value || '-';
+        const quantity = row.querySelector('.quantity-input').value || '-';
+        const model = row.querySelector('.model-cell').textContent;
+        const airFlow = row.querySelector('.air-flow-cell').textContent;
+        const dimensions = row.querySelector('.dimensions-cell').textContent;
+        const netWeight = row.querySelector('.net-weight-cell').textContent;
+        const price = row.querySelector('.price-cell').textContent;
+        const eafQuantity = row.querySelector('.eaf-quantity-cell').textContent;
+        const subtotal = row.querySelector('.subtotal-cell').textContent;
+        
+        data.push([width, height, quantity, model, airFlow, dimensions, netWeight, price, eafQuantity, subtotal]);
+    });
+    
+    // 添加合计行
+    data.push(['', '', '', '', '', '', '', '', '', '']);
+    data.push([
+        '合计', '', '', '', 
+        document.getElementById('totalAirFlow').textContent,
+        '',
+        document.getElementById('totalNetWeight').textContent,
+        '-',
+        document.getElementById('totalQuantity').textContent,
+        document.getElementById('totalSubtotal').textContent
+    ]);
+    
+    // 添加空行分隔
+    data.push(['', '', '', '', '', '', '', '', '', '']);
+    data.push(['配件选型', '', '', '', '', '', '', '', '', '']);
+    data.push(['', '', '', '', '', '', '', '', '', '']);
+    
+    // 添加风机盘管配件数据
+    data.push(['风机盘管配件', '', '', '', '', '', '', '', '', '']);
+    data.push(['产品型号', '产品名称', '标准配置', '价格', '数量', '合计', '备注', '', '', '']);
+    
+    // 记录配件行背景色信息
+    const rowStyles = {};
+    
+    fcAccessories.forEach(item => {
+        const styles = item.styles || [];
+        const showRow = styles.includes(currentStyle);
+        if (showRow) {
+            const quantity = item.quantity || 0;
+            const subtotal = quantity * item.price;
+            data.push([item.model, item.name, item.config.replace(/<br>/g, '\n'), '¥' + item.price, quantity, '¥' + subtotal, item.note.replace(/<br>/g, '\n'), '', '', '']);
+            rowStyles[data.length - 1] = item.backgroundColor || 'white';
+        }
+    });
+    
+    // 添加风机盘管配件合计
+    const fcTotal = document.getElementById('fcTotal')?.textContent || '¥0';
+    const fcQuantityTotal = document.getElementById('fcQuantityTotal')?.textContent || '0';
+    data.push(['', '', '', '', '', '', '', '', '', '']);
+    data.push(['合计', '', '', '', fcQuantityTotal, fcTotal, '', '', '', '']);
+    
+    // 添加空行分隔
+    data.push(['', '', '', '', '', '', '', '', '', '']);
+    
+    // 添加空调箱配件数据
+    data.push(['空调箱配件', '', '', '', '', '', '', '', '', '']);
+    data.push(['产品型号', '产品名称', '标准配置', '价格', '数量', '合计', '备注', '', '', '']);
+    
+    ahuAccessories.forEach(item => {
+        const styles = item.styles || [];
+        const showRow = styles.includes(currentStyle);
+        if (showRow) {
+            const quantity = item.quantity || 0;
+            const subtotal = quantity * item.price;
+            data.push([item.model, item.name, item.config.replace(/<br>/g, '\n'), '¥' + item.price, quantity, '¥' + subtotal, item.note.replace(/<br>/g, '\n'), '', '', '']);
+            rowStyles[data.length - 1] = item.backgroundColor || 'white';
+        }
+    });
+    
+    // 添加空调箱配件合计
+    const ahuTotal = document.getElementById('ahuTotal')?.textContent || '¥0';
+    const ahuQuantityTotal = document.getElementById('ahuQuantityTotal')?.textContent || '0';
+    data.push(['', '', '', '', '', '', '', '', '', '']);
+    data.push(['合计', '', '', '', ahuQuantityTotal, ahuTotal, '', '', '', '']);
+    
+    // 添加空行分隔
+    data.push(['', '', '', '', '', '', '', '', '', '']);
+    
+    // 添加总合计
+    const accessoryTotal = document.getElementById('accessoryTotal')?.textContent || '¥0';
+    data.push(['总合计', '', '', '', '', accessoryTotal, '', '', '', '']);
+    
+    // 创建工作簿和工作表
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    
+    // 设置列宽
+    const wscols = [
+        { wch: 15 }, // 宽度/产品型号
+        { wch: 15 }, // 高度/产品名称
+        { wch: 25 }, // 数量/标准配置
+        { wch: 10 }, // 产品型号/价格
+        { wch: 10 }, // 标示风量/数量
+        { wch: 10 }, // 外形尺寸/合计
+        { wch: 30 }, // 净重/备注
+        { wch: 10 }, // 面价
+        { wch: 10 }, // EAF数量
+        { wch: 10 }  // 小计
+    ];
+    ws['!cols'] = wscols;
+    
+    // 添加配件行背景色样式
+    // 颜色映射
+    const colorMap = {
+        'white': 'FFFFFF',
+        'gray': 'FAFAFA',
+        'green': 'F8FCF8',
+        'lightBlue': 'F8FAFF'
+    };
+    
+    // 遍历所有需要设置背景色的行
+    Object.keys(rowStyles).forEach(rowIdxStr => {
+        const rowIdx = parseInt(rowIdxStr);
+        const bgColor = rowStyles[rowIdxStr];
+        const rgbColor = colorMap[bgColor] || 'FFFFFF';
+        
+        for (let col = 0; col < 10; col++) {
+            const cellAddr = XLSX.utils.encode_cell({ r: rowIdx, c: col });
+            if (ws[cellAddr]) {
+                ws[cellAddr].s = {
+                    fill: {
+                        type: 'pattern',
+                        patternType: 'solid',
+                        fgColor: { rgb: rgbColor },
+                        bgColor: { rgb: rgbColor }
+                    }
+                };
+            }
+        }
+    });
+    
+    // 创建工作簿并添加工作表
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, '批量查询结果');
+    
+    // 使用带有样式的写入选项
+    XLSX.writeFile(wb, 'EAF 批量查询结果.xlsx', {
+        bookType: 'xlsx',
+        cellStyles: true
+    });
+}
+
+function renderFcAccessoryTable() {
+    const container = document.getElementById('fcAccessoryTable');
+    if (!container) return;
+    
+    let html = `<table class="admin-data-table"><thead><tr><th style="width: 40px;">${getLang('operation')}</th><th style="width: 110px;">${getLang('product_model_short')}</th><th style="width: 100px;">${getLang('product_name')}</th><th style="width: 200px;">${getLang('standard_config')}</th><th style="width: 60px;">${getLang('price_col')}</th><th style="width: 230px;">${getLang('compatible_style')}</th><th style="width: 60px;">${getLang('background_color')}</th><th>${getLang('remarks')}</th></tr></thead><tbody>`;
+    
+    fcAccessories.forEach((item, index) => {
+        const styles = item.styles || ['1', '2', '4', '5'];
+        const bgColor = item.backgroundColor || 'white';
+        html += `<tr><td><button class="delete-btn" onclick="deleteFcAccessory(${index})">${getLang('delete')}</button></td><td><input type="text" value="${item.model}" onchange="updateFcAccessory(${index}, 'model', this.value)" class="form-control"></td><td><input type="text" value="${item.name}" onchange="updateFcAccessory(${index}, 'name', this.value)" class="form-control"></td><td><input type="text" value="${item.config}" onchange="updateFcAccessory(${index}, 'config', this.value)" class="form-control"></td><td><input type="number" value="${item.price}" onchange="updateFcAccessory(${index}, 'price', this.value)" class="form-control"></td><td><div class="style-checkboxes">${renderStyleCheckboxes('fc', index, styles)}</div></td><td><select onchange="updateFcAccessory(${index}, 'backgroundColor', this.value)" class="form-control">${renderBackgroundColorOptions(bgColor)}</select></td><td><textarea onchange="updateFcAccessory(${index}, 'note', this.value)" class="form-control" rows="2">${item.note}</textarea></td></tr>`;
+    });
+    
+    html += '</tbody></table>';
+    html += `<div class="admin-actions"><button class="add-row-btn" onclick="addFcAccessory()">${getLang('add_accessory')}</button></div>`;
+    container.innerHTML = html;
+}
+
+function renderAhuAccessoryTable() {
+    const container = document.getElementById('ahuAccessoryTable');
+    if (!container) return;
+    
+    let html = `<table class="admin-data-table"><thead><tr><th style="width: 40px;">${getLang('operation')}</th><th style="width: 110px;">${getLang('product_model_short')}</th><th style="width: 100px;">${getLang('product_name')}</th><th style="width: 200px;">${getLang('standard_config')}</th><th style="width: 60px;">${getLang('price_col')}</th><th style="width: 230px;">${getLang('compatible_style')}</th><th style="width: 60px;">${getLang('background_color')}</th><th>${getLang('remarks')}</th></tr></thead><tbody>`;
+    
+    ahuAccessories.forEach((item, index) => {
+        const styles = item.styles || ['1', '2', '4', '5'];
+        const bgColor = item.backgroundColor || 'white';
+        html += `<tr><td><button class="delete-btn" onclick="deleteAhuAccessory(${index})">${getLang('delete')}</button></td><td><input type="text" value="${item.model}" onchange="updateAhuAccessory(${index}, 'model', this.value)" class="form-control"></td><td><input type="text" value="${item.name}" onchange="updateAhuAccessory(${index}, 'name', this.value)" class="form-control"></td><td><input type="text" value="${item.config}" onchange="updateAhuAccessory(${index}, 'config', this.value)" class="form-control"></td><td><input type="number" value="${item.price}" onchange="updateAhuAccessory(${index}, 'price', this.value)" class="form-control"></td><td><div class="style-checkboxes">${renderStyleCheckboxes('ahu', index, styles)}</div></td><td><select onchange="updateAhuAccessory(${index}, 'backgroundColor', this.value)" class="form-control">${renderBackgroundColorOptions(bgColor)}</select></td><td><textarea onchange="updateAhuAccessory(${index}, 'note', this.value)" class="form-control" rows="2">${item.note}</textarea></td></tr>`;
+    });
+    
+    html += '</tbody></table>';
+    html += `<div class="admin-actions"><button class="add-row-btn" onclick="addAhuAccessory()">${getLang('add_accessory')}</button></div>`;
+    container.innerHTML = html;
+}
+
+function renderStyleCheckboxes(category, index, selectedStyles) {
+    const styles = ['1', '2', '4home', '4biz', '5'];
+    const styleLabels = {
+        '1': '1"',
+        '2': '2"',
+        '4home': '4"家用',
+        '4biz': '4"商用',
+        '5': '5"'
+    };
+    let html = '';
+    styles.forEach(style => {
+        const checked = selectedStyles.includes(style) ? 'checked' : '';
+        html += `<label style="margin-right: 8px;"><input type="checkbox" ${checked} onclick="toggleStyle('${category}', ${index}, '${style}')">${styleLabels[style]}</label>`;
+    });
+    return html;
+}
+
+function renderBackgroundColorOptions(selectedValue) {
+    const options = [
+        { value: 'white', label: '白色', color: '#ffffff' },
+        { value: 'gray', label: '浅灰', color: '#fafafa' },
+        { value: 'green', label: '浅绿', color: '#f8fcf8' },
+        { value: 'lightBlue', label: '浅蓝', color: '#f8faff' }
+    ];
+    let html = '';
+    options.forEach(opt => {
+        const selected = selectedValue === opt.value ? 'selected' : '';
+        html += `<option value="${opt.value}" ${selected} data-color="${opt.color}">${opt.label}</option>`;
+    });
+    return html;
+}
+
+function toggleStyle(category, index, style) {
+    const accessories = category === 'fc' ? fcAccessories : ahuAccessories;
+    if (!accessories[index].styles) {
+        accessories[index].styles = [];
+    }
+    const styleIndex = accessories[index].styles.indexOf(style);
+    if (styleIndex > -1) {
+        accessories[index].styles.splice(styleIndex, 1);
+    } else {
+        accessories[index].styles.push(style);
+    }
+}
+
+function addFcAccessory() {
+    fcAccessories.push({ id: 'new-' + Date.now(), model: '新型号', name: '新产品', config: '/', price: 0, note: '', category: 'fc', styles: ['1', '2', '4', '5'], visible: true });
+    renderFcAccessoryTable();
+}
+
+function deleteFcAccessory(index) {
+    if (confirm('确定要删除这个配件吗？')) {
+        fcAccessories.splice(index, 1);
+        renderFcAccessoryTable();
+    }
+}
+
+function updateFcAccessory(index, field, value) {
+    fcAccessories[index][field] = field === 'price' ? parseFloat(value) || 0 : value;
+    // 如果更新的是背景色，重新渲染配件选型表格
+    if (field === 'backgroundColor') {
+        renderFcAccessoryTableInBatch();
+    }
+}
+
+function addAhuAccessory() {
+    ahuAccessories.push({ id: 'new-' + Date.now(), model: '新型号', name: '新产品', config: '/', price: 0, note: '', category: 'ahu', styles: ['1', '2', '4', '5'], visible: true });
+    renderAhuAccessoryTable();
+}
+
+function deleteAhuAccessory(index) {
+    if (confirm('确定要删除这个配件吗？')) {
+        ahuAccessories.splice(index, 1);
+        renderAhuAccessoryTable();
+    }
+}
+
+function updateAhuAccessory(index, field, value) {
+    ahuAccessories[index][field] = field === 'price' ? parseFloat(value) || 0 : value;
+    // 如果更新的是背景色，重新渲染配件选型表格
+    if (field === 'backgroundColor') {
+        renderAhuAccessoryTableInBatch();
+    }
+}
+
+function renderAccessoryTables() {
+    renderFcAccessoryTableInBatch();
+    renderAhuAccessoryTableInBatch();
+}
+
+function renderFcAccessoryTableInBatch() {
+    const tbody = document.querySelector('#fcCategory tbody');
+    if (!tbody) return;
+    
+    let html = '';
+    const styleSelect = document.getElementById('batchStyleSelect');
+    const currentStyle = styleSelect ? styleSelect.value : '4biz';
+    
+    fcAccessories.forEach(item => {
+        // 使用配件数据中保存的styles，如果没有则默认为空数组（不显示）
+        const styles = item.styles || [];
+        // 如果配件的适配款式包含当前选择的款式，则显示
+        const showRow = styles.includes(currentStyle);
+        // 使用保存在配件数据中的数量
+        const quantity = item.quantity || 0;
+        const subtotal = quantity * item.price;
+        // 根据 backgroundColor 属性判断需要哪种背景色
+        const bgColor = item.backgroundColor || 'white';
+        let highlightClass = 'highlight-row'; // 默认白色背景
+        if (bgColor === 'green') {
+            highlightClass = 'highlight-row-green';
+        } else if (bgColor === 'lightBlue') {
+            highlightClass = 'highlight-row-light';
+        } else if (bgColor === 'gray') {
+            highlightClass = 'highlight-row-gray';
+        }
+        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${item.name}</td><td>${item.config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${item.note}</td></tr>`;
+    });
+    
+    html += `<tr class="accessory-grand-total"><td colspan="4" class="total-label-cell">合计</td><td id="fcQuantityTotal">0</td><td id="fcTotal">¥0</td><td></td></tr>`;
+    tbody.innerHTML = html;
+}
+
+function renderAhuAccessoryTableInBatch() {
+    const tbody = document.querySelector('#ahuCategory tbody');
+    if (!tbody) return;
+    
+    let html = '';
+    const styleSelect = document.getElementById('batchStyleSelect');
+    const currentStyle = styleSelect ? styleSelect.value : '4biz';
+    
+    ahuAccessories.forEach(item => {
+        // 使用配件数据中保存的styles，如果没有则默认为空数组（不显示）
+        const styles = item.styles || [];
+        // 如果配件的适配款式包含当前选择的款式，则显示
+        const showRow = styles.includes(currentStyle);
+        // 使用保存在配件数据中的数量
+        const quantity = item.quantity || 0;
+        const subtotal = quantity * item.price;
+        // 根据 backgroundColor 属性判断需要哪种背景色
+        const bgColor = item.backgroundColor || 'white';
+        let highlightClass = 'highlight-row'; // 默认白色背景
+        if (bgColor === 'green') {
+            highlightClass = 'highlight-row-green';
+        } else if (bgColor === 'lightBlue') {
+            highlightClass = 'highlight-row-light';
+        } else if (bgColor === 'gray') {
+            highlightClass = 'highlight-row-gray';
+        }
+        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${item.name}</td><td>${item.config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${item.note}</td></tr>`;
+    });
+    
+    // 添加合计行
+    html += `<tr class="accessory-grand-total"><td colspan="4" class="total-label-cell">合计</td><td id="ahuQuantityTotal">0</td><td id="ahuTotal">¥0</td><td></td></tr>`;
+    tbody.innerHTML = html;
+}
+
+function updateFanCoilAccessories() {
+    const styleSelect = document.getElementById('batchStyleSelect');
+    const style = styleSelect ? styleSelect.value : '4biz';
+    
+    // 处理风机盘管配件
+    const fcCategory = document.getElementById('fcCategory');
+    if (fcCategory) {
+        // 始终显示风机盘管配件区域
+        fcCategory.style.display = 'block';
+        
+        // 根据当前选择的款式过滤配件
+        fcAccessories.forEach(item => {
+            const row = document.getElementById(`row-${item.id}`);
+            if (row) {
+                const styles = item.styles || [];
+                const isVisible = styles.includes(style);
+                row.style.display = isVisible ? 'table-row' : 'none';
+                
+                // 更新输入框的值为保存在配件数据中的数量（保留用户之前设置的值）
+                const quantityInput = row.querySelector('.accessory-quantity');
+                const subtotalCell = row.querySelector('.accessory-subtotal');
+                if (quantityInput) {
+                    quantityInput.value = item.quantity || 0;
+                }
+                if (subtotalCell) {
+                    const subtotal = (item.quantity || 0) * item.price;
+                    subtotalCell.textContent = '¥' + subtotal.toFixed(0);
+                }
+            }
+        });
+    }
+    
+    // 处理空调箱配件
+    const ahuCategory = document.getElementById('ahuCategory');
+    if (ahuCategory) {
+        // 根据当前选择的款式过滤配件
+        ahuAccessories.forEach(item => {
+            const row = document.getElementById(`row-${item.id}`);
+            if (row) {
+                const styles = item.styles || [];
+                const isVisible = styles.includes(style);
+                row.style.display = isVisible ? 'table-row' : 'none';
+                
+                // 更新输入框的值为保存在配件数据中的数量（保留用户之前设置的值）
+                const quantityInput = row.querySelector('.accessory-quantity');
+                const subtotalCell = row.querySelector('.accessory-subtotal');
+                if (quantityInput) {
+                    quantityInput.value = item.quantity || 0;
+                }
+                if (subtotalCell) {
+                    const subtotal = (item.quantity || 0) * item.price;
+                    subtotalCell.textContent = '¥' + subtotal.toFixed(0);
+                }
+            }
+        });
+    }
+    
+    // 重新计算合计
+    calculateAccessoryTotal();
 }

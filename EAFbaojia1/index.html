@@ -25,12 +25,14 @@
             </div>
             <!-- 页头操作按钮组 -->
             <div class="header-actions">
-                <!-- 查询报价按钮 -->
-                <button id="queryBtn" class="query-btn" onclick="toggleQuerySection()" data-lang="query_quote">🔍 查询报价</button>
+                <!-- 查询单个报价按钮 -->
+                <button id="queryBtn" class="query-btn" onclick="toggleQuerySection()" data-lang="query_single_quote">🔍 查询单个报价</button>
+                <!-- 批量查询报价按钮 -->
+                <button id="batchQueryBtn" class="batch-query-btn" onclick="toggleBatchQuerySection()" data-lang="query_batch_quote">📦 批量查询报价</button>
                 <!-- 管理员面板切换按钮 -->
-                <button id="adminBtn" class="admin-btn" onclick="toggleAdminPanel()">🔧 查看数据管理</button>
+                <button id="adminBtn" class="admin-btn" onclick="toggleAdminPanel()" data-lang="admin_show">🔧 隐藏数据管理</button>
                 <!-- 产品列表切换按钮 -->
-                <button id="listBtn" class="list-btn" onclick="toggleProductList()">📋 查看详细列表</button>
+                <button id="listBtn" class="list-btn" onclick="toggleProductList()" data-lang="product_list_hide">📋 隐藏详细列表</button>
                 <!-- 语言选择下拉框 -->
                 <select id="languageSelect" class="language-select" onchange="changeLanguage(this.value)">
                     <option value="zh" selected>中文</option>
@@ -52,14 +54,12 @@
         <div id="adminPanel" class="admin-panel" style="display: none;">
             <!-- 管理员操作按钮区域 -->
             <div class="admin-header">
-                <button class="admin-btn-style download-template-btn" onclick="downloadTemplate()">📥 下载模板</button>  <!-- 下载数据模板 -->
+                <button class="admin-btn-style download-template-btn" onclick="downloadTemplate()" data-lang="download_template">📥 下载模板</button>  <!-- 下载数据模板 -->
                 <!-- 上传Excel数据（隐藏input，通过label触发） -->
-                <label class="admin-btn-style upload-excel-btn">
-                    📤 上传数据
-                    <input type="file" id="excelUpload" accept=".xlsx" onchange="uploadExcelData()" style="display: none;">
-                </label>
-                <button class="admin-btn-style save-all-btn" onclick="saveAllData()">💾 保存所有数据</button>  <!-- 保存数据到本地存储 -->
-                <button class="admin-btn-style reset-btn" onclick="resetAllData()">🔄 恢复默认值</button>  <!-- 恢复默认数据 -->
+                <button class="admin-btn-style upload-excel-btn" onclick="document.getElementById('excelUpload').click(); return false;" data-lang="upload_data">📤 上传数据</button>
+                <input type="file" id="excelUpload" accept=".xlsx" onchange="uploadExcelData()" style="display: none;">
+                <button class="admin-btn-style save-all-btn" onclick="saveAllData()" data-lang="save_all">💾 保存所有数据</button>  <!-- 保存数据到本地存储 -->
+                <button class="admin-btn-style reset-btn" onclick="resetAllData()" data-lang="reset">🔄 恢复默认值</button>  <!-- 恢复默认数据 -->
                 <span id="saveStatus" class="status"></span>  <!-- 操作状态提示 -->
             </div>
             
@@ -83,7 +83,177 @@
                     <div id="priceTable" class="data-table"></div>  <!-- 面价表格容器 -->
                 </div>
                 
+                <!-- 配件数据管理区 -->
+                <div class="admin-section accessories-section-container">
+                    <h4 data-lang="fc_accessory_title">风机盘管配件管理</h4>
+                    <div id="fcAccessoryTable" class="data-table"></div>
+                </div>
+                
+                <div class="admin-section accessories-section-container">
+                    <h4 data-lang="ahu_accessory_title">空调箱配件管理</h4>
+                    <div id="ahuAccessoryTable" class="data-table"></div>
+                </div>
 
+            </div>
+        </div>
+
+        <!-- 批量查询报价区域 -->
+        <div id="batchQuerySection" class="batch-query-section" style="display: none;">
+            <div class="batch-header">
+                <div class="batch-actions">
+                    <div class="selection-rule-select">
+                        <label>选型规则</label>
+                        <select id="selectionRuleSelect" class="form-control" onchange="onSelectionRuleChange()">
+                            <option value="ac" selected>空调箱选型（降档匹配法）</option>
+                            <option value="fc">风机盘管选型（就近匹配法）</option>
+                            <option value="custom">非标选型（升档匹配法）</option>
+                        </select>
+                    </div>
+                    <div class="batch-style-select">
+                        <label data-lang="style">款式</label>
+                        <select id="batchStyleSelect" class="form-control" onchange="onBatchStyleChange()">
+                            <option value="1" data-lang="style_1">1"</option>
+                            <option value="2" data-lang="style_2">2"</option>
+                            <option value="4home" data-lang="style_4home">4"家用</option>
+                            <option value="4biz" data-lang="style_4biz" selected>4"商用</option>
+                            <option value="5" data-lang="style_5">5"</option>
+                        </select>
+                    </div>
+                    <button id="exportBatchBtn" class="admin-btn" onclick="exportBatchToExcel()" data-lang="export_excel">📤 导出Excel</button>
+                </div>
+            </div>
+            <div class="batch-table-container">
+                <table id="batchTable" class="batch-table">
+                    <thead>
+                        <tr>
+                            <th>宽度</th>
+                            <th>高度</th>
+                            <th>数量</th>
+                            <th>产品型号</th>
+                            <th>标示风量(m³/h)</th>
+                            <th>外形尺寸</th>
+                            <th>净重</th>
+                            <th>面价</th>
+                            <th>EAF数量</th>
+                            <th>小计</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 动态生成的行 -->
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td>合计</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td id="totalAirFlow">-</td>
+                            <td></td>
+                            <td id="totalNetWeight">-</td>
+                            <td></td>
+                            <td id="totalQuantity">-</td>
+                            <td id="totalSubtotal" class="total-subtotal">-</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- 选型说明区域 -->
+            <div class="info-row">
+                <div class="selection-explanation">
+                    <span class="explanation-title">选型说明： </span>
+                    <span class="explanation-content">输入现场介质过滤器的尺寸（mm）和数量，自动匹配对应的EAF型号。</span>
+                </div>
+                <!-- 尺寸范围说明 -->
+                <div class="size-range-explanation">
+                    <span class="range-title">各款式尺寸范围： </span>
+                    <div id="rangeContent" class="range-content">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+            </div>
+            <button id="addRowBtn" class="add-row-btn" onclick="addBatchRow()">+ 添加一行</button>
+            
+            <!-- 配件选型区域 -->
+            <div class="accessories-section">
+                <div class="accessories-header">
+                    <h4 class="accessories-title">配件选型</h4>
+                    
+                    <!-- 颜色说明图例 -->
+                    <div class="color-legend">
+                        <span class="legend-item">
+                            <span class="legend-box" style="background-color: #ffffff; border-color: #cccccc;"></span>
+                            <span class="legend-text">白色：选配件</span>
+                        </span>
+                        <span class="legend-item">
+                            <span class="legend-box" style="background-color: #fafafa; border-color: #999999;"></span>
+                            <span class="legend-text">浅灰：必选件</span>
+                        </span>
+                        <span class="legend-item">
+                            <span class="legend-box" style="background-color: #f8fcf8; border-color: #90c4a9;"></span>
+                            <span class="legend-text">浅绿：可选必选件A</span>
+                        </span>
+                        <span class="legend-item">
+                            <span class="legend-box" style="background-color: #f8faff; border-color: #90b4d4;"></span>
+                            <span class="legend-text">浅蓝：可选必选件B</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- 风机盘管场景（动态显示） -->
+                <div class="accessory-category" id="fcCategory">
+                    <span class="category-label">适配于风机盘管场景</span>
+                    <span class="category-note">（仅 1"、2"适用）</span>
+                    <div class="accessory-table-wrapper">
+                        <table class="accessory-table">
+                            <thead>
+                                <tr>
+                                    <th>产品型号</th>
+                                    <th>产品名称</th>
+                                    <th>标准配置</th>
+                                    <th>价格</th>
+                                    <th>数量</th>
+                                    <th>合计</th>
+                                    <th>备注</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fcCategoryBody">
+                                <!-- 动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 空调箱场景 -->
+                <div class="accessory-category" id="ahuCategory">
+                    <span class="category-label">适配于空调箱场景</span>
+                    <span class="category-note">（全系列适用。每台空调箱必选一套方案配齐：①EAF-BOX 电控箱 或 ②EAF-BOX 接线盒 + DC12V 电源适配器）</span>
+                    <div class="accessory-table-wrapper">
+                        <table class="accessory-table">
+                            <thead>
+                                <tr>
+                                    <th>产品型号</th>
+                                    <th>产品名称</th>
+                                    <th>标准配置</th>
+                                    <th>价格</th>
+                                    <th>数量</th>
+                                    <th>合计</th>
+                                    <th>备注</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ahuCategoryBody">
+                                <!-- 动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 总合计 -->
+                <div class="accessory-total">
+                    <span class="total-label">总合计：</span>
+                    <span class="total-amount" id="accessoryTotal">¥0</span>
+                </div>
             </div>
         </div>
 
@@ -201,11 +371,6 @@
 
         <!-- 产品列表区域（默认隐藏） -->
         <div class="product-list-section" id="productListSection" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3 data-lang="product_list_title">📋 产品详细列表</h3>
-                <button id="downloadListBtn" class="download-btn" onclick="downloadProductList()" data-lang="export_excel">📥 导出Excel</button>
-            </div>
-            
             <div id="productList" class="product-list-container"></div>  <!-- 产品列表容器 -->
         </div>
 
@@ -237,7 +402,7 @@
     </div>
 
     <!-- 引入外部JavaScript库和脚本 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>  <!-- Excel处理库 -->
+    <script src="https://cdn.jsdelivr.net/npm/sheetjs-style@0.15.8/dist/xlsx.full.min.js"></script>  <!-- 支持样式的Excel处理库 -->
     <script src="script.js"></script>  <!-- 主业务逻辑脚本 -->
 </body>
 </html>

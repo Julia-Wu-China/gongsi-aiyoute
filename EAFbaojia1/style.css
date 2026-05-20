@@ -53,7 +53,7 @@ header p {
     opacity: 0.8;  /* 半透明 */
     margin-bottom: 5px;
     font-weight: 500;
-    line-height: 14px;
+    line-height: 1;
 }
 
 /* 温馨提示样式 */
@@ -62,7 +62,7 @@ header p {
     opacity: 0.8;  /* 半透明，与副标题一致 */
     font-size: 14px;  /* 与副标题字号一致 */
     font-weight: 500;
-    line-height: 14px;  /* 与副标题行高一致 */
+    line-height: 1;
     margin: 8px auto;
     max-width: 600px;
     text-align: center;
@@ -72,7 +72,8 @@ header p {
 .admin-btn,
 .list-btn,
 .language-select,
-.query-btn {
+.query-btn,
+.batch-query-btn {
     padding: 10px 20px;
     background: #3498db;  /* 蓝色背景 */
     color: white;
@@ -88,9 +89,19 @@ header p {
 /* 按钮悬停效果 */
 .admin-btn:hover,
 .list-btn:hover,
-.language-select:hover {
+.language-select:hover,
+.batch-query-btn:hover {
     transform: translateY(-2px);  /* 向上移动 */
     box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);  /* 蓝色阴影 */
+}
+
+/* 批量查询按钮样式 - 与admin-btn一致 */
+.batch-query-btn {
+    background: #3498db;  /* 蓝色背景，与admin-btn一致 */
+}
+
+.batch-query-btn:hover {
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);  /* 蓝色阴影，与admin-btn一致 */
 }
 
 /* 语言选择下拉框 */
@@ -207,6 +218,11 @@ header p {
 /* 面价区域占满整行 */
 .price-section-container {
     grid-column: 1 / -1;
+}
+
+/* 配件管理区域占满整行 */
+.accessories-section-container {
+    grid-column: 1 / -1 !important;
 }
 
 
@@ -644,7 +660,7 @@ header p {
     padding-left: 15px;
     font-size: 9px;
     color: #495057;
-    line-height: 1.2;
+    line-height: 1;
 }
 
 .calculation-info li {
@@ -694,10 +710,6 @@ header p {
     gap: 15px;
     align-items: center;
     margin-bottom: 20px;
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .list-filter label {
@@ -872,7 +884,654 @@ header p {
     
     .calculation-info ul {
         font-size: 8px;
-        line-height: 1.4;
+        line-height: 1;
     }
+}
+
+/* ==================== 批量查询区域样式 ==================== */
+.batch-query-section {
+    padding: 25px;
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.batch-query-section p {
+    color: #495057;
+    font-size: 13px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.batch-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.batch-hint {
+    flex: 1;
+    font-size: 12px;
+    color: #666;
+    min-width: 200px;
+}
+
+.batch-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.batch-style-select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.batch-style-select label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.batch-style-select .form-control {
+    width: 120px;
+}
+
+/* 选型规则选择 */
+.selection-rule-select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.selection-rule-select label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.selection-rule-select .form-control {
+    width: 210px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.export-excel-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.export-excel-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+.batch-table-container {
+    overflow-x: auto;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.batch-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: white;
+}
+
+.batch-table th {
+    background: #667eea;
+    color: white;
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.batch-table td {
+    padding: 8px 10px;
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+    white-space: nowrap;
+}
+
+.batch-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.batch-table tbody tr:nth-child(even) {
+    background: #fafbfc;
+}
+
+.batch-table tbody tr:nth-child(even):hover {
+    background: #f1f3f4;
+}
+
+.batch-table .total-row {
+    background: #f0f4ff;
+    font-weight: bold;
+    color: #2d3436;
+}
+
+.batch-table .total-row td:first-child {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.batch-table .total-row .total-subtotal {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* 批量查询输入框 */
+.batch-input {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.batch-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* 自动匹配的产品信息样式 */
+.product-info-cell {
+    color: #2d3436;
+    font-weight: 500;
+}
+
+/* 删除行按钮 */
+.delete-row-btn {
+    padding: 4px 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.delete-row-btn:hover {
+    background: #c82333;
+}
+
+/* 添加行按钮 */
+.add-row-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-row-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+/* 选型说明和尺寸范围行容器 */
+.info-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* 选型说明区域 */
+.selection-explanation {
+    flex: 1;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    line-height: 1.1;
+}
+
+.selection-explanation .explanation-title {
+    font-size: 11px;
+    color: #2d3436;
+    font-weight: 600;
+    display: block;
+}
+
+.selection-explanation .explanation-content {
+    font-size: 9px;
+    color: #495057;
+    line-height: 1.1;
+    margin-top: 4px;
+    display: block;
+}
+
+/* 尺寸范围说明 */
+.size-range-explanation {
+    flex: 1;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #10b981;
+    line-height: 1;
+}
+
+.size-range-explanation .range-title {
+    font-size: 11px;
+    color: #2d3436;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.size-range-explanation .range-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.size-range-explanation .range-item {
+    font-size: 9px;
+    color: #495057;
+    line-height: 1;
+}
+
+/* 配件选型区域 */
+.accessories-section {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 4px solid #28a745;
+}
+
+.accessories-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.accessories-title {
+    margin: 0;
+    font-size: 12px;
+    color: #2d3436;
+    font-weight: 600;
+}
+
+/* 颜色说明图例 */
+.color-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    border: 1px solid #e9ecef;
+}
+
+.legend-text {
+    font-size: 8px;
+    color: #777777;
+}
+
+/* 配件分类 */
+.accessory-category {
+    margin-bottom: 18px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.accessory-category:last-child {
+    margin-bottom: 15px;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.category-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.category-note {
+    font-size: 9px;
+    color: #999;
+    margin-left: 8px;
+}
+
+/* 配件表格容器 */
+.accessory-table-wrapper {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+/* 配件表格 */
+.accessory-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.accessory-table th,
+.accessory-table td {
+    padding: 8px 10px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+}
+
+.accessory-table th {
+    background: #667eea;
+    color: white;
+    font-weight: 600;
+    font-size: 10px;
+}
+
+.accessory-table .row-header {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+    text-align: right;
+    min-width: 60px;
+}
+
+.accessory-table input[type="number"] {
+    width: 50px;
+    height: 26px;
+    padding: 0 6px;
+    font-size: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.accessory-table .accessory-subtotal {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.accessory-table .accessory-note {
+    font-size: 9px;
+    color: #666;
+    line-height: 1;
+}
+
+.accessory-table .accessory-grand-total {
+    background: #F0F4FF;
+    font-weight: bold;
+    font-size: 10px;
+    color: #333;
+}
+
+.accessory-table .accessory-grand-total .total-label-cell {
+    text-align: left;
+    padding-left: 10px;
+    color: #333;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+/* 小计列显示红色 */
+.subtotal-cell {
+    color: #dc3545;
+    font-weight: 500;
+}
+
+/* 配件表格合计列显示红色 */
+.accessory-subtotal {
+    color: #dc3545;
+    font-weight: 500;
+}
+
+.accessory-table #fcTotal,
+.accessory-table #ahuTotal {
+    color: #dc3545;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* 高亮行样式 - 淡绿色背景 */
+.accessory-table tbody tr.highlight-row-green,
+.accessory-table tbody tr.highlight-row-green td,
+.accessory-table tbody tr.highlight-row-green .row-header {
+    background-color: #f8fcf8 !important;
+}
+
+/* 高亮行样式 - 白蓝色背景 */
+.accessory-table tbody tr.highlight-row-light,
+.accessory-table tbody tr.highlight-row-light td,
+.accessory-table tbody tr.highlight-row-light .row-header {
+    background-color: #f8faff !important;
+}
+
+/* 高亮行样式 - 浅灰色背景 */
+.accessory-table tbody tr.highlight-row-gray,
+.accessory-table tbody tr.highlight-row-gray td,
+.accessory-table tbody tr.highlight-row-gray .row-header {
+    background-color: #fafafa !important;
+}
+
+/* 高亮行样式 - 白色背景 */
+.accessory-table tbody tr.highlight-row,
+.accessory-table tbody tr.highlight-row td,
+.accessory-table tbody tr.highlight-row .row-header {
+    background-color: #ffffff !important;
+}
+
+/* 配件合计 */
+.accessory-total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.total-label {
+    font-size: 10px;
+    color: #495057;
+    font-weight: bold;
+}
+
+.total-amount {
+    font-size: 10px;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+/* 错误提示样式 */
+.error-cell {
+    color: #dc3545;
+    font-weight: 500;
+}
+
+/* 响应式批量查询区域 */
+@media (max-width: 768px) {
+    .batch-query-section {
+        padding: 15px;
+    }
+    
+    .batch-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .batch-style-select {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .batch-style-select .form-control {
+        width: 100%;
+    }
+
+    .selection-rule-select {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .selection-rule-select .form-control {
+        width: 100%;
+    }
+
+    .batch-table {
+        font-size: 11px;
+        min-width: 800px;
+    }
+    
+    .batch-table th,
+    .batch-table td {
+        padding: 6px 8px;
+    }
+    
+    .batch-input {
+        width: 50px;
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+    
+    .delete-row-btn {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+    
+    .add-row-btn,
+    .export-excel-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+.admin-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8px;
+    margin-bottom: 15px;
+}
+
+.admin-data-table th,
+.admin-data-table td {
+    border: 1px solid #ddd;
+    padding: 4px 6px;
+    text-align: left;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.admin-data-table th {
+    background-color: #667eea;
+    color: white;
+    font-weight: 600;
+    font-size: 8px;
+}
+
+.admin-data-table input.form-control,
+.admin-data-table select.form-control,
+.admin-data-table textarea.form-control {
+    width: 100%;
+    padding: 2px 3px;
+    font-size: 8px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    resize: vertical;
+}
+
+.admin-data-table .delete-btn {
+    padding: 2px 5px;
+    font-size: 8px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.admin-data-table .delete-btn:hover {
+    background-color: #c82333;
+}
+
+.admin-actions {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.accessories-section-container {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.accessories-section-container h4 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.style-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.style-checkboxes label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 8px;
+    color: #333;
+}
+
+.style-checkboxes input[type="checkbox"] {
+    margin-right: 3px;
+    width: 12px;
+    height: 12px;
 }
 
