@@ -60,14 +60,19 @@ function updateSizeRange() {
     
     // 获取所有标准英寸值和对应的mm值
     const inchValues = Object.keys(equivalentMap).filter(key => !isNaN(parseInt(key)));
-    const mmValues = inchValues.map(key => parseInt(equivalentMap[key]));
-    
-    // 计算最小和最大尺寸，如果没有数据或数据无效则使用预设值
     const validInchValues = inchValues.map(v => parseInt(v)).filter(v => v > 0);
-    const minInch = validInchValues.length > 0 ? Math.min(...validInchValues) : 6;   // 宽度最小值预设为6
-    const maxInch = validInchValues.length > 0 ? Math.max(...validInchValues) : 56;  // 宽度最大值预设为56
     
-    // 定义各款式的尺寸范围规则（使用预设值，即使没有数据也能显示）
+    // 如果没有有效数据或关键数据缺失，直接输出固定的预设尺寸范围
+    if (validInchValues.length === 0 || !equivalentMap['08'] || !equivalentMap['12'] || !equivalentMap['32'] || !equivalentMap['56']) {
+        rangeContent.innerHTML = `<div class="range-item">${getLang('size_range')}</div>`;
+        return;
+    }
+    
+    // 计算最小和最大尺寸
+    const minInch = Math.min(...validInchValues);
+    const maxInch = Math.max(...validInchValues);
+    
+    // 定义各款式的尺寸范围规则
     const styleRanges = {
         '1': { widthMin: minInch, widthMax: maxInch, heightMin: 12, heightMax: 32 },
         '2': { widthMin: minInch, widthMax: maxInch, heightMin: 12, heightMax: maxInch },
@@ -256,7 +261,7 @@ const languages = {
         total: '合计',
         selection_explanation: '选型说明：',
         selection_explanation_content: '输入现场介质过滤器的尺寸（mm）和数量，自动匹配对应的EAF型号。<br>非标选型（升档匹配法）<br>实际安装尺寸不对应标准规格时，统一向上取整到最近的大一档标准值，再选用对应型号。<br>例：尺寸为489mm×491mm，因489mm上一档490（对应型号 20）、491mm上一档515（对应型号 21），故选用 EAF2021。<br>非标选型，非标价格按升档报价，产品按非标制作。',
-        size_range: '各款式尺寸范围：',
+        size_range: '各款式尺寸范围：<br>EAF1"：宽度08~56（200~1400mm）、高度12~32（287~795mm）<br>EAF2"：宽度08~56（200~1400mm）、高度12~56（287~1400mm）<br>EAF4"：宽度12~56（287~1400mm）、高度12~56（287~1400mm）<br>EAF5"：宽度12~56（287~1400mm）、高度12~56（287~1400mm）',
         add_row: '+ 添加一行',
         accessories: '配件选型',
         accessories_note: '(EAF设备选型调整后，手动录入及选型助手生成的配件数据均不会同步变更；展开无内容的代表此场景无法适配、无配套配件)',
