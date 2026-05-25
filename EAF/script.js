@@ -62,15 +62,14 @@ function updateSizeRange() {
     const inchValues = Object.keys(equivalentMap).filter(key => !isNaN(parseInt(key)));
     const mmValues = inchValues.map(key => parseInt(equivalentMap[key]));
     
-    // 计算最小和最大尺寸
-    const minInch = inchValues.length > 0 ? Math.min(...inchValues.map(v => parseInt(v))) : 0;
-    const maxInch = inchValues.length > 0 ? Math.max(...inchValues.map(v => parseInt(v))) : 0;
-    const minMm = mmValues.length > 0 ? Math.min(...mmValues) : 0;
-    const maxMm = mmValues.length > 0 ? Math.max(...mmValues) : 0;
+    // 计算最小和最大尺寸，如果没有数据或数据无效则使用预设值
+    const validInchValues = inchValues.map(v => parseInt(v)).filter(v => v > 0);
+    const minInch = validInchValues.length > 0 ? Math.min(...validInchValues) : 6;   // 宽度最小值预设为6
+    const maxInch = validInchValues.length > 0 ? Math.max(...validInchValues) : 56;  // 宽度最大值预设为56
     
-    // 定义各款式的尺寸范围规则
+    // 定义各款式的尺寸范围规则（使用预设值，即使没有数据也能显示）
     const styleRanges = {
-        '1': { widthMin: minInch, widthMax: maxInch, heightMin: 12, heightMax: Math.min(32, maxInch) },
+        '1': { widthMin: minInch, widthMax: maxInch, heightMin: 12, heightMax: 32 },
         '2': { widthMin: minInch, widthMax: maxInch, heightMin: 12, heightMax: maxInch },
         '4': { widthMin: Math.max(12, minInch), widthMax: maxInch, heightMin: Math.max(12, minInch), heightMax: maxInch },
         '5': { widthMin: Math.max(12, minInch), widthMax: maxInch, heightMin: Math.max(12, minInch), heightMax: maxInch }
@@ -224,6 +223,7 @@ const languages = {
         no_part_number: '无零件号',                  // 无零件号提示
         part_number: '零件号',                      // 零件号标签
         unavailable: '无法生产',                   // 无法生产提示
+        data_not_loaded: '请先导入产品数据',         // 数据未加载提示
         // 表格列标题
         operation: '操作',                         // 操作列
         product_model_short: '产品型号',            // 产品型号列
@@ -373,6 +373,7 @@ const languages = {
         no_five_pack: 'No five-unit packaging',           // No five pack hint
         no_part_number: 'No part number',                 // No part number hint
         unavailable: 'Not Available',                    // Unavailable hint
+        data_not_loaded: 'Please import product data first',  // Data not loaded hint
         // Calculation instructions
         calc_product_model: 'Product Model: EAF+Width+Height+Suffix (1": 1M-E; 2": 2M-E; 4" Home: 4M-E; 4" Business: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'Marked Air Flow: 4"/5" styles=MROUND(Width×25.4×Height×25.4×Air Speed 2.54×3600/1000000, 10); 1"/2" styles=MROUND((Width×25.4-13-30)×(Height×25.4-13-65)×Air Speed 1.5×3600/1000000×Factor 1.018, 10)',
@@ -513,6 +514,7 @@ const languages = {
         no_five_pack: 'Pas d\'emballage de cinq unités',
         no_part_number: 'Aucun numéro de pièce',
         unavailable: 'Non disponible',
+        data_not_loaded: 'Veuillez d\'abord importer les données de produit',
         calc_product_model: 'Modèle de produit: EAF+Largeur+Hauteur+Suffixe (1": 1M-E; 2": 2M-E; 4" Maison: 4M-E; 4" Professionnel: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'Débit d\'air marqué: Styles 4"/5"=MROUND(Largeur×25.4×Hauteur×25.4×Vitesse 2.54×3600/1000000, 10); Styles 1"/2"=MROUND((Largeur×25.4-13-30)×(Hauteur×25.4-13-65)×Vitesse 1.5×3600/1000000×Facteur 1.018, 10)',
         calc_dimensions: 'Dimensions: Largeur(mm réel)×Hauteur(mm réel)×Épaisseur(mm réel)',
@@ -707,6 +709,7 @@ const languages = {
         no_five_pack: 'Keine Fünf-Einheiten-Verpackung',
         no_part_number: 'Keine Teilenummer',
         unavailable: 'Nicht verfügbar',
+        data_not_loaded: 'Bitte importieren Sie zuerst die Produktdaten',
         calc_product_model: 'Produktmodell: EAF+Breite+Höhe+Suffix (1": 1M-E; 2": 2M-E; 4" Haushalt: 4M-E; 4" Gewerbe: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'Markierter Luftstrom: Stile 4"/5"=MROUND(Breite×25.4×Höhe×25.4×Geschwindigkeit 2.54×3600/1000000, 10); Stile 1"/2"=MROUND((Breite×25.4-13-30)×(Höhe×25.4-13-65)×Geschwindigkeit 1.5×3600/1000000×Faktor 1.018, 10)',
         calc_dimensions: 'Maße: Breite(tatsächliche mm)×Höhe(tatsächliche mm)×Dicke(tatsächliche mm)',
@@ -901,6 +904,7 @@ const languages = {
         no_five_pack: 'Sin empaque de cinco unidades',
         no_part_number: 'Sin número de pieza',
         unavailable: 'No disponible',
+        data_not_loaded: 'Por favor, importe los datos del producto primero',
         calc_product_model: 'Modelo de producto: EAF+Anchura+Altura+Sufijo (1": 1M-E; 2": 2M-E; 4" Hogar: 4M-E; 4" Negocio: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'Flujo de aire marcado: Estilos 4"/5"=MROUND(Anchura×25.4×Altura×25.4×Velocidad 2.54×3600/1000000, 10); Estilos 1"/2"=MROUND((Anchura×25.4-13-30)×(Altura×25.4-13-65)×Velocidad 1.5×3600/1000000×Factor 1.018, 10)',
         calc_dimensions: 'Dimensiones: Anchura(mm real)×Altura(mm real)×Grosor(mm real)',
@@ -1096,6 +1100,7 @@ const languages = {
         no_five_pack: '5台梱包なし',
         no_part_number: '品番なし',
         unavailable: '生産不可',
+        data_not_loaded: '製品データを先にインポートしてください',
         calc_product_model: '製品モデル：EAF+幅+高さ+サフィックス（1"：1M-E；2"：2M-E；4"ホーム：4M-E；4"ビジネス：4MA-E；5"：5MB-E）',
         calc_air_flow: '表示風量：4"/5"スタイル=MROUND(幅×25.4×高さ×25.4×風速2.54×3600/1000000, 10)；1"/2"スタイル=MROUND((幅×25.4-13-30)×(高さ×25.4-13-65)×風速1.5×3600/1000000×係数1.018, 10)',
         calc_dimensions: '外形寸法：幅(実際のmm値)×高さ(実際のmm値)×厚さ(実際のmm値)',
@@ -1290,6 +1295,7 @@ const languages = {
         no_five_pack: '5대 포장 없음',
         no_part_number: '품번 없음',
         unavailable: '생산 불가',
+        data_not_loaded: '먼저 제품 데이터를 가져오세요',
         calc_product_model: '제품 모델：EAF+너비+높이+접미사（1"：1M-E；2"：2M-E；4" 홈：4M-E；4" 비즈니스：4MA-E；5"：5MB-E）',
         calc_air_flow: '표시 풍량：4"/5" 스타일=MROUND(너비×25.4×높이×25.4×풍속2.54×3600/1000000, 10)；1"/2" 스타일=MROUND((너비×25.4-13-30)×(높이×25.4-13-65)×풍속1.5×3600/1000000×계수1.018, 10)',
         calc_dimensions: '외형 치수：너비(실제 mm값)×높이(실제 mm값)×두께(실제 mm값)',
@@ -1484,6 +1490,7 @@ const languages = {
         no_five_pack: 'Sem embalagem de cinco unidades',
         no_part_number: 'Sem número de peça',
         unavailable: 'Indisponível',
+        data_not_loaded: 'Por favor, importe os dados do produto primeiro',
         calc_product_model: 'Modelo do Produto: EAF+Largura+Altura+Sufixo (1": 1M-E; 2": 2M-E; 4" Residencial: 4M-E; 4" Empresarial: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'Fluxo de Ar Marcado: Estilos 4"/5"=MROUND(Largura×25.4×Altura×25.4×Velocidade 2.54×3600/1000000, 10); Estilos 1"/2"=MROUND((Largura×25.4-13-30)×(Altura×25.4-13-65)×Velocidade 1.5×3600/1000000×Fator 1.018, 10)',
         calc_dimensions: 'Dimensões: Largura(mm real)×Altura(mm real)×Espessura(mm real)',
@@ -1678,6 +1685,7 @@ const languages = {
         no_five_pack: 'Nessuna confezione di cinque unità',
         no_part_number: 'Nessun numero di parte',
         unavailable: 'Non disponibile',
+        data_not_loaded: 'Importare prima i dati del prodotto',
         calc_product_model: 'Modello del Prodotto: EAF+Larghezza+Altezza+Suffisso (1": 1M-E; 2": 2M-E; 4" Casa: 4M-E; 4" Aziendale: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'Flusso d\'Aria Indicato: Stili 4"/5"=MROUND(Larghezza×25.4×Altezza×25.4×Velocità 2.54×3600/1000000, 10); Stili 1"/2"=MROUND((Larghezza×25.4-13-30)×(Altezza×25.4-13-65)×Velocità 1.5×3600/1000000×Fattore 1.018, 10)',
         calc_dimensions: 'Dimensioni: Larghezza(mm reale)×Altezza(mm reale)×Spessore(mm reale)',
@@ -1872,6 +1880,7 @@ const languages = {
         no_five_pack: 'Нет упаковки на 5 единиц',
         no_part_number: 'Нет номера детали',
         unavailable: 'Недоступно',
+        data_not_loaded: 'Пожалуйста, сначала импортируйте данные продукта',
         calc_product_model: 'Модель продукта: EAF+Ширина+Высота+Суффикс (1": 1M-E; 2": 2M-E; 4" Домашний: 4M-E; 4" Бизнес: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'Маркированный воздушный поток: Стили 4"/5"=MROUND(Ширина×25.4×Высота×25.4×Скорость 2.54×3600/1000000, 10); Стили 1"/2"=MROUND((Ширина×25.4-13-30)×(Высота×25.4-13-65)×Скорость 1.5×3600/1000000×Коэффициент 1.018, 10)',
         calc_dimensions: 'Размеры: Ширина(фактическое мм)×Высота(фактическое мм)×Толщина(фактическое мм)',
@@ -2155,6 +2164,7 @@ const languages = {
         no_five_pack: 'لا توجد تعبئة خمسة وحدات',
         no_part_number: 'لا يوجد رقم قطعة',
         unavailable: 'غير متاح',
+        data_not_loaded: 'يرجى استيراد بيانات المنتج أولاً',
         calc_product_model: 'موديل المنتج: EAF+العرض+الارتفاع+اللاحقة (1": 1M-E; 2": 2M-E; 4" منزلي: 4M-E; 4" تجاري: 4MA-E; 5": 5MB-E)',
         calc_air_flow: 'تدفق الهواء المميز: أنماط 4"/5"=MROUND(العرض×25.4×الارتفاع×25.4×سرعة الهواء 2.54×3600/1000000, 10); أنماط 1"/2"=MROUND((العرض×25.4-13-30)×(الارتفاع×25.4-13-65)×سرعة الهواء 1.5×3600/1000000×معامل 1.018, 10)',
         calc_dimensions: 'الأبعاد: العرض(مم فعلي)×الارتفاع(مم فعلي)×السمك(مم فعلي)',
@@ -6950,9 +6960,15 @@ function goBackToAhuStep1() {
     if (ahuCountInput) ahuCountInput.value = totalAhuCount > 0 ? totalAhuCount : '';
 }
 
-// �����ҳ�������ɺ��ʼ����ȷ��������ȷִ�У���ֹ�����ӳٵ��µ����⣩
+let isLanguageInitialized = false; // 防止重复初始化的标志
+
+// 页面加载完成后初始化（确保翻译正确执行，防止网络延迟导致的问题）
 window.addEventListener('load', function() {
-    // ȷ�������л���������Դ������ɺ�ִ��
+    // 只初始化一次，防止重复执行导致副标题重复显示
+    if (isLanguageInitialized) return;
+    isLanguageInitialized = true;
+    
+    // 确保语言切换在所有资源加载完成后执行
     const langSelect = document.getElementById('languageSelect');
     if (langSelect) {
         const selectedLang = langSelect.value;
@@ -6962,11 +6978,11 @@ window.addEventListener('load', function() {
             changeLanguage('zh');
         }
     } else {
-        // �������ѡ���������ڣ�Ĭ��ʹ������
+        // 如果语言选择器不存在，默认使用中文
         changeLanguage('zh');
     }
     
-    // ǿ��������Ⱦ��������
+    // 强制重新渲染翻译内容
     document.querySelectorAll('[data-lang]').forEach(element => {
         const key = element.getAttribute('data-lang');
         const translation = getLang(key);
