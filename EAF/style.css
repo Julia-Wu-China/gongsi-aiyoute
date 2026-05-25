@@ -23,7 +23,6 @@ body {
     min-height: calc(100vh - 40px);  /* 最小高度 */
     display: flex;
     flex-direction: column;  /* 垂直布局 */
-    overflow: hidden;
 }
 
 /* ==================== 页头区域样式 ==================== */
@@ -37,7 +36,7 @@ header {
 /* 页头操作按钮容器 */
 .header-actions {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 8px;  /* 按钮间距 */
     margin-top: 8px;
@@ -68,6 +67,18 @@ header p {
     text-align: center;
 }
 
+/* 底部备注样式 */
+.footer-note {
+    color: white;
+    opacity: 0.7;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 12px auto 20px;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 20px;
+}
+
 /* ==================== 页头按钮样式 ==================== */
 .admin-btn,
 .list-btn,
@@ -79,11 +90,15 @@ header p {
     color: white;
     border: none;
     border-radius: 6px;
-    height: 40px;
+    min-height: 40px;
+    height: auto;
     font-size: 14px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;  /* 过渡动画 */
     box-sizing: border-box;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
 }
 
 /* 按钮悬停效果 */
@@ -141,6 +156,7 @@ header p {
     background: #2980b9;
     color: white;
     padding: 10px;
+    text-align: left;  /* 下拉菜单文字靠左显示 */
 }
 
 /* ==================== 管理员面板样式 ==================== */
@@ -973,10 +989,14 @@ header p {
 }
 
 .add-group-btn:hover {
-    background: #2980b9;
+    background: #3498db;
 }
 
 .assistant-question .add-group-btn {
+    background: #3498db !important;
+}
+
+.assistant-question .add-group-btn:hover {
     background: #3498db !important;
 }
 
@@ -1033,17 +1053,17 @@ header p {
 /* 空调箱方案选项 */
 .ahu-options {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     align-items: stretch;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-top: 16px;
 }
 
 .ahu-option {
-    flex: 1;
-    min-width: 220px;
-    max-width: 280px;
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 50%;
     background: #f8f9fa;
     border-radius: 8px;
     border: 2px solid #e9ecef;
@@ -1117,8 +1137,8 @@ header p {
 /* 方案输入框样式 - 灰色底纹，白色输入框 */
 .scheme-input-inner {
     width: 100%;
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 6px 8px;
+    font-size: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background: white;
@@ -1130,6 +1150,7 @@ header p {
 
 .scheme-input-inner::placeholder {
     color: #7f8c8d;
+    font-size: 11px;
 }
 
 .scheme-input-inner:focus {
@@ -1139,16 +1160,16 @@ header p {
 
 /* 方案备注样式 - 灰色底纹，带边框 */
 .option-note {
-    padding: 12px 16px;
+    padding: 8px 10px;
     background: #f8f9fa;
     border-top: 1px solid #e9ecef;
-    font-size: 10px;
+    font-size: 9px;
     color: #666;
 }
 
 .option-note p {
-    margin: 3px 0;
-    line-height: 1.4;
+    margin: 2px 0;
+    line-height: 1.3;
 }
 
 .option-divider {
@@ -1286,6 +1307,85 @@ header p {
     font-size: 18px;
 }
 
+/* 管理员登录模态框 */
+.login-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.login-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-close:hover,
+.login-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-form label {
+    font-weight: bold;
+    color: #333;
+}
+
+.login-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.login-form button {
+    padding: 10px;
+    background-color: #667eea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.login-form button:hover {
+    background-color: #5a6fd6;
+}
+
 .modal-close-btn {
     border: none;
     background: transparent;
@@ -1401,8 +1501,8 @@ header p {
     padding: 25px;
     background: #f8f9fa;
     border-top: 1px solid #e9ecef;
-    flex: 1;
-    overflow-y: auto;
+    flex: none;
+    min-height: 200px;
 }
 
 .result-section h3 {
@@ -1582,33 +1682,72 @@ header p {
 
 /* ==================== 计算说明区域样式 ==================== */
 .calculation-info {
-    margin-top: 15px;
-    padding: 12px 15px;
-    background: #f8f9fa;
+    margin-top: 15px !important;
+    padding: 15px !important;
+    background: #f0fff0;
     border-radius: 8px;
-    border-left: 4px solid #667eea;  /* 紫色左边框 */
+    border-left: 4px solid #28a745;  /* 绿色左边框 */
+    font-size: 12px !important;
+    color: #2d3436 !important;
+    line-height: 1.1 !important;
+    white-space: normal !important;
 }
 
 .calculation-info h4 {
-    margin: 0 0 6px 0;
-    font-size: 11px;
-    color: #2d3436;
+    margin: 0 0 8px 0 !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #2d3436 !important;
 }
 
 .calculation-info ul {
-    margin: 0;
-    padding-left: 15px;
-    font-size: 9px;
-    color: #495057;
-    line-height: 1;
+    margin: 0 !important;
+    padding-left: 15px !important;
+    font-size: 12px !important;
+    color: #2d3436 !important;
+    line-height: 1.1 !important;
 }
 
 .calculation-info li {
-    margin-bottom: 3px;
+    margin-bottom: 3px !important;
 }
 
 .calculation-info strong {
-    color: #2d3436;
+    color: #2d3436 !important;
+}
+
+/* 底部温馨提示样式 */
+.bottom-warning-tip {
+    margin-top: 15px !important;
+    padding: 15px !important;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    background: #f0f4ff !important;
+    font-size: 12px !important;
+    color: #2d3436 !important;
+    line-height: 1.1 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    max-height: none !important;
+    min-height: 150px;
+    display: block !important;
+    position: relative !important;
+    z-index: 100;
+}
+
+.warning-title {
+    font-weight: bold !important;
+    font-size: 14px !important;
+    color: #2d3436 !important;
+    margin-bottom: 8px !important;
+}
+
+.warning-content {
+    font-size: 12px !important;
+    color: #2d3436 !important;
+    line-height: 1.8 !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
 }
 
 /* ==================== 产品列表区域样式 ==================== */
@@ -1894,7 +2033,9 @@ header p {
 }
 
 .selection-rule-select .form-control {
-    width: 210px;
+    min-width: 210px;
+    max-width: 350px;
+    width: auto;
     padding: 10px 12px;
     font-size: 14px;
 }

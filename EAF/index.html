@@ -36,10 +36,6 @@
         <header>
             <h1 data-lang="title">EAF自动报价查询系统</h1>  <!-- 系统主标题 -->
             <p>选择参数，快速查询产品报价</p>  <!-- 系统副标题/描述 -->
-            <!-- 温馨提示 -->
-            <div class="warning-tip" data-lang="warning_tip">
-                ⚠️ 官方温馨提示：EAF2016与EAF1620为两款完全不同的产品，请勿混淆选型及使用。
-            </div>
             <!-- 页头操作按钮组 -->
             <div class="header-actions">
                 <!-- 查询单个报价按钮 -->
@@ -47,22 +43,26 @@
                 <!-- 批量查询报价按钮 -->
                 <button id="batchQueryBtn" class="batch-query-btn" onclick="toggleBatchQuerySection()" data-lang="query_batch_quote">📦 批量查询报价</button>
                 <!-- 管理员面板切换按钮 -->
-                <button id="adminBtn" class="admin-btn" onclick="toggleAdminPanel()" data-lang="admin_show">🔧 隐藏数据管理</button>
+                <button id="adminBtn" class="query-btn" onclick="toggleAdminPanel()" data-lang="admin_show" style="display: none;">🔧 隐藏数据管理</button>
                 <!-- 产品列表切换按钮 -->
-                <button id="listBtn" class="list-btn" onclick="toggleProductList()" data-lang="product_list_hide">📋 隐藏详细列表</button>
+                <button id="listBtn" class="query-btn" onclick="toggleProductList()" data-lang="product_list_hide" style="display: none;">📋 隐藏详细列表</button>
+                <!-- 管理员登录按钮 -->
+                <button id="loginBtn" class="query-btn" onclick="showAdminLogin()" data-lang="admin_login">🔐 管理员登录</button>
+                <!-- 管理员登出按钮 -->
+                <button id="logoutBtn" class="query-btn" onclick="adminLogout()" style="display: none;" data-lang="admin_logout">🚪 管理员登出</button>
                 <!-- 语言选择下拉框 -->
                 <select id="languageSelect" class="language-select" onchange="changeLanguage(this.value)">
-                    <option value="zh" selected>中文</option>
-                    <option value="en">English</option>
-                    <option value="ja">日本語</option>
-                    <option value="ko">한국어</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                    <option value="es">Español</option>
-                    <option value="pt">Português</option>
-                    <option value="it">Italiano</option>
-                    <option value="ru">Русский</option>
-                    <option value="ar">العربية</option>
+                    <option value="zh" selected>💬 中文</option>
+                    <option value="en">💬 English</option>
+                    <option value="ja">💬 日本語</option>
+                    <option value="ko">💬 한국어</option>
+                    <option value="fr">💬 Français</option>
+                    <option value="de">💬 Deutsch</option>
+                    <option value="es">💬 Español</option>
+                    <option value="pt">💬 Português</option>
+                    <option value="it">💬 Italiano</option>
+                    <option value="ru">💬 Русский</option>
+                    <option value="ar">💬 العربية</option>
                 </select>
             </div>
         </header>
@@ -125,11 +125,11 @@
             <div class="batch-header">
                 <div class="batch-actions">
                     <div class="selection-rule-select">
-                        <label>选型规则</label>
+                        <label data-lang="selection_rule">选型规则</label>
                         <select id="selectionRuleSelect" class="form-control" onchange="onSelectionRuleChange()">
-                            <option value="ac" selected>空调箱选型（降档匹配法）</option>
-                            <option value="fc">风机盘管选型（就近匹配法）</option>
-                            <option value="custom">非标选型（升档匹配法）</option>
+                            <option value="ac" selected data-lang="rule_ac">空调箱选型（降档匹配法）</option>
+                            <option value="fc" data-lang="rule_fc">风机盘管选型（就近匹配法）</option>
+                            <option value="custom" data-lang="rule_custom">非标选型（升档匹配法）</option>
                         </select>
                     </div>
                     <div class="batch-style-select">
@@ -149,17 +149,17 @@
                 <table id="batchTable" class="batch-table">
                     <thead>
                         <tr>
-                            <th>宽度</th>
-                            <th>高度</th>
-                            <th>数量</th>
-                            <th>产品型号</th>
-                            <th>标示风量(m³/h)</th>
-                            <th>外形尺寸</th>
-                            <th>净重</th>
-                            <th>面价</th>
-                            <th>EAF数量</th>
-                            <th>小计</th>
-                            <th>操作</th>
+                            <th data-lang="width">宽度</th>
+                            <th data-lang="height">高度</th>
+                            <th data-lang="quantity">数量</th>
+                            <th data-lang="product_model">产品型号</th>
+                            <th data-lang="air_flow">标示风量(m³/h)</th>
+                            <th data-lang="dimensions">外形尺寸</th>
+                            <th data-lang="net_weight">净重</th>
+                            <th data-lang="list_price">面价</th>
+                            <th data-lang="eaf_quantity">EAF数量</th>
+                            <th data-lang="subtotal">小计</th>
+                            <th data-lang="action">操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -167,7 +167,7 @@
                     </tbody>
                     <tfoot>
                         <tr class="total-row">
-                            <td>合计</td>
+                            <td data-lang="total">合计</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -185,136 +185,136 @@
             <!-- 选型说明区域 -->
             <div class="info-row">
                 <div class="selection-explanation">
-                    <span class="explanation-title">选型说明： </span>
-                    <span class="explanation-content">输入现场介质过滤器的尺寸（mm）和数量，自动匹配对应的EAF型号。<br>非标选型（升档匹配法）<br>实际安装尺寸不对应标准规格时，统一向上取整到最近的大一档标准值，再选用对应型号。<br>例：尺寸为489mm×491mm，因489mm上一档490（对应型号 20）、491mm上一档515（对应型号 21），故选用 EAF2021。<br>非标选型，非标价格按升档报价，产品按非标制作。</span>
+                    <span class="explanation-title" data-lang="selection_explanation">选型说明： </span>
+                    <span class="explanation-content" data-lang="selection_explanation_content">输入现场介质过滤器的尺寸（mm）和数量，自动匹配对应的EAF型号。<br>非标选型（升档匹配法）<br>实际安装尺寸不对应标准规格时，统一向上取整到最近的大一档标准值，再选用对应型号。<br>例：尺寸为489mm×491mm，因489mm上一档490（对应型号 20）、491mm上一档515（对应型号 21），故选用 EAF2021。<br>非标选型，非标价格按升档报价，产品按非标制作。</span>
                 </div>
                 <!-- 尺寸范围说明 -->
                 <div class="size-range-explanation">
-                    <span class="range-title">各款式尺寸范围： </span>
+                    <span class="range-title" data-lang="size_range">各款式尺寸范围： </span>
                     <div id="rangeContent" class="range-content">
                         <!-- 动态生成 -->
                     </div>
                 </div>
             </div>
-            <button id="addRowBtn" class="add-row-btn" onclick="addBatchRow()">+ 添加一行</button>
+            <button id="addRowBtn" class="add-row-btn" onclick="addBatchRow()" data-lang="add_row">+ 添加一行</button>
             
             <!-- 配件选型区域 -->
             <div class="accessories-section">
                 <div class="accessories-header">
-                    <h4 class="accessories-title">配件选型</h4>
-                    <span class="accessories-note">(EAF设备选型调整后，手动录入及选型助手生成的配件数据均不会同步变更)</span>
+                    <h4 class="accessories-title" data-lang="accessories">配件选型</h4>
+                    <span class="accessories-note" data-lang="accessories_note">(EAF设备选型调整后，手动录入及选型助手生成的配件数据均不会同步变更；展开无内容的代表此场景无法适配、无配套配件)</span>
                     
                     <!-- 颜色说明图例 -->
                     <div class="color-legend">
                         <span class="legend-item">
                             <span class="legend-box" style="background-color: #ffffff; border-color: #cccccc;"></span>
-                            <span class="legend-text">白色：选配件</span>
+                            <span class="legend-text" data-lang="legend_white">白色：选配件</span>
                         </span>
                         <span class="legend-item">
                             <span class="legend-box" style="background-color: #fafafa; border-color: #999999;"></span>
-                            <span class="legend-text">浅灰：必选件</span>
+                            <span class="legend-text" data-lang="legend_gray">浅灰：必选件</span>
                         </span>
                         <span class="legend-item">
                             <span class="legend-box" style="background-color: #f8fcf8; border-color: #90c4a9;"></span>
-                            <span class="legend-text">浅绿：可选必选件A</span>
+                            <span class="legend-text" data-lang="legend_green">浅绿：可选必选件A</span>
                         </span>
                         <span class="legend-item">
                             <span class="legend-box" style="background-color: #f8faff; border-color: #90b4d4;"></span>
-                            <span class="legend-text">浅蓝：可选必选件B</span>
+                            <span class="legend-text" data-lang="legend_blue">浅蓝：可选必选件B</span>
                         </span>
                     </div>
                 </div>
                 
                 <!-- 风机盘管场景（动态显示） -->
                 <div class="accessory-category" id="fcCategory">
-                    <span class="category-label">适配于风机盘管场景</span>
-                    <span class="category-note">（仅 1"、2"适用）</span>
-                    <button class="toggle-btn" onclick="toggleAccessoryTable('fc')">展开</button>
+                    <span class="category-label" data-lang="fc_category">适配于风机盘管场景</span>
+                    <span class="category-note" data-lang="fc_note">（仅 1"、2"适用）</span>
+                    <button class="toggle-btn" onclick="toggleAccessoryTable('fc')" data-lang="expand">展开</button>
                     <div class="accessory-table-wrapper" id="fcTableWrapper">
                         <table class="accessory-table">
                             <thead>
                                 <tr>
-                                    <th>产品型号</th>
-                                    <th>产品名称</th>
-                                    <th>标准配置</th>
-                                    <th>价格</th>
-                                    <th>数量</th>
-                                    <th>合计</th>
-                                    <th>备注</th>
+                                    <th data-lang="product_model">产品型号</th>
+                                    <th data-lang="product_name">产品名称</th>
+                                    <th data-lang="standard_config">标准配置</th>
+                                    <th data-lang="price">价格</th>
+                                    <th data-lang="quantity">数量</th>
+                                    <th data-lang="total">合计</th>
+                                    <th data-lang="remarks">备注</th>
                                 </tr>
                             </thead>
                             <tbody id="fcCategoryBody">
                                 <!-- 动态生成 -->
                             </tbody>
                             <tfoot id="fcCategoryFooter">
-                                <tr class="accessory-grand-total"><td colspan="4" class="total-label-cell">合计</td><td id="fcQuantityTotal">0</td><td id="fcTotal">¥0</td><td></td></tr>
+                                <tr class="accessory-grand-total"><td colspan="4" class="total-label-cell" data-lang="total">合计</td><td id="fcQuantityTotal">0</td><td id="fcTotal">¥0</td><td></td></tr>
                             </tfoot>
                         </table>
                     </div>
-                    <button id="fcAssistantBtn" class="mini-assistant-btn" onclick="openAccessoryAssistant('fc')">选型助手</button>
+                    <button id="fcAssistantBtn" class="mini-assistant-btn" onclick="openAccessoryAssistant('fc')" data-lang="selection_assistant">选型助手</button>
                 </div>
                 
                 <!-- 空调箱场景 -->
                 <div class="accessory-category" id="ahuCategory">
-                    <span class="category-label">适配于空调箱场景</span>
-                    <span class="category-note">（全系列适用。每台空调箱必选一套方案配齐：①EAF-BOX 电控箱 或 ②EAF-BOX 接线盒 + DC12V 电源适配器）</span>
-                    <button class="toggle-btn" onclick="toggleAccessoryTable('ahu')">展开</button>
+                    <span class="category-label" data-lang="ahu_category">适配于空调箱场景</span>
+                    <span class="category-note" data-lang="ahu_note">（全系列适用。每台空调箱必选一套方案配齐：①EAF-BOX 电控箱 或 ②EAF-BOX 接线盒 + DC12V 电源适配器）</span>
+                    <button class="toggle-btn" onclick="toggleAccessoryTable('ahu')" data-lang="expand">展开</button>
                     <div class="accessory-table-wrapper" id="ahuTableWrapper">
                         <table class="accessory-table">
                             <thead>
                                 <tr>
-                                    <th>产品型号</th>
-                                    <th>产品名称</th>
-                                    <th>标准配置</th>
-                                    <th>价格</th>
-                                    <th>数量</th>
-                                    <th>合计</th>
-                                    <th>备注</th>
+                                    <th data-lang="product_model">产品型号</th>
+                                    <th data-lang="product_name">产品名称</th>
+                                    <th data-lang="standard_config">标准配置</th>
+                                    <th data-lang="price">价格</th>
+                                    <th data-lang="quantity">数量</th>
+                                    <th data-lang="total">合计</th>
+                                    <th data-lang="remarks">备注</th>
                                 </tr>
                             </thead>
                             <tbody id="ahuCategoryBody">
                                 <!-- 动态生成 -->
                             </tbody>
                             <tfoot id="ahuCategoryFooter">
-                                <tr class="accessory-grand-total"><td colspan="4" class="total-label-cell">合计</td><td id="ahuQuantityTotal">0</td><td id="ahuTotal">¥0</td><td></td></tr>
+                                <tr class="accessory-grand-total"><td colspan="4" class="total-label-cell" data-lang="total">合计</td><td id="ahuQuantityTotal">0</td><td id="ahuTotal">¥0</td><td></td></tr>
                             </tfoot>
                         </table>
                     </div>
-                    <button id="ahuAssistantBtn" class="mini-assistant-btn" onclick="openAccessoryAssistant('ahu')">选型助手</button>
+                    <button id="ahuAssistantBtn" class="mini-assistant-btn" onclick="openAccessoryAssistant('ahu')" data-lang="selection_assistant">选型助手</button>
                 </div>
                 
                 <!-- 美式风管机场景 -->
                 <div class="accessory-category" id="usDuctCategory">
-                    <span class="category-label">适配于美式风管机场景</span>
-                    <span class="category-note">（仅 1"、2"、4"家用 适用，EAF设备不允许卧放）</span>
-                    <button class="toggle-btn" onclick="toggleAccessoryTable('usDuct')">展开</button>
+                    <span class="category-label" data-lang="usduct_category">适配于美式风管机场景</span>
+                    <span class="category-note" data-lang="usduct_note">（仅 1"、2"、4"家用 适用，EAF设备不允许卧放）</span>
+                    <button class="toggle-btn" onclick="toggleAccessoryTable('usDuct')" data-lang="expand">展开</button>
                     <div class="accessory-table-wrapper" id="usDuctTableWrapper">
                         <table class="accessory-table">
                             <thead>
                                 <tr>
-                                    <th>产品型号</th>
-                                    <th>产品名称</th>
-                                    <th>标准配置</th>
-                                    <th>价格</th>
-                                    <th>数量</th>
-                                    <th>合计</th>
-                                    <th>备注</th>
+                                    <th data-lang="product_model">产品型号</th>
+                                    <th data-lang="product_name">产品名称</th>
+                                    <th data-lang="standard_config">标准配置</th>
+                                    <th data-lang="price">价格</th>
+                                    <th data-lang="quantity">数量</th>
+                                    <th data-lang="total">合计</th>
+                                    <th data-lang="remarks">备注</th>
                                 </tr>
                             </thead>
                             <tbody id="usDuctCategoryBody">
                                 <!-- 动态生成 -->
                             </tbody>
                             <tfoot id="usDuctCategoryFooter">
-                                <tr class="accessory-grand-total"><td colspan="4" class="total-label-cell">合计</td><td id="usDuctQuantityTotal">0</td><td id="usDuctTotal">¥0</td><td></td></tr>
+                                <tr class="accessory-grand-total"><td colspan="4" class="total-label-cell" data-lang="total">合计</td><td id="usDuctQuantityTotal">0</td><td id="usDuctTotal">¥0</td><td></td></tr>
                             </tfoot>
                         </table>
                     </div>
-                    <button id="usDuctAssistantBtn" class="mini-assistant-btn" onclick="openAccessoryAssistant('usDuct')">选型助手</button>
+                    <button id="usDuctAssistantBtn" class="mini-assistant-btn" onclick="openAccessoryAssistant('usDuct')" data-lang="selection_assistant">选型助手</button>
                 </div>
                 
                 <!-- 总合计 -->
                 <div class="accessory-total">
-                    <span class="total-label">总合计：</span>
+                    <span class="total-label" data-lang="grand_total">总合计：</span>
                     <span class="total-amount" id="accessoryTotal">¥0</span>
                 </div>
             </div>
@@ -447,9 +447,9 @@
                 </div>
             </div>
             
-            <!-- 计算说明区域 -->
-            <div class="calculation-info">
-                <h4 data-lang="calculation_info">计算说明</h4>
+            <!-- 计算说明区域（仅管理员可见） -->
+            <div id="calculationSection" class="calculation-info" style="display: none;">
+                <h4 data-lang="calculation_info">📐 计算说明</h4>
                 <ul id="calculationList">
                     <li data-lang="calc_product_model">产品型号：EAF+宽度+高度+后缀（1"：1M-E；2"：2M-E；4"家用：4M-E；4"商用：4MA-E；5"：5MB-E）</li>
                     <li data-lang="calc_air_flow">标示风量：4"/5"款式=MROUND(宽度×25.4×高度×25.4×风速2.54×3600/1000000, 10)；1"/2"款式=MROUND((宽度×25.4-13-30)×(高度×25.4-13-65)×风速1.5×3600/1000000×系数1.018, 10)</li>
@@ -460,6 +460,12 @@
                     <li data-lang="calc_five_pack">五台包装尺寸(L*W*H)mm：L=ROUND((宽度mm+65)/5,0)×5，W=对应款式的5台包装厚度，H=ROUND((高度mm+65)/5,0)×5</li>
                     <li data-lang="calc_gross_weight_5">毛重（KG）（5台/箱）：毛重（KG）（1台/箱）×5×1.1</li>
                 </ul>
+            </div>
+            
+            <!-- 温馨提示 -->
+            <div class="bottom-warning-tip">
+                <div class="warning-title" data-lang="warning_title">⚠️ 温馨提示：</div>
+                <div id="warningContent" class="warning-content"></div>
             </div>
         </div>
     </div>
@@ -620,7 +626,8 @@
                             <p class="instructions-text"><strong>美式风管机场景配件选型说明：</strong><br>1. 本场景仅适用于1"、2"、4"家用款式的EAF产品<br>2. 如需要密封，请选配/自备密封条<br>3. EAF-1"：单台设备必须配置1个电源适配器。<br>4. EAF08xx2M-E型号单台设备必须配置1个电源适配器。<br>5. EAF-2"/4"家用：按排布行数核算，单行≤4 台配1个电源适配器；单行＞4台时按「每≤4 台加配1个」向上取整计算，也可采用非标电控箱方案。</p>
                         </div>
                     </div>
-
+                </div>
+                
                 <!-- 空调箱场景内容 -->
                 <div id="ahuAssistantContent" style="display: none;">
                     <!-- 第一步：问空调箱数量 -->
@@ -654,6 +661,11 @@
                                     <div class="option-input-wrapper">
                                         <input type="number" id="redSchemeCount" min="0" placeholder="选择此方案的空调箱台数" class="scheme-input-inner">
                                     </div>
+                                    <div class="option-note">
+                                        <p>单台 EAF-BOX 控制箱最大带载：</p>
+                                        <p>18 个 EAF，且满足「每层≤8 个、最多 4 层」</p>
+                                        <p>超出需按非标处理。</p>
+                                    </div>
                                 </div>
                                 <div class="ahu-option">
                                     <div class="option-header basic-header">EAF-BOX 接线盒 +<br>DC12V 电源适配器</div>
@@ -663,11 +675,118 @@
                                     <div class="option-input-wrapper">
                                         <input type="number" id="blueSchemeCount" min="0" placeholder="选择此方案的空调箱台数" class="scheme-input-inner">
                                     </div>
+                                    <div class="option-note">
+                                        <p>单台 DC12V 电源适配器最大带载：</p>
+                                        <p>4 个 EAF</p>
+                                        <p></p>
+                                        <p>单台 EAF-BOX 接线盒最大带载：</p>
+                                        <p>16 个 EAF，且满足「每层≤4 个、最多 4 层」</p>
+                                        <p>超出需按非标处理。</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="button-row">
                                 <button class="modal-action-btn secondary" onclick="goToAhuStep1()">上一步</button>
                                 <button class="modal-action-btn" onclick="goToAhuStep4()">下一步</button>
+                            </div>
+                            <div class="ahu-remark">
+                                <p><strong>空调箱场景配件选型说明：</strong></p>
+                                <p>1. 本场景适用于全系列EAF产品</p>
+                                <p>2. 如需要密封，请选配/自备密封条</p>
+                                <p>3. EAF-1"：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>4. EAF08xx2M-E型号：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>5. EAF-2"/4"/5"：按排布行数核算，单行≤4台配1个电源适配器；单行＞4台时按「每≤4 台加配1个」向上取整计算，也可采用非标电控箱方案。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 第三步：EAF拼接方案信息 -->
+                    <div id="ahuStep3" style="display: none;">
+                        <div class="assistant-question">
+                            <p>3. 请填写您选用的 EAF 拼接方案信息：</p>
+                            <div class="installation-options">
+                                <div class="installation-item">
+                                    <label>EAF 拼接后的总行数</label>
+                                    <input type="number" id="maxPerRow" min="0" placeholder="总行数" class="form-control">
+                                </div>
+                                <div class="installation-item">
+                                    <label>卧放 EAF 的总数量</label>
+                                    <input type="number" id="horizontalCount" min="0" placeholder="卧放数量" class="form-control">
+                                </div>
+                            </div>
+                            <div class="button-row">
+                                <button class="modal-action-btn secondary" onclick="goBackToAhuStep2()">上一步</button>
+                                <button class="modal-action-btn" onclick="goToAhuStep5()">下一步</button>
+                            </div>
+                            <div class="ahu-remark">
+                                <p><strong>空调箱场景配件选型说明：</strong></p>
+                                <p>1. 本场景适用于全系列EAF产品</p>
+                                <p>2. 如需要密封，请选配/自备密封条</p>
+                                <p>3. EAF-1"：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>4. EAF08xx2M-E型号：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>5. EAF-2"/4"/5"：按排布行数核算，单行≤4台配1个电源适配器；单行＞4台时按「每≤4 台加配1个」向上取整计算，也可采用非标电控箱方案。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 第四步：排布信息（行×列×组） -->
+                    <div id="ahuStep4" style="display: none;">
+                        <div class="assistant-question">
+                            <p>4.请填写选用「EAF-BOX 接线盒 + DC12V 电源适配器」方案的空调箱中，EAF 排布信息（行×列×组）：</p>
+                            <div id="dynamicGroups" style="margin-bottom: 20px;">
+                                <!-- 动态生成的分组行 -->
+                            </div>
+                            <div class="button-row" style="margin-top: 20px;">
+                                <button class="modal-action-btn secondary add-group-btn" onclick="addGroup()">+ 添加分组</button>
+                            </div>
+                            <div class="button-row">
+                                <button class="modal-action-btn secondary" onclick="goBackToAhuStep3()">上一步</button>
+                                <button class="modal-action-btn" onclick="goToAhuStep6()">下一步</button>
+                            </div>
+                            <div class="hint-section">
+                                <p><strong>提示：</strong></p>
+                                <p>EAF排布复杂可按行录入，不同尺寸的EAF均按个数输入；</p>
+                                <p><strong>例如：</strong></p>
+                                <p>第1行放置了EAF2424、EAF2024、EAF1624，即录入：1行×3列×1组</p>
+                                <p>第2行及第3行均放置了EAF2223、EAF1523、EAF1223、EAF1123，即录入：1行×4列×2组</p>
+                                <p style="color: red;"><strong>请注意：</strong>EAF08xx2M-E型号是无法电气拼接的，如有此类型号，请自行增加电源适配器。</p>
+                            </div>
+                            <div class="ahu-remark">
+                                <p><strong>空调箱场景配件选型说明：</strong></p>
+                                <p>1. 本场景适用于全系列EAF产品</p>
+                                <p>2. 如需要密封，请选配/自备密封条</p>
+                                <p>3. EAF-1"：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>4. EAF08xx2M-E型号：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>5. EAF-2"/4"/5"：按排布行数核算，单行≤4台配1个电源适配器；单行＞4台时按「每≤4 台加配1个」向上取整计算，也可采用非标电控箱方案。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 第五步：钢丝扣选择 -->
+                    <div id="ahuStep5" style="display: none;">
+                        <div class="assistant-question">
+                            <p>5.您是否需要采购我司的钢丝扣，来保障薄款设备正抽装入厚框架槽后稳固无晃动，或保障厚款设备正抽装入薄框架槽后稳固不掉落？</p>
+                            <div class="accessory-diagram">
+                                <img src="gangsigou.jpg" alt="钢丝扣产品图" class="seal-image">
+                                <p class="diagram-caption">钢丝扣产品示意图</p>
+                            </div>
+                            <div style="margin-top: 16px; text-align: center;">
+                                <label style="font-size: 14px; display: block; margin-bottom: 8px;">需要使用钢丝扣的EAF数量：</label>
+                                <input type="number" id="wireClipCount" min="0" placeholder="请输入非负整数" class="form-control" style="width: 200px;">
+                            </div>
+                            <div class="button-row" style="margin-top: 16px;">
+                                <button class="modal-action-btn secondary" onclick="goBackToAhuStep4()">上一步</button>
+                                <button class="modal-action-btn" onclick="validateWireClipCount()">下一步</button>
+                            </div>
+                            <div class="hint-section" style="font-size: 11px; color: #666; margin-top: 16px; text-align: left;">
+                                <p>提示：</p>
+                                <p>空调箱田字格框架内正抽式安装，如现场有则无需选购。</p>
+                                <p>一个EAF需选配4根，本价格仅包括1根钢丝扣。</p>
+                            </div>
+                            <div class="ahu-remark">
+                                <p><strong>空调箱场景配件选型说明：</strong></p>
+                                <p>1. 本场景适用于全系列EAF产品</p>
+                                <p>2. 如需要密封，请选配/自备密封条</p>
+                                <p>3. EAF-1"：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>4. EAF08xx2M-E型号：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>5. EAF-2"/4"/5"：按排布行数核算，单行≤4台配1个电源适配器；单行＞4台时按「每≤4 台加配1个」向上取整计算，也可采用非标电控箱方案。</p>
                             </div>
                         </div>
                     </div>
@@ -690,9 +809,18 @@
                             <p class="hint-text">提示：<br>密封条数量=向上取整[(EAF迎风面周长×数量)的总和÷10m/卷]<br>我司核算为最低用量，现场建议适当多备。</p>
                             <hr>
                             <p id="ahuInstructionsStep7" class="instructions-text"></p>
+                            <div class="ahu-remark">
+                                <p><strong>空调箱场景配件选型说明：</strong></p>
+                                <p>1. 本场景适用于全系列EAF产品</p>
+                                <p>2. 如需要密封，请选配/自备密封条</p>
+                                <p>3. EAF-1"：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>4. EAF08xx2M-E型号：单台设备必须配置1个电源适配器+1个EAF-BOX接线盒。</p>
+                                <p>5. EAF-2"/4"/5"：按排布行数核算，单行≤4台配1个电源适配器；单行＞4台时按「每≤4 台加配1个」向上取整计算，也可采用非标电控箱方案。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <p id="ahuInstructions" style="display: none;"></p>
             </div>
             <div class="modal-footer">

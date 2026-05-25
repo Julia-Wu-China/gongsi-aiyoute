@@ -17,32 +17,32 @@ function onSelectionRuleChange() {
 // ==================== 配件数据配置 ====================
 // 默认的配件数据（风机盘管场景）
 const defaultFcAccessories = [
-    { id: 'eaf1-if', model: 'EAF1-IF', name: '内法兰固定件_A1型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 105, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['1'], visible: true, quantity: 0, backgroundColor: 'green' },
-    { id: 'eaf1-of', model: 'EAF1-OF', name: '外法兰固定件_B1型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 92, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['1'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
-    { id: 'eaf2-if', model: 'EAF2-IF', name: '内法兰固定件_A2型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 105, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'green' },
-    { id: 'eaf2-of', model: 'EAF2-OF', name: '外法兰固定件_B2型', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', price: 92, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', category: 'fc', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
-    { id: 'afs003', model: 'AFS003', name: '风动开关', config: '/', price: 420, note: '单台 EAF 用作 FFC 时，必须配置 1 个风动开关', category: 'fc', styles: ['1', '2'], visible: true, quantity: 0, backgroundColor: 'gray' },
-    { id: 'mft-20-5-fc', model: 'MFT-20-5', name: '密封条', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', price: 118, note: '我司核算为最低用量，现场建议适当多备。', category: 'fc', styles: ['1', '2'], visible: true, quantity: 0, backgroundColor: 'white' }
+    { id: 'eaf1-if', model: 'EAF1-IF', name: '内法兰固定件_A1型', nameEn: 'Inner Flange Fixing Bracket_A1', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', configEn: 'Ceiling concealed installation height>90mm<br>Exposed ceiling installation height>140mm', price: 105, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', noteEn: 'For EAF front extraction installation;<br>Each EAF requires one set of flange fixing brackets (EAF-IF/EAF-OF)<br>(Price is for 1 set, includes 4 fixing pieces)', category: 'fc', styles: ['1'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf1-of', model: 'EAF1-OF', name: '外法兰固定件_B1型', nameEn: 'Outer Flange Fixing Bracket_B1', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', configEn: 'Ceiling concealed installation height>90mm<br>Exposed ceiling installation height>140mm', price: 92, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', noteEn: 'For EAF front extraction installation;<br>Each EAF requires one set of flange fixing brackets (EAF-IF/EAF-OF)<br>(Price is for 1 set, includes 4 fixing pieces)', category: 'fc', styles: ['1'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'eaf2-if', model: 'EAF2-IF', name: '内法兰固定件_A2型', nameEn: 'Inner Flange Fixing Bracket_A2', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', configEn: 'Ceiling concealed installation height>90mm<br>Exposed ceiling installation height>140mm', price: 105, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', noteEn: 'For EAF front extraction installation;<br>Each EAF requires one set of flange fixing brackets (EAF-IF/EAF-OF)<br>(Price is for 1 set, includes 4 fixing pieces)', category: 'fc', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf2-of', model: 'EAF2-OF', name: '外法兰固定件_B2型', nameEn: 'Outer Flange Fixing Bracket_B2', config: '吊顶暗装净高>90mm<br>裸顶明装净高>140mm', configEn: 'Ceiling concealed installation height>90mm<br>Exposed ceiling installation height>140mm', price: 92, note: '配合 EAF 正抽式安装使用；<br>单台 EAF 必须选配法兰固定件 (EAF-IF/EAF-OF)1 套<br>（本价格为 1 套，内含固定件 4 个）', noteEn: 'For EAF front extraction installation;<br>Each EAF requires one set of flange fixing brackets (EAF-IF/EAF-OF)<br>(Price is for 1 set, includes 4 fixing pieces)', category: 'fc', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'afs003', model: 'AFS003', name: '风动开关', nameEn: 'Air Flow Switch', config: '/', configEn: '/', price: 420, note: '单台 EAF 用作 FFC 时，必须配置 1 个风动开关', noteEn: 'One air flow switch is required when EAF is used as FFC', category: 'fc', styles: ['1', '2'], visible: true, quantity: 0, backgroundColor: 'gray' },
+    { id: 'mft-20-5-fc', model: 'MFT-20-5', name: '密封条', nameEn: 'Seal Strip', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', configEn: 'Material: PE foam; Fire rating: B1<br>Spec (WxT): 20x5mm; Length: 10m/roll', price: 118, note: '我司核算为最低用量，现场建议适当多备。', noteEn: 'This is our minimum recommended quantity. Please prepare more for on-site use.', category: 'fc', styles: ['1', '2'], visible: true, quantity: 0, backgroundColor: 'white' }
 ];
 
 // 默认的配件数据（空调箱场景）
 const defaultAhuAccessories = [
-    { id: 'sus301-2', model: 'EAF-SWF-2', name: 'EAF-2英寸钢丝扣', config: 'SUS301', price: 14, note: '空调箱田字格框架内正抽式安装，如现场有则无需选购。<br>一个EAF需选配4根，本价格仅包括1根钢丝扣。', category: 'ahu', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'white' },
-    { id: 'sus301-4', model: 'EAF-SWF-4', name: 'EAF-4英寸钢丝扣', config: 'SUS301', price: 15, note: '空调箱田字格框架内正抽式安装，如现场有则无需选购。<br>一个EAF需选配4根，本价格仅包括1根钢丝扣。', category: 'ahu', styles: ['4home', '4biz'], visible: true, quantity: 0, backgroundColor: 'white' },
-    { id: 'dc5525', model: 'DC5525 Power Cord', name: 'EAF 1米连接线', config: '1m', price: 40, note: '单台 EAF 卧装和每层 EAF 均各配 1 根连接线', category: 'ahu', styles: ['2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'gray' },
-    { id: 'eaf-box-c', model: 'EAF-BOX-C', name: 'EAF-BOX 接线盒', config: '/', price: 120, note: '中国经济款，需要搭配电源适配器EAF-PS05M-60W使用', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'green' },
-    { id: 'eaf-ps05m-60w', model: 'EAF-PS05M-60W', name: 'DC12V电源适配器', config: '引线式 100-240V, 50/60Hz', price: 235, note: '全球通用', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'green' },
-    { id: 'eaf-ps03m-60w', model: 'EAF-PS03M-60W', name: 'DC12V电源适配器', config: '插头式（美标三叉）100-240V, 50/60Hz', price: 200, note: '美国专用，用完不备货', category: 'ahu', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'green' },
-    { id: 'eaf-box1-dc12v', model: 'EAF-BOX1-DC12V', name: 'EAF-BOX 电控箱', config: '/', price: 5650, note: '适用于 EAF2"', category: 'ahu', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
-    { id: 'eaf-box1-dc24v', model: 'EAF-BOX1-DC24V', name: 'EAF-BOX 电控箱', config: '/', price: 5650, note: '适用于 EAF4"+5"', category: 'ahu', styles: ['4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
-    { id: 'mft-20-5-ahu', model: 'MFT-20-5', name: '密封条', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', price: 118, note: '我司核算为最低用量，现场建议适当多备。', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'white' }
+    { id: 'sus301-2', model: 'EAF-SWF-2', name: 'EAF-2英寸钢丝扣', nameEn: 'EAF-2" Wire Clip', config: 'SUS301', configEn: 'SUS301', price: 14, note: '空调箱田字格框架内正抽式安装，如现场有则无需选购。<br>一个EAF需选配4根，本价格仅包括1根钢丝扣。', noteEn: 'For front extraction installation in AHU grid frame.<br>4 clips required per EAF. Price is for 1 clip only.', category: 'ahu', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'white' },
+    { id: 'sus301-4', model: 'EAF-SWF-4', name: 'EAF-4英寸钢丝扣', nameEn: 'EAF-4" Wire Clip', config: 'SUS301', configEn: 'SUS301', price: 15, note: '空调箱田字格框架内正抽式安装，如现场有则无需选购。<br>一个EAF需选配4根，本价格仅包括1根钢丝扣。', noteEn: 'For front extraction installation in AHU grid frame.<br>4 clips required per EAF. Price is for 1 clip only.', category: 'ahu', styles: ['4home', '4biz'], visible: true, quantity: 0, backgroundColor: 'white' },
+    { id: 'dc5525', model: 'DC5525 Power Cord', name: 'EAF 1米连接线', nameEn: 'EAF 1m Power Cord', config: '1m', configEn: '1m', price: 40, note: '单台 EAF 卧装和每层 EAF 均各配 1 根连接线', noteEn: '1 power cord required for each horizontal EAF and each layer', category: 'ahu', styles: ['2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'gray' },
+    { id: 'eaf-box-c', model: 'EAF-BOX-C', name: 'EAF-BOX 接线盒', nameEn: 'EAF-BOX Junction Box', config: '/', configEn: '/', price: 120, note: '中国经济款，需要搭配电源适配器EAF-PS05M-60W使用', noteEn: 'China economy version, requires EAF-PS05M-60W power adapter', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf-ps05m-60w', model: 'EAF-PS05M-60W', name: 'DC12V电源适配器', nameEn: 'DC12V Power Adapter', config: '引线式 100-240V, 50/60Hz', configEn: 'Terminal block type 100-240V, 50/60Hz', price: 235, note: '全球通用', noteEn: 'Global universal', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf-ps03m-60w', model: 'EAF-PS03M-60W', name: 'DC12V电源适配器', nameEn: 'DC12V Power Adapter', config: '插头式（美标三叉）100-240V, 50/60Hz', configEn: 'Plug type (US standard) 100-240V, 50/60Hz', price: 200, note: '美国专用，用完不备货', noteEn: 'US only, no restock after depletion', category: 'ahu', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'eaf-box1-dc12v', model: 'EAF-BOX1-DC12V', name: 'EAF-BOX 电控箱', nameEn: 'EAF-BOX Control Box', config: '/', configEn: '/', price: 5650, note: '适用于 EAF2"', noteEn: 'For EAF 2"', category: 'ahu', styles: ['2'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'eaf-box1-dc24v', model: 'EAF-BOX1-DC24V', name: 'EAF-BOX 电控箱', nameEn: 'EAF-BOX Control Box', config: '/', configEn: '/', price: 5650, note: '适用于 EAF4"+5"', noteEn: 'For EAF 4"+5"', category: 'ahu', styles: ['4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'lightBlue' },
+    { id: 'mft-20-5-ahu', model: 'MFT-20-5', name: '密封条', nameEn: 'Seal Strip', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', configEn: 'Material: PE foam; Fire rating: B1<br>Spec (WxT): 20x5mm; Length: 10m/roll', price: 118, note: '我司核算为最低用量，现场建议适当多备。', noteEn: 'This is our minimum recommended quantity. Please prepare more for on-site use.', category: 'ahu', styles: ['1', '2', '4home', '4biz', '5'], visible: true, quantity: 0, backgroundColor: 'white' }
 ];
 
 // 默认的配件数据（美式风管机场景）
 const defaultUsDuctAccessories = [
-    { id: 'usd-ps05m-60w', model: 'EAF-PS05M-60W', name: 'DC12V电源适配器', config: '引线式 100-240V, 50/60Hz', price: 235, note: '全球通用', category: 'usDuct', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'green' },
-    { id: 'usd-ps03m-60w', model: 'EAF-PS03M-60W', name: 'DC12V电源适配器', config: '插头式（美标三叉）100-240V, 50/60Hz', price: 200, note: '美国专用，用完不备货', category: 'usDuct', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'green' },
-    { id: 'usd-mft-20-5', model: 'MFT-20-5', name: '密封条', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', price: 118, note: '我司核算为最低用量，现场建议适当多备。', category: 'usDuct', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'white' }
+    { id: 'usd-ps05m-60w', model: 'EAF-PS05M-60W', name: 'DC12V电源适配器', nameEn: 'DC12V Power Adapter', config: '引线式 100-240V, 50/60Hz', configEn: 'Terminal block type 100-240V, 50/60Hz', price: 235, note: '全球通用', noteEn: 'Global universal', category: 'usDuct', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'usd-ps03m-60w', model: 'EAF-PS03M-60W', name: 'DC12V电源适配器', nameEn: 'DC12V Power Adapter', config: '插头式（美标三叉）100-240V, 50/60Hz', configEn: 'Plug type (US standard) 100-240V, 50/60Hz', price: 200, note: '美国专用，用完不备货', noteEn: 'US only, no restock after depletion', category: 'usDuct', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'green' },
+    { id: 'usd-mft-20-5', model: 'MFT-20-5', name: '密封条', nameEn: 'Seal Strip', config: '材质：PE密封棉；阻燃：符合B1级<br>规格(宽x厚)：20x5mm；长度：10米/卷', configEn: 'Material: PE foam; Fire rating: B1<br>Spec (WxT): 20x5mm; Length: 10m/roll', price: 118, note: '我司核算为最低用量，现场建议适当多备。', noteEn: 'This is our minimum recommended quantity. Please prepare more for on-site use.', category: 'usDuct', styles: ['1', '2', '4home'], visible: true, quantity: 0, backgroundColor: 'white' }
 ];
 
 // 全局配件数据变量
@@ -76,6 +76,11 @@ function updateSizeRange() {
         '5': { widthMin: Math.max(12, minInch), widthMax: maxInch, heightMin: Math.max(12, minInch), heightMax: maxInch }
     };
     
+    // 获取翻译文本
+    const widthLabel = getLang('width');
+    const heightLabel = getLang('height');
+    const colonChar = currentLang === 'zh' ? '：' : ': ';
+    
     let html = '';
     for (const [style, range] of Object.entries(styleRanges)) {
         const widthMinMm = equivalentMap[range.widthMin.toString().padStart(2, '0')] || range.widthMin * 25.4;
@@ -83,7 +88,11 @@ function updateSizeRange() {
         const heightMinMm = equivalentMap[range.heightMin.toString().padStart(2, '0')] || range.heightMin * 25.4;
         const heightMaxMm = equivalentMap[range.heightMax.toString().padStart(2, '0')] || range.heightMax * 25.4;
         
-        html += `<div class="range-item">EAF${style}"：宽${range.widthMin.toString().padStart(2, '0')}~${range.widthMax.toString().padStart(2, '0')}（${Math.round(widthMinMm)}~${Math.round(widthMaxMm)}mm）、高${range.heightMin.toString().padStart(2, '0')}~${range.heightMax.toString().padStart(2, '0')}（${Math.round(heightMinMm)}~${Math.round(heightMaxMm)}mm）</div>`;
+        if (currentLang === 'zh') {
+            html += `<div class="range-item">EAF${style}"${colonChar}${widthLabel}${range.widthMin.toString().padStart(2, '0')}~${range.widthMax.toString().padStart(2, '0')}（${Math.round(widthMinMm)}~${Math.round(widthMaxMm)}mm）、${heightLabel}${range.heightMin.toString().padStart(2, '0')}~${range.heightMax.toString().padStart(2, '0')}（${Math.round(heightMinMm)}~${Math.round(heightMaxMm)}mm）</div>`;
+        } else {
+            html += `<div class="range-item">EAF${style}"${colonChar}${widthLabel} ${range.widthMin.toString().padStart(2, '0')}~${range.widthMax.toString().padStart(2, '0')} (${Math.round(widthMinMm)}~${Math.round(widthMaxMm)}mm), ${heightLabel} ${range.heightMin.toString().padStart(2, '0')}~${range.heightMax.toString().padStart(2, '0')} (${Math.round(heightMinMm)}~${Math.round(heightMaxMm)}mm)</div>`;
+        }
     }
     
     rangeContent.innerHTML = html;
@@ -130,12 +139,20 @@ const languages = {
     zh: {
         title: 'EAF自动报价查询系统',                 // 系统标题
         subtitle: '选择参数，快速查询产品报价',        // 系统副标题
-        warning_tip: '⚠️ 官方温馨提示：EAF2016与EAF1620为两款完全不同的产品，请勿混淆选型及使用。',  // 温馨提示
+        warning_title: '⚠️ 温馨提示：',                // 温馨提示标题
+        warning_tip: '• EAF2016与EAF1620为两款完全不同的产品，请勿混淆选型及使用。\n• 旗舰型号：EAF2424、EAF1224，库存充足现货直发，价格优势明显\n• 主力型号：样册在册十余款常规尺寸，极速发货，价格亲民\n• 标准型号：页面可选规格，按常规周期排产供货，定价平稳\n• 定制型号：专属非标尺寸定制，生产周期较长，造价偏高',  // 温馨提示
         query_single_quote: '🔍 查询单个报价',         // 查询单个报价按钮
         query_batch_quote: '📦 批量查询报价',          // 批量查询报价按钮
         admin: '🔧 管理员基础数据管理',              // 管理员按钮文本
         admin_show: '🔧 查看数据管理',               // 显示管理员面板按钮
         admin_hide: '🔧 隐藏数据管理',               // 隐藏管理员面板按钮
+        admin_logout: '🚪 管理员登出',               // 管理员登出按钮
+        admin_login: '🔐 管理员登录',              // 管理员登录标题
+        username: '用户名',                         // 用户名字段标签
+        username_placeholder: '请输入用户名',        // 用户名输入框占位符
+        password: '密码',                           // 密码字段标签
+        password_placeholder: '请输入密码',          // 密码输入框占位符
+        login: '登录',                             // 登录按钮
         product_list_show: '📋 查看详细列表',         // 显示产品列表按钮
         product_list_hide: '📋 隐藏详细列表',         // 隐藏产品列表按钮
         product_list_title: '📋 产品详细列表',        // 产品列表标题
@@ -164,7 +181,7 @@ const languages = {
         confirm_query: '确认查询',                  // 确认查询按钮
         query_result: '查询结果',                    // 查询结果标题
         empty_state: '请选择参数并点击确认查询',      // 空状态提示
-        calculation_info: '计算说明',               // 计算说明标签
+        calculation_info: '📐 计算说明：',         // 计算说明标签
         product_model: '产品型号',                  // 产品型号标签
         air_flow: '标示风量',                       // 标示风量标签
         dimensions: '外形尺寸',                     // 外形尺寸标签
@@ -226,18 +243,56 @@ const languages = {
         calc_single_pack: '单台包装尺寸(L*W*H)mm：L=ROUND((宽度mm+65)/5,0)×5，W=对应款式的1台包装厚度，H=ROUND((高度mm+65)/5,0)×5',
         calc_gross_weight_1: '毛重（KG）（1台/箱）：产品净重×1.3',
         calc_five_pack: '五台包装尺寸(L*W*H)mm：L=ROUND((宽度mm+65)/5,0)×5，W=对应款式的5台包装厚度，H=ROUND((高度mm+65)/5,0)×5',
-        calc_gross_weight_5: '毛重（KG）（5台/箱）：毛重（KG）（1台/箱）×5×1.1'
+        calc_gross_weight_5: '毛重（KG）（5台/箱）：毛重（KG）（1台/箱）×5×1.1',
+        // 批量查询区域
+        selection_rule: '选型规则',
+        rule_ac: '空调箱选型（降档匹配法）',
+        rule_fc: '风机盘管选型（就近匹配法）',
+        rule_custom: '非标选型（升档匹配法）',
+        list_price: '面价',
+        eaf_quantity: 'EAF数量',
+        subtotal: '小计',
+        action: '操作',
+        total: '合计',
+        selection_explanation: '选型说明：',
+        selection_explanation_content: '输入现场介质过滤器的尺寸（mm）和数量，自动匹配对应的EAF型号。<br>非标选型（升档匹配法）<br>实际安装尺寸不对应标准规格时，统一向上取整到最近的大一档标准值，再选用对应型号。<br>例：尺寸为489mm×491mm，因489mm上一档490（对应型号 20）、491mm上一档515（对应型号 21），故选用 EAF2021。<br>非标选型，非标价格按升档报价，产品按非标制作。',
+        size_range: '各款式尺寸范围：',
+        add_row: '+ 添加一行',
+        accessories: '配件选型',
+        accessories_note: '(EAF设备选型调整后，手动录入及选型助手生成的配件数据均不会同步变更；展开无内容的代表此场景无法适配、无配套配件)',
+        legend_white: '白色：选配件',
+        legend_gray: '浅灰：必选件',
+        legend_green: '浅绿：可选必选件A',
+        legend_blue: '浅蓝：可选必选件B',
+        fc_category: '适配于风机盘管场景',
+        fc_note: '（仅 1"、2"适用）',
+        ahu_category: '适配于空调箱场景',
+        ahu_note: '（全系列适用。每台空调箱必选一套方案配齐：①EAF-BOX 电控箱 或 ②EAF-BOX 接线盒 + DC12V 电源适配器）',
+        usduct_category: '适配于美式风管机场景',
+        usduct_note: '（仅 1"、2"、4"家用 适用，EAF设备不允许卧放）',
+        expand: '展开',
+        selection_assistant: '选型助手',
+        grand_total: '总合计：',
+        quantity: '数量'
     },
     // 英文语言配置
     en: {
         title: 'EAF Automatic Quotation Query System',     // System title
         subtitle: 'Select parameters to quickly query product quotations',  // System subtitle
-        warning_tip: '⚠️ Official Reminder: EAF2016 and EAF1620 are two completely different products. Please do not confuse them when selecting and using.',  // Warning tip
+        warning_title: '⚠️ Reminder:',                      // Warning title
+        warning_tip: '• Model Differentiation: EAF2016 and EAF1620 are two completely different products. Please do not confuse them when selecting and using.\n• Flagship Models: EAF2424, EAF1224, with sufficient inventory for immediate delivery and significant price advantages\n• Main Models: Multiple regular sizes in catalog (EAF16204MA-E, EAF20204MA-E, EAF20244MA-E, EAF20254MA-E, EAF25254MA-E), fast delivery, affordable prices\n• Standard Models: Optional specifications on page, produced and delivered according to regular cycle, stable pricing\n• Custom Models: Custom non-standard sizes, longer production cycle, relatively high cost',  // Warning tip
         query_single_quote: '🔍 Query Single Quote',      // Query single quote button
         query_batch_quote: '📦 Batch Query Quote',         // Batch query quote button
         admin: '🔧 Admin Basic Data Management',           // Admin button text
         admin_show: '🔧 Show Data Management',            // Show admin panel button
         admin_hide: '🔧 Hide Data Management',            // Hide admin panel button
+        admin_logout: '🚪 Admin Logout',                  // Admin logout button
+        admin_login: '🔐 Admin Login',                 // Admin login title
+        username: 'Username',                          // Username field label
+        username_placeholder: 'Please enter username', // Username input placeholder
+        password: 'Password',                          // Password field label
+        password_placeholder: 'Please enter password', // Password input placeholder
+        login: 'Login',                                // Login button
         product_list_show: '📋 Show Product List',        // Show product list button
         product_list_hide: '📋 Hide Product List',        // Hide product list button
         product_list_title: '📋 Product Details List',    // Product list title
@@ -266,7 +321,7 @@ const languages = {
         confirm_query: 'Confirm Query',                   // Confirm query button
         query_result: 'Query Result',                     // Query result title
         empty_state: 'Please select parameters and click Confirm Query',  // Empty state hint
-        calculation_info: 'Calculation Instructions',     // Calculation instructions label
+        calculation_info: '📐 Calculation Instructions:',     // Calculation instructions label
         product_model: 'Product Model',                   // Product model label
         air_flow: 'Marked Air Flow',                      // Marked air flow label
         dimensions: 'Dimensions',                         // Dimensions label
@@ -326,18 +381,57 @@ const languages = {
         calc_single_pack: 'Single Pack Size(L*W*H)mm: L=ROUND((Width mm+65)/5,0)×5, W=Single pack thickness, H=ROUND((Height mm+65)/5,0)×5',
         calc_gross_weight_1: 'Gross Weight (KG) (1 unit/box): Net Weight×1.3',
         calc_five_pack: 'Five Pack Size(L*W*H)mm: L=ROUND((Width mm+65)/5,0)×5, W=Five pack thickness, H=ROUND((Height mm+65)/5,0)×5',
-        calc_gross_weight_5: 'Gross Weight (KG) (5 units/box): Gross Weight (KG) (1 unit/box)×5×1.1'
+        calc_gross_weight_5: 'Gross Weight (KG) (5 units/box): Gross Weight (KG) (1 unit/box)×5×1.1',
+        // Batch query section
+        selection_rule: 'Selection Rule',
+        rule_ac: 'AHU Selection (Downward Matching)',
+        rule_fc: 'FC Selection (Nearest Matching)',
+        rule_custom: 'Custom Selection (Upward Matching)',
+        list_price: 'List Price',
+        eaf_quantity: 'EAF Quantity',
+        subtotal: 'Subtotal',
+        action: 'Action',
+        total: 'Total',
+        selection_explanation: 'Selection Instructions: ',
+        selection_explanation_content: 'Enter the dimensions (mm) and quantity of the on-site media filter, and the corresponding EAF model will be automatically matched.<br>Custom Selection (Upward Matching)<br>When the actual installation dimensions do not match standard specifications, round up to the nearest larger standard value and select the corresponding model.<br>Example: Dimensions 489mm×491mm. Since 489mm rounds up to 490 (model 20) and 491mm rounds up to 515 (model 21), EAF2021 is selected.<br>For custom selections, pricing is based on the upward-matched standard model, but the product is manufactured to the custom dimensions.',
+        size_range: 'Size Range by Style: ',
+        add_row: '+ Add Row',
+        accessories: 'Accessory Selection',
+        accessories_note: '(After adjusting EAF selection, manually entered and assistant-generated accessory data will not sync; empty sections indicate incompatible scenarios or no matching accessories)',
+        legend_white: 'White: Optional Accessory',
+        legend_gray: 'Light Gray: Required Accessory',
+        legend_green: 'Light Green: Optional Required A',
+        legend_blue: 'Light Blue: Optional Required B',
+        fc_category: 'FC Scenario',
+        fc_note: '(Only for 1", 2")',
+        ahu_category: 'AHU Scenario',
+        ahu_note: '(All series applicable. Each AHU requires one complete solution: ①EAF-BOX Control Box OR ②EAF-BOX Junction Box + DC12V Power Adapter)',
+        usduct_category: 'US Duct Scenario',
+        usduct_note: '(Only for 1", 2", 4" Home. EAF units cannot be placed horizontally)',
+        expand: 'Expand',
+        selection_assistant: 'Selection Assistant',
+        grand_total: 'Grand Total: ',
+        quantity: 'Quantity',
+        us_duct_accessory_title: 'US Duct Accessory Management'
     },
     // 法语语言配置
     fr: {
         title: 'EAF Système de requête de devis automatique',
         subtitle: 'Sélectionnez les paramètres pour rechercher rapidement les devis de produits',
+        warning_title: '⚠️ Avertissement:',
         warning_tip: '⚠️ Avertissement officiel: EAF2016 et EAF1620 sont deux produits complètement différents. Veuillez ne pas les confondre lors de la sélection et de l\'utilisation.',
         query_single_quote: '🔍 Demander un devis',        // 查询单个报价按钮
         query_batch_quote: '📦 Demander des devis groupés', // 批量查询报价按钮
         admin: '🔧 Gestion des données de base de l\'administrateur',
         admin_show: '🔧 Afficher la gestion des données',
         admin_hide: '🔧 Cacher la gestion des données',
+        admin_logout: '🚪 Déconnexion admin',
+        admin_login: '🔐 Connexion admin',
+        username: 'Nom d\'utilisateur',                         // Username field label
+        username_placeholder: 'Veuillez entrer le nom d\'utilisateur', // Username input placeholder
+        password: 'Mot de passe',                           // Password field label
+        password_placeholder: 'Veuillez entrer le mot de passe',          // Password input placeholder
+        login: 'Se connecter',                             // Login button
         product_list_show: '📋 Afficher la liste détaillée',
         product_list_hide: '📋 Cacher la liste détaillée',
         product_list_title: '📋 Liste détaillée des produits',
@@ -366,7 +460,7 @@ const languages = {
         confirm_query: 'Confirmer la requête',
         query_result: 'Résultat de la requête',
         empty_state: 'Veuillez sélectionner les paramètres et cliquer sur Confirmer',
-        calculation_info: 'Instructions de calcul',
+        calculation_info: '📐 Instructions de calcul',
         product_model: 'Modèle de produit',
         air_flow: 'Débit d\'air marqué',
         dimensions: 'Dimensions',
@@ -400,6 +494,7 @@ const languages = {
         remarks: 'Remarques',                             // Remarks column
         add_accessory: '+ Ajouter accessoire',            // Add accessory button
         delete: 'Supprimer',                               // Delete button
+        total: 'Total',                               // Total column
         save_success: '✓ Toutes les données enregistrées',
         reset_success: '✓ Réinitialisé par défaut',
         download_success: '✓ Modèle téléchargé avec succès',
@@ -425,18 +520,113 @@ const languages = {
         calc_single_pack: 'Taille d\'emballage unique(L*W*H)mm: L=ROUND((Largeur mm+65)/5,0)×5, W=Épaisseur emballage unique, H=ROUND((Hauteur mm+65)/5,0)×5',
         calc_gross_weight_1: 'Poids brut (KG) (1 unité/boîte): Poids net×1.3',
         calc_five_pack: 'Taille d\'emballage cinq unités(L*W*H)mm: L=ROUND((Largeur mm+65)/5,0)×5, W=Épaisseur emballage cinq unités, H=ROUND((Hauteur mm+65)/5,0)×5',
-        calc_gross_weight_5: 'Poids brut (KG) (5 unités/boîte): Poids brut (KG) (1 unité/boîte)×5×1.1'
+        calc_gross_weight_5: 'Poids brut (KG) (5 unités/boîte): Poids brut (KG) (1 unité/boîte)×5×1.1',
+        grand_total: 'Total général: ',
+        // Batch query section
+        selection_rule: 'Règle de sélection',
+        rule_ac: 'Sélection AHU (correspondance descendante)',
+        rule_fc: 'Sélection FC (correspondance la plus proche)',
+        rule_custom: 'Sélection personnalisée (correspondance ascendante)',
+        list_price: 'Prix de liste',
+        eaf_quantity: 'Quantité EAF',
+        subtotal: 'Sous-total',
+        action: 'Action',
+        selection_explanation: 'Instructions de sélection: ',
+        selection_explanation_content: 'Saisissez les dimensions (mm) et la quantité du filtre à média sur site, et le modèle EAF correspondant sera automatiquement sélectionné.<br>Sélection personnalisée (correspondance ascendante)<br>Lorsque les dimensions d\'installation réelles ne correspondent pas aux spécifications standard, arrondissez à la valeur standard supérieure la plus proche et sélectionnez le modèle correspondant.<br>Exemple: Dimensions 489mm×491mm. Puisque 489mm s\'arrondit à 490 (modèle 20) et 491mm s\'arrondit à 515 (modèle 21), EAF2021 est sélectionné.<br>Pour les sélections personnalisées, le prix est basé sur le modèle standard correspondant, mais le produit est fabriqué selon les dimensions personnalisées.',
+        size_range: 'Gamme de tailles par style: ',
+        add_row: '+ Ajouter une ligne',
+        accessories: 'Sélection d\'accessoires',
+        accessories_note: '(Après ajustement de la sélection EAF, les données d\'accessoires saisies manuellement et générées par l\'assistant ne seront pas synchronisées; les sections vides indiquent des scénarios incompatibles ou aucun accessoire correspondant)',
+        legend_white: 'Blanc: Accessoire optionnel',
+        legend_gray: 'Gris clair: Accessoire requis',
+        legend_green: 'Vert clair: Optionnel requis A',
+        legend_blue: 'Bleu clair: Optionnel requis B',
+        fc_category: 'Scénario FC',
+        fc_note: '(Uniquement pour 1", 2")',
+        ahu_category: 'Scénario AHU',
+        ahu_note: '(Toutes les séries applicables. Chaque AHU nécessite une solution complète: ①EAF-BOX Boîte de commande OU ②EAF-BOX Boîte de jonction + Adaptateur d\'alimentation DC12V)',
+        usduct_category: 'Scénario US Duct',
+        usduct_note: '(Uniquement pour 1", 2", 4" Maison. Les unités EAF ne peuvent pas être placées horizontalement)',
+        expand: 'Développer',
+        selection_assistant: 'Assistant de sélection',
+        quantity: 'Quantité',
+        us_duct_accessory_title: 'Gestion des accessoires US Duct',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'Support de fixation de bride interne_Type A1',
+        accessory_eaf1_if_config: 'Installation encastrée dans le plafond hauteur>90mm<br>Installation exposée sur le plafond hauteur>140mm',
+        accessory_eaf1_if_note: 'Pour installation par extraction frontale EAF;<br>Chaque EAF nécessite un ensemble de supports de fixation de bride (EAF-IF/EAF-OF)<br>(Le prix est pour 1 ensemble, inclut 4 pièces de fixation)',
+        accessory_eaf1_of_name: 'Support de fixation de bride externe_Type B1',
+        accessory_eaf1_of_config: 'Installation encastrée dans le plafond hauteur>90mm<br>Installation exposée sur le plafond hauteur>140mm',
+        accessory_eaf1_of_note: 'Pour installation par extraction frontale EAF;<br>Chaque EAF nécessite un ensemble de supports de fixation de bride (EAF-IF/EAF-OF)<br>(Le prix est pour 1 ensemble, inclut 4 pièces de fixation)',
+        accessory_eaf2_if_name: 'Support de fixation de bride interne_Type A2',
+        accessory_eaf2_if_config: 'Installation encastrée dans le plafond hauteur>90mm<br>Installation exposée sur le plafond hauteur>140mm',
+        accessory_eaf2_if_note: 'Pour installation par extraction frontale EAF;<br>Chaque EAF nécessite un ensemble de supports de fixation de bride (EAF-IF/EAF-OF)<br>(Le prix est pour 1 ensemble, inclut 4 pièces de fixation)',
+        accessory_eaf2_of_name: 'Support de fixation de bride externe_Type B2',
+        accessory_eaf2_if_config: 'Installation encastrée dans le plafond hauteur>90mm<br>Installation exposée sur le plafond hauteur>140mm',
+        accessory_eaf2_of_note: 'Pour installation par extraction frontale EAF;<br>Chaque EAF nécessite un ensemble de supports de fixation de bride (EAF-IF/EAF-OF)<br>(Le prix est pour 1 ensemble, inclut 4 pièces de fixation)',
+        accessory_afs003_name: 'Interrupteur de débit d\'air',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'Un interrupteur de débit d\'air est nécessaire lorsque l\'EAF est utilisé comme FFC',
+        accessory_mft_20_5_fc_name: 'Bande de scellage',
+        accessory_mft_20_5_fc_config: 'Matériau: Mousse PE; Classement incendie: B1<br>Spéc (L×E): 20x5mm; Longueur: 10m/rouleau',
+        accessory_mft_20_5_fc_note: 'Ceci est notre quantité minimale recommandée. Veuillez préparer plus pour l\'utilisation sur site.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'Clip de fil EAF-2"',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'Pour installation par extraction frontale dans le cadre de grille AHU.<br>4 clips sont nécessaires par EAF. Le prix est pour 1 clip seulement.',
+        accessory_sus301_4_name: 'Clip de fil EAF-4"',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'Pour installation par extraction frontale dans le cadre de grille AHU.<br>4 clips sont nécessaires par EAF. Le prix est pour 1 clip seulement.',
+        accessory_dc5525_name: 'Cordon d\'alimentation EAF 1m',
+        accessory_dc5525_config: '1m',
+        accessory_dc5525_note: '1 cordon d\'alimentation est nécessaire pour chaque EAF horizontal et chaque couche',
+        accessory_eaf_box_c_name: 'Boîte de jonction EAF-BOX',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: 'Version économique chinoise, nécessite un adaptateur d\'alimentation EAF-PS05M-60W',
+        accessory_eaf_ps05m_60w_name: 'Adaptateur d\'alimentation DC12V',
+        accessory_eaf_ps05m_60w_config: 'Type bornier 100-240V, 50/60Hz',
+        accessory_eaf_ps05m_60w_note: 'Universel global',
+        accessory_eaf_ps03m_60w_name: 'Adaptateur d\'alimentation DC12V',
+        accessory_eaf_ps03m_60w_config: 'Type prise (norme américaine) 100-240V, 50/60Hz',
+        accessory_eaf_ps03m_60w_note: 'Uniquement aux États-Unis, pas de réapprovisionnement après épuisement',
+        accessory_eaf_box1_dc12v_name: 'Boîte de commande EAF-BOX',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'Pour EAF 2"',
+        accessory_eaf_box1_dc24v_name: 'Boîte de commande EAF-BOX',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'Pour EAF 4"+5"',
+        accessory_mft_20_5_ahu_name: 'Bande de scellage',
+        accessory_mft_20_5_ahu_config: 'Matériau: Mousse PE; Classement incendie: B1<br>Spéc (L×E): 20x5mm; Longueur: 10m/rouleau',
+        accessory_mft_20_5_ahu_note: 'Ceci est notre quantité minimale recommandée. Veuillez préparer plus pour l\'utilisation sur site.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'Adaptateur d\'alimentation DC12V',
+        accessory_usd_ps05m_60w_config: 'Type bornier 100-240V, 50/60Hz',
+        accessory_usd_ps05m_60w_note: 'Universel global',
+        accessory_usd_ps03m_60w_name: 'Adaptateur d\'alimentation DC12V',
+        accessory_usd_ps03m_60w_config: 'Type prise (norme américaine) 100-240V, 50/60Hz',
+        accessory_usd_ps03m_60w_note: 'Uniquement aux États-Unis, pas de réapprovisionnement après épuisement',
+        accessory_usd_mft_20_5_name: 'Bande de scellage',
+        accessory_usd_mft_20_5_config: 'Matériau: Mousse PE; Classement incendie: B1<br>Spéc (L×E): 20x5mm; Longueur: 10m/rouleau',
+        accessory_usd_mft_20_5_note: 'Ceci est notre quantité minimale recommandée. Veuillez préparer plus pour l\'utilisation sur site.'
     },
     de: {
         title: 'EAF Automatisches Angebotsabfragesystem',
         subtitle: 'Wählen Sie Parameter aus, um Produktangebote schnell abzufragen',
+        warning_title: '⚠️ Hinweis:',
         warning_tip: '⚠️ Offizielle Erinnerung: EAF2016 und EAF1620 sind zwei völlig unterschiedliche Produkte. Bitte nicht verwechseln bei Auswahl und Verwendung.',
         query_single_quote: '🔍 Einzelangebot anfragen',  // 查询单个报价按钮
         query_batch_quote: '📦 Gruppenangebot anfragen',   // 批量查询报价按钮
         admin: '🔧 Admin Grunddatenverwaltung',
         admin_show: '🔧 Datenverwaltung anzeigen',
         admin_hide: '🔧 Datenverwaltung ausblenden',
-        product_list_show: '📋 Detail liste anzeigen',
+        admin_logout: '🚪 Admin Abmelden',
+        admin_login: '🔐 Admin Anmelden',
+        username: 'Benutzername',                         // Username field label
+        username_placeholder: 'Bitte geben Sie den Benutzernamen ein', // Username input placeholder
+        password: 'Passwort',                           // Password field label
+        password_placeholder: 'Bitte geben Sie das Passwort ein',          // Password input placeholder
+        login: 'Anmelden',                             // Login button
+        product_list_show: '📋 Produktliste anzeigen',
         product_list_hide: '📋 Detail liste ausblenden',
         product_list_title: '📋 Produkt-Details-Liste',
         export_excel: '📥 Excel exportieren',
@@ -464,7 +654,7 @@ const languages = {
         confirm_query: 'Abfrage bestätigen',
         query_result: 'Abfrageergebnis',
         empty_state: 'Bitte wählen Sie Parameter aus und klicken Sie auf Bestätigen',
-        calculation_info: 'Berechnungsanweisungen',
+        calculation_info: '📐 Berechnungsanweisungen',
         product_model: 'Produktmodell',
         air_flow: 'Markierter Luftstrom',
         dimensions: 'Maße',
@@ -498,6 +688,7 @@ const languages = {
         remarks: 'Bemerkungen',                           // Remarks column
         add_accessory: '+ Zubehör hinzufügen',            // Add accessory button
         delete: 'Löschen',                                 // Delete button
+        total: 'Gesamt',                              // Total column
         save_success: '✓ Alle Daten gespeichert',
         reset_success: '✓ Auf Standard zurückgesetzt',
         download_success: '✓ Vorlage erfolgreich heruntergeladen',
@@ -523,18 +714,113 @@ const languages = {
         calc_single_pack: 'Einzelverpackungsgröße(L*W*H)mm: L=ROUND((Breite mm+65)/5,0)×5, W=Einzelverpackungsdicke, H=ROUND((Höhe mm+65)/5,0)×5',
         calc_gross_weight_1: 'Bruttogewicht (KG) (1 Einheit/Kiste): Nettogewicht×1.3',
         calc_five_pack: 'Fünf-Einheiten-Verpackungsgröße(L*W*H)mm: L=ROUND((Breite mm+65)/5,0)×5, W=Fünf-Einheiten-Verpackungsdicke, H=ROUND((Höhe mm+65)/5,0)×5',
-        calc_gross_weight_5: 'Bruttogewicht (KG) (5 Einheiten/Kiste): Bruttogewicht (KG) (1 Einheit/Kiste)×5×1.1'
+        calc_gross_weight_5: 'Bruttogewicht (KG) (5 Einheiten/Kiste): Bruttogewicht (KG) (1 Einheit/Kiste)×5×1.1',
+        grand_total: 'Gesamtbetrag: ',
+        // Batch query section
+        selection_rule: 'Auswahlregel',
+        rule_ac: 'AHU-Auswahl (Abwärtsabgleich)',
+        rule_fc: 'FC-Auswahl (Nächster Abgleich)',
+        rule_custom: 'Benutzerdefinierte Auswahl (Aufwärtsabgleich)',
+        list_price: 'Listenpreis',
+        eaf_quantity: 'EAF-Menge',
+        subtotal: 'Zwischensumme',
+        action: 'Aktion',
+        selection_explanation: 'Auswahlanleitung: ',
+        selection_explanation_content: 'Geben Sie die Abmessungen (mm) und die Menge des vor Ort installierten Mediumfilters ein, und das entsprechende EAF-Modell wird automatisch ausgewählt.<br>Benutzerdefinierte Auswahl (Aufwärtsabgleich)<br>Wenn die tatsächlichen Installationsmaße nicht den Standardangaben entsprechen, runden Sie auf den nächsthöheren Standardwert auf und wählen Sie das entsprechende Modell.<br>Beispiel: Maße 489mm×491mm. Da 489mm auf 490 (Modell 20) und 491mm auf 515 (Modell 21) aufgerundet werden, wird EAF2021 ausgewählt.<br>Für benutzerdefinierte Auswahlen basiert der Preis auf dem aufgerundeten Standardmodell, aber das Produkt wird nach den benutzerdefinierten Maßen hergestellt.',
+        size_range: 'Größenbereich nach Stil: ',
+        add_row: '+ Zeile hinzufügen',
+        accessories: 'Zubehörauswahl',
+        accessories_note: '(Nach Anpassung der EAF-Auswahl werden manuell eingegebene und durch den Assistenten generierte Zubehördaten nicht synchronisiert; leere Abschnitte weisen auf inkompatible Szenarien oder keine passenden Zubehörteile hin)',
+        legend_white: 'Weiß: Optional Zubehör',
+        legend_gray: 'Hellgrau: Erforderliches Zubehör',
+        legend_green: 'Hellgrün: Optional Erforderlich A',
+        legend_blue: 'Hellblau: Optional Erforderlich B',
+        fc_category: 'FC-Szenario',
+        fc_note: '(Nur für 1", 2")',
+        ahu_category: 'AHU-Szenario',
+        ahu_note: '(Alle Serien anwendbar. Jede AHU erfordert eine vollständige Lösung: ①EAF-BOX Steuerkasten ODER ②EAF-BOX Anschlusskasten + DC12V Netzteil)',
+        usduct_category: 'US-Duct-Szenario',
+        usduct_note: '(Nur für 1", 2", 4" Haushalt. EAF-Einheiten dürfen nicht horizontal platziert werden)',
+        expand: 'Erweitern',
+        selection_assistant: 'Auswahlassistent',
+        quantity: 'Menge',
+        us_duct_accessory_title: 'US-Duct-Zubehörverwaltung',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'Innenflanschbefestigungsbügel_Type A1',
+        accessory_eaf1_if_config: 'Deckenversteckinstallation Höhe>90mm<br>Deckenoffeninstallation Höhe>140mm',
+        accessory_eaf1_if_note: 'Für EAF-Frontauszugsinstallation;<br>Jede EAF benötigt einen Satz Flanschbefestigungsbügel (EAF-IF/EAF-OF)<br>(Preis ist für 1 Satz, enthält 4 Befestigungsteile)',
+        accessory_eaf1_of_name: 'Außenflanschbefestigungsbügel_Type B1',
+        accessory_eaf1_of_config: 'Deckenversteckinstallation Höhe>90mm<br>Deckenoffeninstallation Höhe>140mm',
+        accessory_eaf1_of_note: 'Für EAF-Frontauszugsinstallation;<br>Jede EAF benötigt einen Satz Flanschbefestigungsbügel (EAF-IF/EAF-OF)<br>(Preis ist für 1 Satz, enthält 4 Befestigungsteile)',
+        accessory_eaf2_if_name: 'Innenflanschbefestigungsbügel_Type A2',
+        accessory_eaf2_if_config: 'Deckenversteckinstallation Höhe>90mm<br>Deckenoffeninstallation Höhe>140mm',
+        accessory_eaf2_if_note: 'Für EAF-Frontauszugsinstallation;<br>Jede EAF benötigt einen Satz Flanschbefestigungsbügel (EAF-IF/EAF-OF)<br>(Preis ist für 1 Satz, enthält 4 Befestigungsteile)',
+        accessory_eaf2_of_name: 'Außenflanschbefestigungsbügel_Type B2',
+        accessory_eaf2_if_config: 'Deckenversteckinstallation Höhe>90mm<br>Deckenoffeninstallation Höhe>140mm',
+        accessory_eaf2_of_note: 'Für EAF-Frontauszugsinstallation;<br>Jede EAF benötigt einen Satz Flanschbefestigungsbügel (EAF-IF/EAF-OF)<br>(Preis ist für 1 Satz, enthält 4 Befestigungsteile)',
+        accessory_afs003_name: 'Luftstromschalter',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'Ein Luftstromschalter ist erforderlich, wenn EAF als FFC verwendet wird',
+        accessory_mft_20_5_fc_name: 'Dichtungsband',
+        accessory_mft_20_5_fc_config: 'Material: PE-Schäume; Brandschutzklasse: B1<br>Spec (B×H): 20x5mm; Länge: 10m/Rolle',
+        accessory_mft_20_5_fc_note: 'Dies ist unsere minimal empfohlene Menge. Bitte bereiten Sie mehr für den Einsatz auf der Baustelle vor.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'EAF-2" Drahtklemme',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'Für Frontauszugsinstallation in AHU-Gitterrahmen.<br>4 Klemmen pro EAF erforderlich. Preis ist für 1 Klemme nur.',
+        accessory_sus301_4_name: 'EAF-4" Drahtklemme',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'Für Frontauszugsinstallation in AHU-Gitterrahmen.<br>4 Klemmen pro EAF erforderlich. Preis ist für 1 Klemme nur.',
+        accessory_dc5525_name: 'EAF Netzkabel 1m',
+        accessory_dc5525_config: '1m',
+        accessory_dc5525_note: '1 Netzkabel pro horizontaler EAF und pro Ebene erforderlich',
+        accessory_eaf_box_c_name: 'EAF-BOX Anschlusskasten',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: 'Chinesische Wirtschaftsvariante, benötigt EAF-PS05M-60W Netzteil',
+        accessory_eaf_ps05m_60w_name: 'DC12V Netzteil',
+        accessory_eaf_ps05m_60w_config: 'Klemmenblocktyp 100-240V, 50/60Hz',
+        accessory_eaf_ps05m_60w_note: 'Global universell',
+        accessory_eaf_ps03m_60w_name: 'DC12V Netzteil',
+        accessory_eaf_ps03m_60w_config: 'Steckertyp (US-Norm) 100-240V, 50/60Hz',
+        accessory_eaf_ps03m_60w_note: 'Nur USA, keine Nachbestellung nach Verbrauch',
+        accessory_eaf_box1_dc12v_name: 'EAF-BOX Steuerkasten',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'Für EAF 2"',
+        accessory_eaf_box1_dc24v_name: 'EAF-BOX Steuerkasten',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'Für EAF 4"+5"',
+        accessory_mft_20_5_ahu_name: 'Dichtungsband',
+        accessory_mft_20_5_ahu_config: 'Material: PE-Schäume; Brandschutzklasse: B1<br>Spec (B×H): 20x5mm; Länge: 10m/Rolle',
+        accessory_mft_20_5_ahu_note: 'Dies ist unsere minimal empfohlene Menge. Bitte bereiten Sie mehr für den Einsatz auf der Baustelle vor.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'DC12V Netzteil',
+        accessory_usd_ps05m_60w_config: 'Klemmenblocktyp 100-240V, 50/60Hz',
+        accessory_usd_ps05m_60w_note: 'Global universell',
+        accessory_usd_ps03m_60w_name: 'DC12V Netzteil',
+        accessory_usd_ps03m_60w_config: 'Steckertyp (US-Norm) 100-240V, 50/60Hz',
+        accessory_usd_ps03m_60w_note: 'Nur USA, keine Nachbestellung nach Verbrauch',
+        accessory_usd_mft_20_5_name: 'Dichtungsband',
+        accessory_usd_mft_20_5_config: 'Material: PE-Schäume; Brandschutzklasse: B1<br>Spec (B×H): 20x5mm; Länge: 10m/Rolle',
+        accessory_usd_mft_20_5_note: 'Dies ist unsere minimal empfohlene Menge. Bitte bereiten Sie mehr für den Einsatz auf der Baustelle vor.'
     },
     // 西班牙语语言配置
     es: {
         title: 'EAF Sistema de consulta de cotizaciones automáticas',
         subtitle: 'Seleccione parámetros para consultar rápidamente cotizaciones de productos',
+        warning_title: '⚠️ Recordatorio:',
         warning_tip: '⚠️ Recordatorio oficial: EAF2016 y EAF1620 son dos productos completamente diferentes. Por favor, no los confunda al seleccionar y usar.',
         query_single_quote: '🔍 Consultar cotización',     // 查询单个报价按钮
         query_batch_quote: '📦 Consultar cotizaciones grupales', // 批量查询报价按钮
         admin: '🔧 Gestión de datos básicos del administrador',
         admin_show: '🔧 Mostrar gestión de datos',
         admin_hide: '🔧 Ocultar gestión de datos',
+        admin_logout: '🚪 Cerrar sesión admin',
+        admin_login: '🔐 Iniciar sesión admin',
+        username: 'Nombre de usuario',                         // Username field label
+        username_placeholder: 'Por favor ingrese el nombre de usuario', // Username input placeholder
+        password: 'Contraseña',                           // Password field label
+        password_placeholder: 'Por favor ingrese la contraseña',          // Password input placeholder
+        login: 'Iniciar sesión',                             // Login button
         product_list_show: '📋 Mostrar lista detallada',
         product_list_hide: '📋 Ocultar lista detallada',
         product_list_title: '📋 Lista detallada de productos',
@@ -563,7 +849,7 @@ const languages = {
         confirm_query: 'Confirmar consulta',
         query_result: 'Resultado de la consulta',
         empty_state: 'Seleccione los parámetros y haga clic en Confirmar',
-        calculation_info: 'Instrucciones de cálculo',
+        calculation_info: '📐 Instrucciones de cálculo',
         product_model: 'Modelo de producto',
         air_flow: 'Flujo de aire marcado',
         dimensions: 'Dimensiones',
@@ -622,18 +908,113 @@ const languages = {
         calc_single_pack: 'Tamaño de empaque individual(L*W*H)mm: L=ROUND((Anchura mm+65)/5,0)×5, W=Grosor de empaque individual, H=ROUND((Altura mm+65)/5,0)×5',
         calc_gross_weight_1: 'Peso bruto (KG) (1 unidad/caja): Peso neto×1.3',
         calc_five_pack: 'Tamaño de empaque de cinco unidades(L*W*H)mm: L=ROUND((Anchura mm+65)/5,0)×5, W=Grosor de empaque de cinco unidades, H=ROUND((Altura mm+65)/5,0)×5',
-        calc_gross_weight_5: 'Peso bruto (KG) (5 unidades/caja): Peso bruto (KG) (1 unidad/caja)×5×1.1'
+        calc_gross_weight_5: 'Peso bruto (KG) (5 unidades/caja): Peso bruto (KG) (1 unidad/caja)×5×1.1',
+        grand_total: 'Total general: ',
+        // Batch query section
+        selection_rule: 'Regla de selección',
+        rule_ac: 'Selección AHU (correspondencia descendente)',
+        rule_fc: 'Selección FC (correspondencia más cercana)',
+        rule_custom: 'Selección personalizada (correspondencia ascendente)',
+        list_price: 'Precio de lista',
+        eaf_quantity: 'Cantidad EAF',
+        subtotal: 'Subtotal',
+        action: 'Acción',
+        selection_explanation: 'Instrucciones de selección: ',
+        selection_explanation_content: 'Ingrese las dimensiones (mm) y la cantidad del filtro de medio en el sitio, y se seleccionará automáticamente el modelo EAF correspondiente.<br>Selección personalizada (correspondencia ascendente)<br>Cuando las dimensiones de instalación reales no coinciden con las especificaciones estándar, redondee hacia arriba al valor estándar más cercano y seleccione el modelo correspondiente.<br>Ejemplo: Dimensiones 489mm×491mm. Dado que 489mm se redondea a 490 (modelo 20) y 491mm se redondea a 515 (modelo 21), se selecciona EAF2021.<br>Para selecciones personalizadas, el precio se basa en el modelo estándar correspondiente, pero el producto se fabrica según las dimensiones personalizadas.',
+        size_range: 'Rango de tamaños por estilo: ',
+        add_row: '+ Agregar fila',
+        accessories: 'Selección de accesorios',
+        accessories_note: '(Después de ajustar la selección EAF, los datos de accesorios ingresados manualmente y generados por el asistente no se sincronizarán; las secciones vacías indican escenarios incompatibles o sin accesorios correspondientes)',
+        legend_white: 'Blanco: Accesorio opcional',
+        legend_gray: 'Gris claro: Accesorio requerido',
+        legend_green: 'Verde claro: Opcional requerido A',
+        legend_blue: 'Azul claro: Opcional requerido B',
+        fc_category: 'Escenario FC',
+        fc_note: '(Solo para 1", 2")',
+        ahu_category: 'Escenario AHU',
+        ahu_note: '(Todas las series aplicables. Cada AHU requiere una solución completa: ①EAF-BOX Caja de control O ②EAF-BOX Caja de conexión + Adaptador de alimentación DC12V)',
+        usduct_category: 'Escenario US Duct',
+        usduct_note: '(Solo para 1", 2", 4" Hogar. Las unidades EAF no se pueden colocar horizontalmente)',
+        expand: 'Expandir',
+        selection_assistant: 'Asistente de selección',
+        quantity: 'Cantidad',
+        us_duct_accessory_title: 'Gestión de accesorios US Duct',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'Soporte de fijación de brida interna_Tipo A1',
+        accessory_eaf1_if_config: 'Instalación oculta en techo altura>90mm<br>Instalación expuesta en techo altura>140mm',
+        accessory_eaf1_if_note: 'Para instalación por extracción frontal EAF;<br>Cada EAF requiere un juego de soportes de fijación de brida (EAF-IF/EAF-OF)<br>(El precio es por 1 juego, incluye 4 piezas de fijación)',
+        accessory_eaf1_of_name: 'Soporte de fijación de brida externa_Tipo B1',
+        accessory_eaf1_of_config: 'Instalación oculta en techo altura>90mm<br>Instalación expuesta en techo altura>140mm',
+        accessory_eaf1_of_note: 'Para instalación por extracción frontal EAF;<br>Cada EAF requiere un juego de soportes de fijación de brida (EAF-IF/EAF-OF)<br>(El precio es por 1 juego, incluye 4 piezas de fijación)',
+        accessory_eaf2_if_name: 'Soporte de fijación de brida interna_Tipo A2',
+        accessory_eaf2_if_config: 'Instalación oculta en techo altura>90mm<br>Instalación expuesta en techo altura>140mm',
+        accessory_eaf2_if_note: 'Para instalación por extracción frontal EAF;<br>Cada EAF requiere un juego de soportes de fijación de brida (EAF-IF/EAF-OF)<br>(El precio es por 1 juego, incluye 4 piezas de fijación)',
+        accessory_eaf2_of_name: 'Soporte de fijación de brida externa_Tipo B2',
+        accessory_eaf2_of_config: 'Instalación oculta en techo altura>90mm<br>Instalación expuesta en techo altura>140mm',
+        accessory_eaf2_of_note: 'Para instalación por extracción frontal EAF;<br>Cada EAF requiere un juego de soportes de fijación de brida (EAF-IF/EAF-OF)<br>(El precio es por 1 juego, incluye 4 piezas de fijación)',
+        accessory_afs003_name: 'Interruptor de flujo de aire',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'Se requiere un interruptor de flujo de aire cuando EAF se usa como FFC',
+        accessory_mft_20_5_fc_name: 'Tira de sellado',
+        accessory_mft_20_5_fc_config: 'Material: Espuma PE; Clasificación de incendio: B1<br>Espec (AnxAl): 20x5mm; Longitud: 10m/rollo',
+        accessory_mft_20_5_fc_note: 'Esta es nuestra cantidad mínima recomendada. Por favor, prepare más para uso en el sitio.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'Clip de alambre EAF-2"',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'Para instalación por extracción frontal en el marco de rejilla AHU.<br>Se requieren 4 clips por EAF. El precio es por 1 clip solo.',
+        accessory_sus301_4_name: 'Clip de alambre EAF-4"',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'Para instalación por extracción frontal en el marco de rejilla AHU.<br>Se requieren 4 clips por EAF. El precio es por 1 clip solo.',
+        accessory_dc5525_name: 'Cable de alimentación EAF 1m',
+        accessory_dc5525_config: '1m',
+        accessory_dc5525_note: 'Se requiere 1 cable de alimentación para cada EAF horizontal y cada capa',
+        accessory_eaf_box_c_name: 'Caja de conexiones EAF-BOX',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: 'Versión económica china, requiere adaptador de alimentación EAF-PS05M-60W',
+        accessory_eaf_ps05m_60w_name: 'Adaptador de alimentación DC12V',
+        accessory_eaf_ps05m_60w_config: 'Tipo terminal 100-240V, 50/60Hz',
+        accessory_eaf_ps05m_60w_note: 'Universal global',
+        accessory_eaf_ps03m_60w_name: 'Adaptador de alimentación DC12V',
+        accessory_eaf_ps03m_60w_config: 'Tipo enchufe (estándar estadounidense) 100-240V, 50/60Hz',
+        accessory_eaf_ps03m_60w_note: 'Solo EE.UU., no hay reposición después de agotarse',
+        accessory_eaf_box1_dc12v_name: 'Caja de control EAF-BOX',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'Para EAF 2"',
+        accessory_eaf_box1_dc24v_name: 'Caja de control EAF-BOX',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'Para EAF 4"+5"',
+        accessory_mft_20_5_ahu_name: 'Tira de sellado',
+        accessory_mft_20_5_ahu_config: 'Material: Espuma PE; Clasificación de incendio: B1<br>Espec (AnxAl): 20x5mm; Longitud: 10m/rollo',
+        accessory_mft_20_5_ahu_note: 'Esta es nuestra cantidad mínima recomendada. Por favor, prepare más para uso en el sitio.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'Adaptador de alimentación DC12V',
+        accessory_usd_ps05m_60w_config: 'Tipo terminal 100-240V, 50/60Hz',
+        accessory_usd_ps05m_60w_note: 'Universal global',
+        accessory_usd_ps03m_60w_name: 'Adaptador de alimentación DC12V',
+        accessory_usd_ps03m_60w_config: 'Tipo enchufe (estándar estadounidense) 100-240V, 50/60Hz',
+        accessory_usd_ps03m_60w_note: 'Solo EE.UU., no hay reposición después de agotarse',
+        accessory_usd_mft_20_5_name: 'Tira de sellado',
+        accessory_usd_mft_20_5_config: 'Material: Espuma PE; Clasificación de incendio: B1<br>Espec (AnxAl): 20x5mm; Longitud: 10m/rollo',
+        accessory_usd_mft_20_5_note: 'Esta es nuestra cantidad mínima recomendada. Por favor, prepare más para uso en el sitio.'
     },
     // 日语语言配置
     ja: {
         title: 'EAF 自動見積り照会システム',
         subtitle: 'パラメータを選択し、製品の見積りを迅速に照会',
+        warning_title: '⚠️ 注意:',
         warning_tip: '⚠️ 公式リマインダー: EAF2016とEAF1620は全く異なる二つの製品です。選択と使用時に混同しないでください。',
         query_single_quote: '🔍 単一見積りを照会',         // 查询单个报价按钮
         query_batch_quote: '📦 一括見積りを照会',           // 批量查询报价按钮
         admin: '🔧 管理者基本データ管理',
         admin_show: '🔧 データ管理を表示',
         admin_hide: '🔧 データ管理を非表示',
+        admin_logout: '🚪 管理者ログアウト',
+        admin_login: '🔐 管理者ログイン',
+        username: 'ユーザー名',                         // Username field label
+        username_placeholder: 'ユーザー名を入力してください', // Username input placeholder
+        password: 'パスワード',                           // Password field label
+        password_placeholder: 'パスワードを入力してください',          // Password input placeholder
+        login: 'ログイン',                             // Login button
         product_list_show: '📋 詳細リストを表示',
         product_list_hide: '📋 詳細リストを非表示',
         product_list_title: '📋 製品詳細リスト',
@@ -662,7 +1043,7 @@ const languages = {
         confirm_query: '照会を確認',
         query_result: '照会結果',
         empty_state: 'パラメータを選択して照会を確認してください',
-        calculation_info: '計算の説明',
+        calculation_info: '📐 計算の説明',
         product_model: '製品モデル',
         air_flow: '表示風量',
         dimensions: '外形寸法',
@@ -696,6 +1077,7 @@ const languages = {
         remarks: '備考',                                   // Remarks column
         add_accessory: '+ アクセサリーを追加',              // Add accessory button
         delete: '削除',                                     // Delete button
+        total: '合計',                                 // Total column
         save_success: '✓ すべてのデータを保存しました',
         reset_success: '✓ デフォルトにリセットしました',
         download_success: '✓ テンプレートを正常にダウンロードしました',
@@ -721,19 +1103,114 @@ const languages = {
         calc_single_pack: '単一梱包寸法(L*W*H)mm：L=ROUND((幅mm+65)/5,0)×5，W=該当スタイルの1台梱包厚さ，H=ROUND((高さmm+65)/5,0)×5',
         calc_gross_weight_1: '総重量 (KG) (1台/箱)：製品重量×1.3',
         calc_five_pack: '5台梱包寸法(L*W*H)mm：L=ROUND((幅mm+65)/5,0)×5，W=該当スタイルの5台梱包厚さ，H=ROUND((高さmm+65)/5,0)×5',
-        calc_gross_weight_5: '総重量 (KG) (5台/箱)：総重量 (KG) (1台/箱)×5×1.1'
+        calc_gross_weight_5: '総重量 (KG) (5台/箱)：総重量 (KG) (1台/箱)×5×1.1',
+        grand_total: '総合計：',
+        // Batch query section
+        selection_rule: '選択ルール',
+        rule_ac: 'AHU選択（降順一致）',
+        rule_fc: 'FC選択（最近一致）',
+        rule_custom: 'カスタム選択（昇順一致）',
+        list_price: '定価',
+        eaf_quantity: 'EAF数量',
+        subtotal: '小計',
+        action: 'アクション',
+        selection_explanation: '選択説明：',
+        selection_explanation_content: '現場のメディアフィルタの寸法（mm）と数量を入力し、対応するEAFモデルが自動的に選択されます。<br>カスタム選択（昇順一致）<br>実際の取付寸法が標準仕様と一致しない場合、最も近い大きい標準値に切り上げて対応するモデルを選択してください。<br>例：寸法489mm×491mm。489mmは490（モデル20）に切り上げ、491mmは515（モデル21）に切り上げるため、EAF2021が選択されます。<br>カスタム選択の場合、価格は昇順一致した標準モデルに基づきますが、製品はカスタム寸法で製造されます。',
+        size_range: 'スタイル別サイズ範囲：',
+        add_row: '+ 行を追加',
+        accessories: 'アクセサリー選択',
+        accessories_note: '（EAF選択を調整した後、手動で入力したアクセサリーデータとアシスタントが生成したデータは同期されません。空のセクションは互換性のないシナリオまたは対応するアクセサリーがないことを示します）',
+        legend_white: '白：オプションアクセサリー',
+        legend_gray: '薄灰色：必須アクセサリー',
+        legend_green: '薄緑：オプション必須A',
+        legend_blue: '薄青：オプション必須B',
+        fc_category: 'FCシナリオ',
+        fc_note: '（1"、2"のみ対応）',
+        ahu_category: 'AHUシナリオ',
+        ahu_note: '（全シリーズ対応。各AHUは完全なソリューションが必要です：①EAF-BOX制御ボックス または ②EAF-BOX接続ボックス + DC12V電源アダプタ）',
+        usduct_category: 'USダクトシナリオ',
+        usduct_note: '（1"、2"、4"ホームのみ対応。EAFユニットは水平に置くことはできません）',
+        expand: '展開',
+        selection_assistant: '選択アシスタント',
+        quantity: '数量',
+        us_duct_accessory_title: 'USダクトアクセサリー管理',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'インナーフランジ固定ブラケット_A1',
+        accessory_eaf1_if_config: '天井埋め込み設置 高さ>90mm<br>天井露出設置 高さ>140mm',
+        accessory_eaf1_if_note: 'EAF前面抽出設置用;<br>各EAFにはフランジ固定ブラケットセット(EAF-IF/EAF-OF)が必要です<br>(価格は1セット単位、4個の固定部品を含む)',
+        accessory_eaf1_of_name: 'アウターフランジ固定ブラケット_B1',
+        accessory_eaf1_of_config: '天井埋め込み設置 高さ>90mm<br>天井露出設置 高さ>140mm',
+        accessory_eaf1_of_note: 'EAF前面抽出設置用;<br>各EAFにはフランジ固定ブラケットセット(EAF-IF/EAF-OF)が必要です<br>(価格は1セット単位、4個の固定部品を含む)',
+        accessory_eaf2_if_name: 'インナーフランジ固定ブラケット_A2',
+        accessory_eaf2_if_config: '天井埋め込み設置 高さ>90mm<br>天井露出設置 高さ>140mm',
+        accessory_eaf2_if_note: 'EAF前面抽出設置用;<br>各EAFにはフランジ固定ブラケットセット(EAF-IF/EAF-OF)が必要です<br>(価格は1セット単位、4個の固定部品を含む)',
+        accessory_eaf2_of_name: 'アウターフランジ固定ブラケット_B2',
+        accessory_eaf2_of_config: '天井埋め込み設置 高さ>90mm<br>天井露出設置 高さ>140mm',
+        accessory_eaf2_of_note: 'EAF前面抽出設置用;<br>各EAFにはフランジ固定ブラケットセット(EAF-IF/EAF-OF)が必要です<br>(価格は1セット単位、4個の固定部品を含む)',
+        accessory_afs003_name: 'エアフロースイッチ',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'EAFをFFCとして使用する場合、エアフロースイッチが必要です',
+        accessory_mft_20_5_fc_name: 'シールストリップ',
+        accessory_mft_20_5_fc_config: '材質: PEフォーム; 難燃性: B1<br>仕様(W×T): 20x5mm; 長さ: 10m/ロール',
+        accessory_mft_20_5_fc_note: 'これは推奨最小量です。現場での使用に備えて多めに準備してください。',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'EAF-2" ワイヤークリップ',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'AHUグリッドフレームの前面抽出設置用。<br>各EAFに4個必要です。価格は1個単位です。',
+        accessory_sus301_4_name: 'EAF-4" ワイヤークリップ',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'AHUグリッドフレームの前面抽出設置用。<br>各EAFに4個必要です。価格は1個単位です。',
+        accessory_dc5525_name: 'EAF 1m電源コード',
+        accessory_dc5525_config: '1m',
+        accessory_dc5525_note: '各水平EAFおよび各層に1本の電源コードが必要です',
+        accessory_eaf_box_c_name: 'EAF-BOXジャンクションボックス',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: '中国経済版、EAF-PS05M-60W電源アダプタが必要です',
+        accessory_eaf_ps05m_60w_name: 'DC12V電源アダプタ',
+        accessory_eaf_ps05m_60w_config: '端子台タイプ 100-240V、50/60Hz',
+        accessory_eaf_ps05m_60w_note: 'グローバルユニバーサル',
+        accessory_eaf_ps03m_60w_name: 'DC12V電源アダプタ',
+        accessory_eaf_ps03m_60w_config: 'プラグタイプ(米国規格) 100-240V、50/60Hz',
+        accessory_eaf_ps03m_60w_note: '米国のみ、在庫切れ後は再入荷なし',
+        accessory_eaf_box1_dc12v_name: 'EAF-BOXコントロールボックス',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'EAF 2"用',
+        accessory_eaf_box1_dc24v_name: 'EAF-BOXコントロールボックス',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'EAF 4"+5"用',
+        accessory_mft_20_5_ahu_name: 'シールストリップ',
+        accessory_mft_20_5_ahu_config: '材質: PEフォーム; 難燃性: B1<br>仕様(W×T): 20x5mm; 長さ: 10m/ロール',
+        accessory_mft_20_5_ahu_note: 'これは推奨最小量です。現場での使用に備えて多めに準備してください。',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'DC12V電源アダプタ',
+        accessory_usd_ps05m_60w_config: '端子台タイプ 100-240V、50/60Hz',
+        accessory_usd_ps05m_60w_note: 'グローバルユニバーサル',
+        accessory_usd_ps03m_60w_name: 'DC12V電源アダプタ',
+        accessory_usd_ps03m_60w_config: 'プラグタイプ(米国規格) 100-240V、50/60Hz',
+        accessory_usd_ps03m_60w_note: '米国のみ、在庫切れ後は再入荷なし',
+        accessory_usd_mft_20_5_name: 'シールストリップ',
+        accessory_usd_mft_20_5_config: '材質: PEフォーム; 難燃性: B1<br>仕様(W×T): 20x5mm; 長さ: 10m/ロール',
+        accessory_usd_mft_20_5_note: 'これは推奨最小量です。現場での使用に備えて多めに準備してください。'
     },
     // 韩语语言配置
     ko: {
         title: 'EAF 자동 견적 조회 시스템',
         subtitle: '매개변수를 선택하고 제품 견적을 빠르게 조회',
+        warning_title: '⚠️ 알림:',
         warning_tip: '⚠️ 공식 알림: EAF2016과 EAF1620은 완전히 다른 두 제품입니다. 선택 및 사용 시 혼동하지 마십시오.',
         query_single_quote: '🔍 단일 견적 조회',           // 查询单个报价按钮
         query_batch_quote: '📦 일괄 견적 조회',           // 批量查询报价按钮
         admin: '🔧 관리자 기본 데이터 관리',
         admin_show: '🔧 데이터 관리 보기',
         admin_hide: '🔧 데이터 관리 숨기기',
-        product_list_show: '📋 상세 목록 보기',
+        admin_logout: '🚪 관리자 로그아웃',
+        admin_login: '🔐 관리자 로그인',
+        username: '사용자 이름',                         // Username field label
+        username_placeholder: '사용자 이름을 입력하세요', // Username input placeholder
+        password: '비밀번호',                           // Password field label
+        password_placeholder: '비밀번호를 입력하세요',          // Password input placeholder
+        login: '로그인',                             // Login button
+        product_list_show: '📋 제품 목록 보기',
         product_list_hide: '📋 상세 목록 숨기기',
         product_list_title: '📋 제품 상세 목록',
         export_excel: '📥 Excel 내보내기',
@@ -761,7 +1238,7 @@ const languages = {
         confirm_query: '조회 확인',
         query_result: '조회 결과',
         empty_state: '매개변수를 선택하고 확인을 클릭하세요',
-        calculation_info: '계산 설명',
+        calculation_info: '📐 계산 설명',
         product_model: '제품 모델',
         air_flow: '표시 풍량',
         dimensions: '외형 치수',
@@ -820,18 +1297,113 @@ const languages = {
         calc_single_pack: '단일 포장 치수(L*W*H)mm：L=ROUND((너비mm+65)/5,0)×5，W=해당 스타일의 1대 포장 두께，H=ROUND((높이mm+65)/5,0)×5',
         calc_gross_weight_1: '총 중량 (KG) (1대/상자)：제품 중량×1.3',
         calc_five_pack: '5대 포장 치수(L*W*H)mm：L=ROUND((너비mm+65)/5,0)×5，W=해당 스타일의 5대 포장 두께，H=ROUND((높이mm+65)/5,0)×5',
-        calc_gross_weight_5: '총 중량 (KG) (5대/상자)：총 중량 (KG) (1대/상자)×5×1.1'
+        calc_gross_weight_5: '총 중량 (KG) (5대/상자)：총 중량 (KG) (1대/상자)×5×1.1',
+        grand_total: '총 합계：',
+        // Batch query section
+        selection_rule: '선택 규칙',
+        rule_ac: 'AHU 선택（하향 일치）',
+        rule_fc: 'FC 선택（가장 가까운 일치）',
+        rule_custom: '사용자 정의 선택（상향 일치）',
+        list_price: '정가',
+        eaf_quantity: 'EAF 수량',
+        subtotal: '소계',
+        action: '행동',
+        selection_explanation: '선택 설명：',
+        selection_explanation_content: '현장 매체 필터의 치수（mm）및 수량을 입력하면 해당 EAF 모델이 자동으로 선택됩니다.<br>사용자 정의 선택（상향 일치）<br>실제 설치 치수가 표준 사양과 일치하지 않을 경우 가장 가까운 큰 표준 값으로 올림하여 해당 모델을 선택하십시오.<br>예：치수 489mm×491mm. 489mm는 490（모델 20）으로 올림하고 491mm는 515（모델 21）으로 올림하므로 EAF2021이 선택됩니다.<br>사용자 정의 선택의 경우 가격은 상향 일치한 표준 모델을 기반으로 하지만 제품은 사용자 정의 치수로 제작됩니다.',
+        size_range: '스타일별 크기 범위：',
+        add_row: '+ 행 추가',
+        accessories: '액세서리 선택',
+        accessories_note: '（EAF 선택을 조정한 후 수동으로 입력한 액세서리 데이터와 어시스턴트가 생성한 데이터는 동기화되지 않습니다. 빈 섹션은 호환되지 않는 시나리오 또는 해당 액세서리가 없음을 나타냅니다）',
+        legend_white: '흰색：선택 사항 액세서리',
+        legend_gray: '연회색：필수 액세서리',
+        legend_green: '연녹색：선택 사항 필수 A',
+        legend_blue: '연청색：선택 사항 필수 B',
+        fc_category: 'FC 시나리오',
+        fc_note: '（1"、2"에만 해당）',
+        ahu_category: 'AHU 시나리오',
+        ahu_note: '（전 시리즈 해당. 각 AHU는 완전한 솔루션이 필요합니다：①EAF-BOX 제어 상자 또는 ②EAF-BOX 접속 상자 + DC12V 전원 어댑터）',
+        usduct_category: 'US 덕트 시나리오',
+        usduct_note: '（1"、2"、4" 홈에만 해당. EAF 장치는 수평으로 놓을 수 없습니다）',
+        expand: '확장',
+        selection_assistant: '선택 어시스턴트',
+        quantity: '수량',
+        us_duct_accessory_title: 'US 덕트 액세서리 관리',
+        // FC配件翻译
+        accessory_eaf1_if_name: '내부 플랜지 고정 브래킷_A1',
+        accessory_eaf1_if_config: '천장 매립 설치 높이>90mm<br>천장 노출 설치 높이>140mm',
+        accessory_eaf1_if_note: 'EAF 전면 추출 설치용;<br>각 EAF에는 플랜지 고정 브래킷 세트(EAF-IF/EAF-OF)가 필요합니다<br>(가격은 1세트 단위, 4개의 고정 부품 포함)',
+        accessory_eaf1_of_name: '외부 플랜지 고정 브래킷_B1',
+        accessory_eaf1_of_config: '천장 매립 설치 높이>90mm<br>천장 노출 설치 높이>140mm',
+        accessory_eaf1_of_note: 'EAF 전면 추출 설치용;<br>각 EAF에는 플랜지 고정 브래킷 세트(EAF-IF/EAF-OF)가 필요합니다<br>(가격은 1세트 단위, 4개의 고정 부품 포함)',
+        accessory_eaf2_if_name: '내부 플랜지 고정 브래킷_A2',
+        accessory_eaf2_if_config: '천장 매립 설치 높이>90mm<br>천장 노출 설치 높이>140mm',
+        accessory_eaf2_if_note: 'EAF 전면 추출 설치용;<br>각 EAF에는 플랜지 고정 브래킷 세트(EAF-IF/EAF-OF)가 필요합니다<br>(가격은 1세트 단위, 4개의 고정 부품 포함)',
+        accessory_eaf2_of_name: '외부 플랜지 고정 브래킷_B2',
+        accessory_eaf2_if_config: '천장 매립 설치 높이>90mm<br>천장 노출 설치 높이>140mm',
+        accessory_eaf2_of_note: 'EAF 전면 추출 설치용;<br>각 EAF에는 플랜지 고정 브래킷 세트(EAF-IF/EAF-OF)가 필요합니다<br>(가격은 1세트 단위, 4개의 고정 부품 포함)',
+        accessory_afs003_name: '에어플로우 스위치',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'EAF를 FFC로 사용하는 경우 에어플로우 스위치가 필요합니다',
+        accessory_mft_20_5_fc_name: '실 스트립',
+        accessory_mft_20_5_fc_config: '재질: PE 폼; 난연성: B1<br>사양(W×T): 20x5mm; 길이: 10m/롤',
+        accessory_mft_20_5_fc_note: '이것은 추천 최소량입니다. 현장 사용에 대비하여 다량 준비하십시오.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'EAF-2" 와이어 클립',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'AHU 그리드 프레임 전면 추출 설치용.<br>각 EAF에 4개 필요합니다. 가격은 1개 단위입니다.',
+        accessory_sus301_4_name: 'EAF-4" 와이어 클립',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'AHU 그리드 프레임 전면 추출 설치용.<br>각 EAF에 4개 필요합니다. 가격은 1개 단위입니다.',
+        accessory_dc5525_name: 'EAF 1m 전원 코드',
+        accessory_dc5525_config: '1m',
+        accessory_dc5525_note: '각 수평 EAF 및 각 층에 1개의 전원 코드가 필요합니다',
+        accessory_eaf_box_c_name: 'EAF-BOX 접속 박스',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: '중국 경제 버전, EAF-PS05M-60W 전원 어댑터 필요',
+        accessory_eaf_ps05m_60w_name: 'DC12V 전원 어댑터',
+        accessory_eaf_ps05m_60w_config: '단자 블록 타입 100-240V, 50/60Hz',
+        accessory_eaf_ps05m_60w_note: '글로벌 유니버설',
+        accessory_eaf_ps03m_60w_name: 'DC12V 전원 어댑터',
+        accessory_eaf_ps03m_60w_config: '플러그 타입(미국 표준) 100-240V, 50/60Hz',
+        accessory_eaf_ps03m_60w_note: '미국만 해당, 재고 소진 후 재입고 없음',
+        accessory_eaf_box1_dc12v_name: 'EAF-BOX 제어 박스',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'EAF 2"용',
+        accessory_eaf_box1_dc24v_name: 'EAF-BOX 제어 박스',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'EAF 4"+5"용',
+        accessory_mft_20_5_ahu_name: '실 스트립',
+        accessory_mft_20_5_ahu_config: '재질: PE 폼; 난연성: B1<br>사양(W×T): 20x5mm; 길이: 10m/롤',
+        accessory_mft_20_5_ahu_note: '이것은 추천 최소량입니다. 현장 사용에 대비하여 다량 준비하십시오.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'DC12V 전원 어댑터',
+        accessory_usd_ps05m_60w_config: '단자 블록 타입 100-240V, 50/60Hz',
+        accessory_usd_ps05m_60w_note: '글로벌 유니버설',
+        accessory_usd_ps03m_60w_name: 'DC12V 전원 어댑터',
+        accessory_usd_ps03m_60w_config: '플러그 타입(미국 표준) 100-240V, 50/60Hz',
+        accessory_usd_ps03m_60w_note: '미국만 해당, 재고 소진 후 재입고 없음',
+        accessory_usd_mft_20_5_name: '실 스트립',
+        accessory_usd_mft_20_5_config: '재질: PE 폼; 난연성: B1<br>사양(W×T): 20x5mm; 길이: 10m/롤',
+        accessory_usd_mft_20_5_note: '이것은 추천 최소량입니다. 현장 사용에 대비하여 다량 준비하십시오.'
     },
     // 葡萄牙语语言配置
     pt: {
         title: 'EAF Sistema de Consulta de Cotação Automática',
         subtitle: 'Selecione parâmetros para consultar rapidamente cotações de produtos',
+        warning_title: '⚠️ Aviso:',
         warning_tip: '⚠️ Aviso oficial: EAF2016 e EAF1620 são dois produtos completamente diferentes. Por favor, não os confunda ao selecionar e usar.',
         query_single_quote: '🔍 Consultar cotação',         // 查询单个报价按钮
         query_batch_quote: '📦 Consultar cotações em lote', // 批量查询报价按钮
         admin: '🔧 Gerenciamento de Dados Básicos do Administrador',
         admin_show: '🔧 Mostrar Gerenciamento de Dados',
         admin_hide: '🔧 Ocultar Gerenciamento de Dados',
+        admin_logout: '🚪 Sair do admin',
+        admin_login: '🔐 Entrar como admin',
+        username: 'Nome de usuário',                         // Username field label
+        username_placeholder: 'Por favor insira o nome de usuário', // Username input placeholder
+        password: 'Senha',                           // Password field label
+        password_placeholder: 'Por favor insira a senha',          // Password input placeholder
+        login: 'Entrar',                             // Login button
         product_list_show: '📋 Mostrar Lista Detalhada',
         product_list_hide: '📋 Ocultar Lista Detalhada',
         product_list_title: '📋 Lista Detalhada de Produtos',
@@ -860,7 +1432,7 @@ const languages = {
         confirm_query: 'Confirmar Consulta',
         query_result: 'Resultado da Consulta',
         empty_state: 'Selecione os parâmetros e clique em Confirmar',
-        calculation_info: 'Instruções de Cálculo',
+        calculation_info: '📐 Instruções de Cálculo',
         product_model: 'Modelo do Produto',
         air_flow: 'Fluxo de Ar Marcado',
         dimensions: 'Dimensões',
@@ -919,18 +1491,113 @@ const languages = {
         calc_single_pack: 'Tamanho de Embalagem Única(L*W*H)mm: L=ROUND((Largura mm+65)/5,0)×5, W=Espessura de embalagem única, H=ROUND((Altura mm+65)/5,0)×5',
         calc_gross_weight_1: 'Peso Bruto (KG) (1 unidade/caixa): Peso Líquido×1.3',
         calc_five_pack: 'Tamanho de Embalagem de Cinco(L*W*H)mm: L=ROUND((Largura mm+65)/5,0)×5, W=Espessura de embalagem de cinco, H=ROUND((Altura mm+65)/5,0)×5',
-        calc_gross_weight_5: 'Peso Bruto (KG) (5 unidades/caixa): Peso Bruto (KG) (1 unidade/caixa)×5×1.1'
+        calc_gross_weight_5: 'Peso Bruto (KG) (5 unidades/caixa): Peso Bruto (KG) (1 unidade/caixa)×5×1.1',
+        grand_total: 'Total Geral: ',
+        // Batch query section
+        selection_rule: 'Regra de Seleção',
+        rule_ac: 'Seleção AHU (Correspondência Descendente)',
+        rule_fc: 'Seleção FC (Correspondência Mais Próxima)',
+        rule_custom: 'Seleção Personalizada (Correspondência Ascendente)',
+        list_price: 'Preço de Lista',
+        eaf_quantity: 'Quantidade EAF',
+        subtotal: 'Subtotal',
+        action: 'Ação',
+        selection_explanation: 'Instruções de Seleção: ',
+        selection_explanation_content: 'Insira as dimensões (mm) e a quantidade do filtro de meio no local, e o modelo EAF correspondente será selecionado automaticamente.<br>Seleção Personalizada (Correspondência Ascendente)<br>Quando as dimensões de instalação reais não correspondem às especificações padrão, arredonde para o valor padrão mais próximo maior e selecione o modelo correspondente.<br>Exemplo: Dimensões 489mm×491mm. Como 489mm arredonda para 490 (modelo 20) e 491mm arredonda para 515 (modelo 21), EAF2021 é selecionado.<br>Para seleções personalizadas, o preço é baseado no modelo padrão correspondente, mas o produto é fabricado de acordo com as dimensões personalizadas.',
+        size_range: 'Faixa de Tamanhos por Estilo: ',
+        add_row: '+ Adicionar Linha',
+        accessories: 'Seleção de Acessórios',
+        accessories_note: '(Após ajustar a seleção EAF, os dados de acessórios inseridos manualmente e gerados pelo assistente não serão sincronizados; seções vazias indicam cenários incompatíveis ou nenhum acessório correspondente)',
+        legend_white: 'Branco: Acessório Opcional',
+        legend_gray: 'Cinza Claro: Acessório Obrigatório',
+        legend_green: 'Verde Claro: Opcional Obrigatório A',
+        legend_blue: 'Azul Claro: Opcional Obrigatório B',
+        fc_category: 'Cenário FC',
+        fc_note: '(Apenas para 1", 2")',
+        ahu_category: 'Cenário AHU',
+        ahu_note: '(Todas as séries aplicáveis. Cada AHU requer uma solução completa: ①EAF-BOX Caixa de Controle OU ②EAF-BOX Caixa de Conexão + Adaptador de Alimentação DC12V)',
+        usduct_category: 'Cenário US Duct',
+        usduct_note: '(Apenas para 1", 2", 4" Residencial. Unidades EAF não podem ser colocadas horizontalmente)',
+        expand: 'Expandir',
+        selection_assistant: 'Assistente de Seleção',
+        quantity: 'Quantidade',
+        us_duct_accessory_title: 'Gerenciamento de Acessórios US Duct',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'Suporte de Fixação de Flange Interna_Tipo A1',
+        accessory_eaf1_if_config: 'Instalação oculta no teto altura>90mm<br>Instalação exposta no teto altura>140mm',
+        accessory_eaf1_if_note: 'Para instalação por extração frontal EAF;<br>Cada EAF requer um conjunto de suportes de fixação de flange (EAF-IF/EAF-OF)<br>(O preço é por 1 conjunto, inclui 4 peças de fixação)',
+        accessory_eaf1_of_name: 'Suporte de Fixação de Flange Externa_Tipo B1',
+        accessory_eaf1_of_config: 'Instalação oculta no teto altura>90mm<br>Instalação exposta no teto altura>140mm',
+        accessory_eaf1_of_note: 'Para instalação por extração frontal EAF;<br>Cada EAF requer um conjunto de suportes de fixação de flange (EAF-IF/EAF-OF)<br>(O preço é por 1 conjunto, inclui 4 peças de fixação)',
+        accessory_eaf2_if_name: 'Suporte de Fixação de Flange Interna_Tipo A2',
+        accessory_eaf2_if_config: 'Instalação oculta no teto altura>90mm<br>Instalação exposta no teto altura>140mm',
+        accessory_eaf2_if_note: 'Para instalação por extração frontal EAF;<br>Cada EAF requer um conjunto de suportes de fixação de flange (EAF-IF/EAF-OF)<br>(O preço é por 1 conjunto, inclui 4 peças de fixação)',
+        accessory_eaf2_of_name: 'Suporte de Fixação de Flange Externa_Tipo B2',
+        accessory_eaf2_of_config: 'Instalação oculta no teto altura>90mm<br>Instalação exposta no teto altura>140mm',
+        accessory_eaf2_of_note: 'Para instalação por extração frontal EAF;<br>Cada EAF requer um conjunto de suportes de fixação de flange (EAF-IF/EAF-OF)<br>(O preço é por 1 conjunto, inclui 4 peças de fixação)',
+        accessory_afs003_name: 'Interruptor de Fluxo de Ar',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'Um interruptor de fluxo de ar é necessário quando o EAF é usado como FFC',
+        accessory_mft_20_5_fc_name: 'Faixa de Vedação',
+        accessory_mft_20_5_fc_config: 'Material: Espuma PE; Classificação de Incêndio: B1<br>Espec (LxA): 20x5mm; Comprimento: 10m/rolo',
+        accessory_mft_20_5_fc_note: 'Esta é a quantidade mínima recomendada. Por favor, prepare mais para uso no local.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'Clips de Fio EAF-2"',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'Para instalação por extração frontal no quadro de grade AHU.<br>São necessários 4 clips por EAF. O preço é por 1 clip apenas.',
+        accessory_sus301_4_name: 'Clips de Fio EAF-4"',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'Para instalação por extração frontal no quadro de grade AHU.<br>São necessários 4 clips por EAF. O preço é por 1 clip apenas.',
+        accessory_dc5525_name: 'Cabo de Alimentação EAF 1m',
+        accessory_dc5525_config: '1m',
+        accessory_dc5525_note: 'É necessário 1 cabo de alimentação para cada EAF horizontal e cada camada',
+        accessory_eaf_box_c_name: 'Caixa de Conexão EAF-BOX',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: 'Versão econômica chinesa, requer adaptador de alimentação EAF-PS05M-60W',
+        accessory_eaf_ps05m_60w_name: 'Adaptador de Alimentação DC12V',
+        accessory_eaf_ps05m_60w_config: 'Tipo terminal 100-240V, 50/60Hz',
+        accessory_eaf_ps05m_60w_note: 'Universal global',
+        accessory_eaf_ps03m_60w_name: 'Adaptador de Alimentação DC12V',
+        accessory_eaf_ps03m_60w_config: 'Tipo plugue (padrão estadunidense) 100-240V, 50/60Hz',
+        accessory_eaf_ps03m_60w_note: 'Apenas EUA, não há reposição após esgotamento',
+        accessory_eaf_box1_dc12v_name: 'Caixa de Controle EAF-BOX',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'Para EAF 2"',
+        accessory_eaf_box1_dc24v_name: 'Caixa de Controle EAF-BOX',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'Para EAF 4"+5"',
+        accessory_mft_20_5_ahu_name: 'Faixa de Vedação',
+        accessory_mft_20_5_ahu_config: 'Material: Espuma PE; Classificação de Incêndio: B1<br>Espec (LxA): 20x5mm; Comprimento: 10m/rolo',
+        accessory_mft_20_5_ahu_note: 'Esta é a quantidade mínima recomendada. Por favor, prepare mais para uso no local.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'Adaptador de Alimentação DC12V',
+        accessory_usd_ps05m_60w_config: 'Tipo terminal 100-240V, 50/60Hz',
+        accessory_usd_ps05m_60w_note: 'Universal global',
+        accessory_usd_ps03m_60w_name: 'Adaptador de Alimentação DC12V',
+        accessory_usd_ps03m_60w_config: 'Tipo plugue (padrão estadunidense) 100-240V, 50/60Hz',
+        accessory_usd_ps03m_60w_note: 'Apenas EUA, não há reposição após esgotamento',
+        accessory_usd_mft_20_5_name: 'Faixa de Vedação',
+        accessory_usd_mft_20_5_config: 'Material: Espuma PE; Classificação de Incêndio: B1<br>Espec (LxA): 20x5mm; Comprimento: 10m/rolo',
+        accessory_usd_mft_20_5_note: 'Esta é a quantidade mínima recomendada. Por favor, prepare mais para uso no local.'
     },
     // 意大利语语言配置
     it: {
         title: 'EAF Sistema di Ricerca Automatica di Preventivi',
         subtitle: 'Seleziona i parametri per cercare rapidamente i preventivi dei prodotti',
+        warning_title: '⚠️ Avviso:',
         warning_tip: '⚠️ Avviso ufficiale: EAF2016 e EAF1620 sono due prodotti completamente diversi. Si prega di non confonderli durante la selezione e l\'uso.',
         query_single_quote: '🔍 Richiedi preventivo',       // 查询单个报价按钮
         query_batch_quote: '📦 Richiedi preventivi in batch', // 批量查询报价按钮
         admin: '🔧 Gestione Dati Base Amministratore',
         admin_show: '🔧 Mostra Gestione Dati',
         admin_hide: '🔧 Nascondi Gestione Dati',
+        admin_logout: '🚪 Esci admin',
+        admin_login: '🔐 Accedi come admin',
+        username: 'Nome utente',                         // Username field label
+        username_placeholder: 'Inserisci nome utente', // Username input placeholder
+        password: 'Password',                           // Password field label
+        password_placeholder: 'Inserisci password',          // Password input placeholder
+        login: 'Accedi',                             // Login button
         product_list_show: '📋 Mostra Lista Dettagliata',
         product_list_hide: '📋 Nascondi Lista Dettagliata',
         product_list_title: '📋 Lista Dettagliata Prodotti',
@@ -959,7 +1626,7 @@ const languages = {
         confirm_query: 'Conferma Ricerca',
         query_result: 'Risultato della Ricerca',
         empty_state: 'Seleziona i parametri e fai clic su Conferma',
-        calculation_info: 'Istruzioni di Calcolo',
+        calculation_info: '📐 Istruzioni di Calcolo',
         product_model: 'Modello del Prodotto',
         air_flow: 'Flusso d\'Aria Indicato',
         dimensions: 'Dimensioni',
@@ -1018,18 +1685,113 @@ const languages = {
         calc_single_pack: 'Dimensione Confezione Singola(L*W*H)mm: L=ROUND((Larghezza mm+65)/5,0)×5, W=Spessore confezione singola, H=ROUND((Altezza mm+65)/5,0)×5',
         calc_gross_weight_1: 'Peso Lordo (KG) (1 unità/scatola): Peso Netto×1.3',
         calc_five_pack: 'Dimensione Confezione Cinque(L*W*H)mm: L=ROUND((Larghezza mm+65)/5,0)×5, W=Spessore confezione cinque, H=ROUND((Altezza mm+65)/5,0)×5',
-        calc_gross_weight_5: 'Peso Lordo (KG) (5 unità/scatola): Peso Lordo (KG) (1 unità/scatola)×5×1.1'
+        calc_gross_weight_5: 'Peso Lordo (KG) (5 unità/scatola): Peso Lordo (KG) (1 unità/scatola)×5×1.1',
+        grand_total: 'Totale Generale: ',
+        // Batch query section
+        selection_rule: 'Regola di Selezione',
+        rule_ac: 'Selezione AHU (Corrispondenza Discendente)',
+        rule_fc: 'Selezione FC (Corrispondenza Più Vicina)',
+        rule_custom: 'Selezione Personalizzata (Corrispondenza Ascendente)',
+        list_price: 'Prezzo di Listino',
+        eaf_quantity: 'Quantità EAF',
+        subtotal: 'Subtotale',
+        action: 'Azione',
+        selection_explanation: 'Istruzioni di Selezione: ',
+        selection_explanation_content: 'Inserire le dimensioni (mm) e la quantità del filtro di media sul sito, e il modello EAF corrispondente verrà selezionato automaticamente.<br>Selezione Personalizzata (Corrispondenza Ascendente)<br>Quando le dimensioni di installazione reali non corrispondono alle specifiche standard, arrotondare al valore standard più vicino superiore e selezionare il modello corrispondente.<br>Esempio: Dimensioni 489mm×491mm. Poiché 489mm si arrotonda a 490 (modello 20) e 491mm si arrotonda a 515 (modello 21), viene selezionato EAF2021.<br>Per le selezioni personalizzate, il prezzo è basato sul modello standard corrispondente, ma il prodotto è fabbricato secondo le dimensioni personalizzate.',
+        size_range: 'Gamma di Taglie per Stile: ',
+        add_row: '+ Aggiungi Riga',
+        accessories: 'Selezione Accessori',
+        accessories_note: '(Dopo aver regolato la selezione EAF, i dati degli accessori inseriti manualmente e generati dall\'assistente non verranno sincronizzati; sezioni vuote indicano scenari incompatibili o nessun accessorio corrispondente)',
+        legend_white: 'Bianco: Accessorio Opzionale',
+        legend_gray: 'Grigio Chiaro: Accessorio Obbligatorio',
+        legend_green: 'Verde Chiaro: Opzionale Obbligatorio A',
+        legend_blue: 'Blu Chiaro: Opzionale Obbligatorio B',
+        fc_category: 'Scenario FC',
+        fc_note: '(Solo per 1", 2")',
+        ahu_category: 'Scenario AHU',
+        ahu_note: '(Tutte le serie applicabili. Ogni AHU richiede una soluzione completa: ①EAF-BOX Scatola di Controllo O ②EAF-BOX Scatola di Connessione + Adattatore di Alimentazione DC12V)',
+        usduct_category: 'Scenario US Duct',
+        usduct_note: '(Solo per 1", 2", 4" Casa. Le unità EAF non possono essere posizionate orizzontalmente)',
+        expand: 'Espandi',
+        selection_assistant: 'Assistente di Selezione',
+        quantity: 'Quantità',
+        us_duct_accessory_title: 'Gestione Accessori US Duct',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'Supporto Fissaggio Flangia Interna_Tipo A1',
+        accessory_eaf1_if_config: 'Installazione celata nel soffitto altezza>90mm<br>Installazione esposta nel soffitto altezza>140mm',
+        accessory_eaf1_if_note: 'Per installazione per estrazione frontale EAF;<br>Ogni EAF richiede un set di supporti di fissaggio della flangia (EAF-IF/EAF-OF)<br>(Il prezzo è per 1 set, include 4 pezzi di fissaggio)',
+        accessory_eaf1_of_name: 'Supporto Fissaggio Flangia Esterna_Tipo B1',
+        accessory_eaf1_of_config: 'Installazione celata nel soffitto altezza>90mm<br>Installazione esposta nel soffitto altezza>140mm',
+        accessory_eaf1_of_note: 'Per installazione per estrazione frontale EAF;<br>Ogni EAF richiede un set di supporti di fissaggio della flangia (EAF-IF/EAF-OF)<br>(Il prezzo è per 1 set, include 4 pezzi di fissaggio)',
+        accessory_eaf2_if_name: 'Supporto Fissaggio Flangia Interna_Tipo A2',
+        accessory_eaf2_if_config: 'Installazione celata nel soffitto altezza>90mm<br>Installazione esposta nel soffitto altezza>140mm',
+        accessory_eaf2_if_note: 'Per installazione per estrazione frontale EAF;<br>Ogni EAF richiede un set di supporti di fissaggio della flangia (EAF-IF/EAF-OF)<br>(Il prezzo è per 1 set, include 4 pezzi di fissaggio)',
+        accessory_eaf2_of_name: 'Supporto Fissaggio Flangia Esterna_Tipo B2',
+        accessory_eaf2_of_config: 'Installazione celata nel soffitto altezza>90mm<br>Installazione esposta nel soffitto altezza>140mm',
+        accessory_eaf2_of_note: 'Per installazione per estrazione frontale EAF;<br>Ogni EAF richiede un set di supporti di fissaggio della flangia (EAF-IF/EAF-OF)<br>(Il prezzo è per 1 set, include 4 pezzi di fissaggio)',
+        accessory_afs003_name: 'Interruttore di Flusso d\'Aria',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'È necessario un interruttore di flusso d\'aria quando l\'EAF viene usato come FFC',
+        accessory_mft_20_5_fc_name: 'Striscia di Sigillatura',
+        accessory_mft_20_5_fc_config: 'Materiale: Schiuma PE; Classificazione Incendio: B1<br>Spec (L×A): 20x5mm; Lunghezza: 10m/rotolo',
+        accessory_mft_20_5_fc_note: 'Questa è la quantità minima raccomandata. Si prega di preparare di più per l\'uso sul sito.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'Clip di Filo EAF-2"',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'Per installazione per estrazione frontale nel telaio della griglia AHU.<br>Sono necessarie 4 clip per EAF. Il prezzo è per 1 clip solo.',
+        accessory_sus301_4_name: 'Clip di Filo EAF-4"',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'Per installazione per estrazione frontale nel telaio della griglia AHU.<br>Sono necessarie 4 clip per EAF. Il prezzo è per 1 clip solo.',
+        accessory_dc5525_name: 'Cavo di Alimentazione EAF 1m',
+        accessory_dc5525_config: '1m',
+        accessory_dc5525_note: 'È necessario 1 cavo di alimentazione per ogni EAF orizzontale e ogni strato',
+        accessory_eaf_box_c_name: 'Scatola di Connessione EAF-BOX',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: 'Versione economica cinese, richiede adattatore di alimentazione EAF-PS05M-60W',
+        accessory_eaf_ps05m_60w_name: 'Adattatore di Alimentazione DC12V',
+        accessory_eaf_ps05m_60w_config: 'Tipo terminale 100-240V, 50/60Hz',
+        accessory_eaf_ps05m_60w_note: 'Universale globale',
+        accessory_eaf_ps03m_60w_name: 'Adattatore di Alimentazione DC12V',
+        accessory_eaf_ps03m_60w_config: 'Tipo spina (standard statunitense) 100-240V, 50/60Hz',
+        accessory_eaf_ps03m_60w_note: 'Solo USA, nessuna riposizione dopo esaurimento',
+        accessory_eaf_box1_dc12v_name: 'Scatola di Controllo EAF-BOX',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'Per EAF 2"',
+        accessory_eaf_box1_dc24v_name: 'Scatola di Controllo EAF-BOX',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'Per EAF 4"+5"',
+        accessory_mft_20_5_ahu_name: 'Striscia di Sigillatura',
+        accessory_mft_20_5_ahu_config: 'Materiale: Schiuma PE; Classificazione Incendio: B1<br>Spec (L×A): 20x5mm; Lunghezza: 10m/rotolo',
+        accessory_mft_20_5_ahu_note: 'Questa è la quantità minima raccomandata. Si prega di preparare di più per l\'uso sul sito.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'Adattatore di Alimentazione DC12V',
+        accessory_usd_ps05m_60w_config: 'Tipo terminale 100-240V, 50/60Hz',
+        accessory_usd_ps05m_60w_note: 'Universale globale',
+        accessory_usd_ps03m_60w_name: 'Adattatore di Alimentazione DC12V',
+        accessory_usd_ps03m_60w_config: 'Tipo spina (standard statunitense) 100-240V, 50/60Hz',
+        accessory_usd_ps03m_60w_note: 'Solo USA, nessuna riposizione dopo esaurimento',
+        accessory_usd_mft_20_5_name: 'Striscia di Sigillatura',
+        accessory_usd_mft_20_5_config: 'Materiale: Schiuma PE; Classificazione Incendio: B1<br>Spec (L×A): 20x5mm; Lunghezza: 10m/rotolo',
+        accessory_usd_mft_20_5_note: 'Questa è la quantità minima raccomandata. Si prega di preparare di più per l\'uso sul sito.'
     },
     // 俄语语言配置
     ru: {
         title: 'EAF Автоматизированная система запроса котировок',
         subtitle: 'Выберите параметры для быстрого запроса котировок продуктов',
+        warning_title: '⚠️ Примечание:',
         warning_tip: '⚠️ Официальное напоминание: EAF2016 и EAF1620 - это два совершенно разных продукта. Пожалуйста, не путайте их при выборе и использовании.',
         query_single_quote: '🔍 Запросить котировку',       // 查询单个报价按钮
         query_batch_quote: '📦 Запросить котировки пакетно', // 批量查询报价按钮
         admin: '🔧 Управление базовыми данными администратора',
         admin_show: '🔧 Показать управление данными',
         admin_hide: '🔧 Скрыть управление данными',
+        admin_logout: '🚪 Выход из админки',
+        admin_login: '🔐 Вход в админку',
+        username: 'Имя пользователя',                         // Username field label
+        username_placeholder: 'Введите имя пользователя', // Username input placeholder
+        password: 'Пароль',                           // Password field label
+        password_placeholder: 'Введите пароль',          // Password input placeholder
+        login: 'Войти',                             // Login button
         product_list_show: '📋 Показать детальный список',
         product_list_hide: '📋 Скрыть детальный список',
         product_list_title: '📋 Детальный список продуктов',
@@ -1058,7 +1820,7 @@ const languages = {
         confirm_query: 'Подтвердить запрос',
         query_result: 'Результат запроса',
         empty_state: 'Выберите параметры и нажмите Подтвердить',
-        calculation_info: 'Инструкции по расчету',
+        calculation_info: '📐 Инструкции по расчету',
         product_model: 'Модель продукта',
         air_flow: 'Маркированный воздушный поток',
         dimensions: 'Размеры',
@@ -1117,18 +1879,113 @@ const languages = {
         calc_single_pack: 'Размер упаковки на 1 единицу(L*W*H)mm: L=ROUND((Ширина mm+65)/5,0)×5, W=Толщина упаковки на 1 единицу, H=ROUND((Высота mm+65)/5,0)×5',
         calc_gross_weight_1: 'Брутто-вес (KG) (1 единица/коробка): Чистый вес×1.3',
         calc_five_pack: 'Размер упаковки на 5 единиц(L*W*H)mm: L=ROUND((Ширина mm+65)/5,0)×5, W=Толщина упаковки на 5 единиц, H=ROUND((Высота mm+65)/5,0)×5',
-        calc_gross_weight_5: 'Брутто-вес (KG) (5 единиц/коробка): Брутто-вес (KG) (1 единица/коробка)×5×1.1'
+        calc_gross_weight_5: 'Брутто-вес (KG) (5 единиц/коробка): Брутто-вес (KG) (1 единица/коробка)×5×1.1',
+        grand_total: 'Общая сумма: ',
+        // Batch query section
+        selection_rule: 'Правило выбора',
+        rule_ac: 'Выбор AHU (Снижение соответствия)',
+        rule_fc: 'Выбор FC (Ближайшее соответствие)',
+        rule_custom: 'Пользовательский выбор (Повышение соответствия)',
+        list_price: 'Цена списка',
+        eaf_quantity: 'Количество EAF',
+        subtotal: 'Промежуточный итог',
+        action: 'Действие',
+        selection_explanation: 'Инструкции по выбору: ',
+        selection_explanation_content: 'Введите размеры (мм) и количество фильтра на месте, и соответствующая модель EAF будет выбрана автоматически.<br>Пользовательский выбор (Повышение соответствия)<br>Если фактические размеры установки не соответствуют стандартным спецификациям, округлите до ближайшего большего стандартного значения и выберите соответствующую модель.<br>Пример: Размеры 489mm×491mm. Поскольку 489mm округляется до 490 (модель 20), а 491mm округляется до 515 (модель 21), выбирается EAF2021.<br>Для пользовательских выборов цена основывается на стандартной модели, но продукт изготавливается по индивидуальным размерам.',
+        size_range: 'Диапазон размеров по стилю: ',
+        add_row: '+ Добавить строку',
+        accessories: 'Выбор аксессуаров',
+        accessories_note: '(После корректировки выбора EAF вручную введенные данные аксессуаров и данные, сгенерированные помощником, не будут синхронизированы; пустые разделы указывают на несовместимые сценарии или отсутствие соответствующих аксессуаров)',
+        legend_white: 'Белый: Опциональный аксессуар',
+        legend_gray: 'Светло-серый: Обязательный аксессуар',
+        legend_green: 'Светло-зеленый: Опциональный обязательный A',
+        legend_blue: 'Светло-синий: Опциональный обязательный B',
+        fc_category: 'Сценарий FC',
+        fc_note: '(Только для 1", 2")',
+        ahu_category: 'Сценарий AHU',
+        ahu_note: '(Применяется ко всем сериям. Каждая AHU требует полного решения: ①EAF-BOX Контрольный ящик ИЛИ ②EAF-BOX Разъемный ящик + Блок питания DC12V)',
+        usduct_category: 'Сценарий US Duct',
+        usduct_note: '(Только для 1", 2", 4" Домашний. Единицы EAF нельзя размещать горизонтально)',
+        expand: 'Развернуть',
+        selection_assistant: 'Помощник выбора',
+        quantity: 'Количество',
+        us_duct_accessory_title: 'Управление аксессуарами US Duct',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'Крепежная пластина внутреннего фланца_Тип A1',
+        accessory_eaf1_if_config: 'Установка в потолок высота>90mm<br>Наружная установка на потолке высота>140mm',
+        accessory_eaf1_if_note: 'Для установки EAF с передним извлечением;<br>Каждый EAF требует набора крепежных пластин фланца (EAF-IF/EAF-OF)<br>(Цена за 1 набор, включает 4 крепежных детали)',
+        accessory_eaf1_of_name: 'Крепежная пластина внешнего фланца_Тип B1',
+        accessory_eaf1_of_config: 'Установка в потолок высота>90mm<br>Наружная установка на потолке высота>140mm',
+        accessory_eaf1_of_note: 'Для установки EAF с передним извлечением;<br>Каждый EAF требует набора крепежных пластин фланца (EAF-IF/EAF-OF)<br>(Цена за 1 набор, включает 4 крепежных детали)',
+        accessory_eaf2_if_name: 'Крепежная пластина внутреннего фланца_Тип A2',
+        accessory_eaf2_if_config: 'Установка в потолок высота>90mm<br>Наружная установка на потолке высота>140mm',
+        accessory_eaf2_if_note: 'Для установки EAF с передним извлечением;<br>Каждый EAF требует набора крепежных пластин фланца (EAF-IF/EAF-OF)<br>(Цена за 1 набор, включает 4 крепежных детали)',
+        accessory_eaf2_of_name: 'Крепежная пластина внешнего фланца_Тип B2',
+        accessory_eaf2_if_config: 'Установка в потолок высота>90mm<br>Наружная установка на потолке высота>140mm',
+        accessory_eaf2_of_note: 'Для установки EAF с передним извлечением;<br>Каждый EAF требует набора крепежных пластин фланца (EAF-IF/EAF-OF)<br>(Цена за 1 набор, включает 4 крепежных детали)',
+        accessory_afs003_name: 'Переключатель воздушного потока',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'Переключатель воздушного потока необходим, когда EAF используется в качестве FFC',
+        accessory_mft_20_5_fc_name: 'Уплотнительная лента',
+        accessory_mft_20_5_fc_config: 'Материал: ПЭ-пена; Класс пожарной безопасности: B1<br>Характеристики (Ш×Т): 20x5mm; Длина: 10м/рулон',
+        accessory_mft_20_5_fc_note: 'Это рекомендуемый минимальный объем. Пожалуйста, приготовьте больше для использования на месте.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'Жилая зажимная зажимка EAF-2"',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'Для установки с передним извлечением в решетчатой рамке AHU.<br>Требуется 4 зажимка на EAF. Цена за 1 зажимку.',
+        accessory_sus301_4_name: 'Жилая зажимная зажимка EAF-4"',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'Для установки с передним извлечением в решетчатой рамке AHU.<br>Требуется 4 зажимка на EAF. Цена за 1 зажимку.',
+        accessory_dc5525_name: 'Питательный кабель EAF 1м',
+        accessory_dc5525_config: '1м',
+        accessory_dc5525_note: 'Требуется 1 питательный кабель для каждого горизонтального EAF и каждого слоя',
+        accessory_eaf_box_c_name: 'Соединительный ящик EAF-BOX',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: 'Китайская экономическая версия, требует блок питания EAF-PS05M-60W',
+        accessory_eaf_ps05m_60w_name: 'Блок питания DC12V',
+        accessory_eaf_ps05m_60w_config: 'Тип клеммной колодки 100-240В, 50/60Гц',
+        accessory_eaf_ps05m_60w_note: 'Глобально универсальный',
+        accessory_eaf_ps03m_60w_name: 'Блок питания DC12V',
+        accessory_eaf_ps03m_60w_config: 'Тип вилки (американский стандарт) 100-240В, 50/60Гц',
+        accessory_eaf_ps03m_60w_note: 'Только США, после истощения запаса нет повторной поставки',
+        accessory_eaf_box1_dc12v_name: 'Контрольный ящик EAF-BOX',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'Для EAF 2"',
+        accessory_eaf_box1_dc24v_name: 'Контрольный ящик EAF-BOX',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'Для EAF 4"+5"',
+        accessory_mft_20_5_ahu_name: 'Уплотнительная лента',
+        accessory_mft_20_5_ahu_config: 'Материал: ПЭ-пена; Класс пожарной безопасности: B1<br>Характеристики (Ш×Т): 20x5mm; Длина: 10м/рулон',
+        accessory_mft_20_5_ahu_note: 'Это рекомендуемый минимальный объем. Пожалуйста, приготовьте больше для использования на месте.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'Блок питания DC12V',
+        accessory_usd_ps05m_60w_config: 'Тип клеммной колодки 100-240В, 50/60Гц',
+        accessory_usd_ps05m_60w_note: 'Глобально универсальный',
+        accessory_usd_ps03m_60w_name: 'Блок питания DC12V',
+        accessory_usd_ps03m_60w_config: 'Тип вилки (американский стандарт) 100-240В, 50/60Гц',
+        accessory_usd_ps03m_60w_note: 'Только США, после истощения запаса нет повторной поставки',
+        accessory_usd_mft_20_5_name: 'Уплотнительная лента',
+        accessory_usd_mft_20_5_config: 'Материал: ПЭ-пена; Класс пожарной безопасности: B1<br>Характеристики (Ш×Т): 20x5mm; Длина: 10м/рулон',
+        accessory_usd_mft_20_5_note: 'Это рекомендуемый минимальный объем. Пожалуйста, приготовьте больше для использования на месте.'
     },
     // 阿拉伯语语言配置
     ar: {
         title: 'EAF نظام استعلام الاقتراحات التلقائي',
         subtitle: 'حدد المعلمات لاستعلام أسعار المنتجات بسرعة',
+        warning_title: '⚠️ ملاحظة:',
         warning_tip: '⚠️ ملاحظة رسمية: EAF2016 و EAF1620 هما منتجات مختلفة تمامًا. يرجى عدم الخلط بينهما عند الاختيار والاستخدام.',
         query_single_quote: '🔍 استعلام سعر واحد',          // 查询单个报价按钮
         query_batch_quote: '📦 استعلام أسعار جماعي',       // 批量查询报价按钮
         admin: '🔧 إدارة بيانات الأدمن الأساسية',
         admin_show: '🔧 عرض إدارة البيانات',
         admin_hide: '🔧 إخفاء إدارة البيانات',
+        admin_logout: '🚪 تسجيل خروج الأدمن',
+        admin_login: '🔐 تسجيل دخول الأدمن',              // Admin login title
+        username: 'اسم المستخدم',                         // Username field label
+        username_placeholder: 'الرجاء إدخال اسم المستخدم', // Username input placeholder
+        password: 'كلمة المرور',                           // Password field label
+        password_placeholder: 'الرجاء إدخال كلمة المرور',   // Password input placeholder
+        login: 'تسجيل الدخول',                             // Login button
         product_list_show: '📋 عرض القائمة التفصيلية',
         product_list_hide: '📋 إخفاء القائمة التفصيلية',
         product_list_title: '📋 قائمة المنتجات التفصيلية',
@@ -1140,6 +1997,95 @@ const languages = {
         download_template: '📥 تنزيل القالب',
         upload_data: '📤 رفع البيانات',
         save_all: '💾 حفظ جميع البيانات',
+        // Batch query section
+        selection_rule: 'قاعدة الاختيار',
+        rule_ac: 'اختيار صندوق التكييف (طريقة مطابقة الهبوط)',
+        rule_fc: 'اختيار ملفق المروحة (طريقة مطابقة أقرب)',
+        rule_custom: 'اختيار غير قياسي (طريقة مطابقة الصعود)',
+        quantity: 'الكمية',
+        list_price: 'السعر السوقي',
+        eaf_quantity: 'كمية EAF',
+        subtotal: 'المجموع الجزئي',
+        action: 'عملية',
+        total: 'المجموع',
+        grand_total: 'المجموع الكلي:',
+        selection_explanation: 'تعليمات الاختيار:',
+        selection_explanation_content: 'أدخل أبعاد مرشح الوسط الميداني (مم) والكمية، وسيتم مطابقة نموذج EAF المقابل تلقائيًا.<br>اختيار مخصص (مطابقة الصعود)<br>عندما لا تتطابق أبعاد التركيب الفعلية مع المواصفات القياسية، قم بالإرجاع إلى أقرب قيمة قياسية أكبر واختر النموذج المقابل.<br>مثال: أبعاد 489 مم × 491 مم. بما أن 489 مم يرجع إلى 490 (النموذج 20) و 491 مم يرجع إلى 515 (النموذج 21)، يتم اختيار EAF2021.<br>للاختيارات المخصصة، تعتمد التسعير على النموذج القياسي المقابل للصعود، ولكن يتم تصنيع المنتج حسب الأبعاد المخصصة.',
+        size_range: 'نطاق الأحجام حسب النمط:',
+        add_row: '+ إضافة صف',
+        accessories: 'اختيار الملحقات',
+        accessories_note: '(بعد ضبط اختيار EAF، لن يتم مزامنة بيانات الملحقات المدخلة يدوياً والبيانات الناتجة عن مساعد الاختيار؛ الأقسام الفارغة تشير إلى سيناريوهات غير متوافقة أو عدم وجود ملحقات مطابقة)',
+        legend_white: 'أبيض: ملحق اختياري',
+        legend_gray: 'رمادي فاتح: ملحق إجباري',
+        legend_green: 'أخضر فاتح: اختياري إجباري A',
+        legend_blue: 'أزرق فاتح: اختياري إجباري B',
+        fc_category: 'سيناريو FC',
+        fc_note: '(فقط لـ 1"، 2")',
+        ahu_category: 'سيناريو AHU',
+        ahu_note: '(تطبيق على جميع السلاسل. كل AHU تتطلب حلاً كاملاً: ①EAF-BOX صندوق التحكم أو ②EAF-BOX صندوق الاتصال + محول طاقة DC12V)',
+        usduct_category: 'سيناريو US Duct',
+        usduct_note: '(فقط لـ 1"، 2"، 4" منزلي. لا يمكن وضع وحدات EAF بشكل أفقي)',
+        expand: 'توسيع',
+        selection_assistant: 'مساعد الاختيار',
+        us_duct_accessory_title: 'إدارة ملحقات US Duct',
+        quantity: 'الكمية',
+        // FC配件翻译
+        accessory_eaf1_if_name: 'مورد تثبيت الطبعة الداخلية_نوع A1',
+        accessory_eaf1_if_config: 'تركيب سقف مُخفي ارتفاع>90mm<br>تركيب سقف مكشوف ارتفاع>140mm',
+        accessory_eaf1_if_note: 'للتركيب باستخراج مقدمة EAF;<br>كل EAF يحتاج إلى مجموعة من موردات تثبيت الطبعة (EAF-IF/EAF-OF)<br>(السعر لـ 1 مجموعة، تشمل 4 قطع تثبيت)',
+        accessory_eaf1_of_name: 'مورد تثبيت الطبعة الخارجية_نوع B1',
+        accessory_eaf1_of_config: 'تركيب سقف مُخفي ارتفاع>90mm<br>تركيب سقف مكشوف ارتفاع>140mm',
+        accessory_eaf1_of_note: 'للتركيب باستخراج مقدمة EAF;<br>كل EAF يحتاج إلى مجموعة من موردات تثبيت الطبعة (EAF-IF/EAF-OF)<br>(السعر لـ 1 مجموعة، تشمل 4 قطع تثبيت)',
+        accessory_eaf2_if_name: 'مورد تثبيت الطبعة الداخلية_نوع A2',
+        accessory_eaf2_if_config: 'تركيب سقف مُخفي ارتفاع>90mm<br>تركيب سقف مكشوف ارتفاع>140mm',
+        accessory_eaf2_if_note: 'للتركيب باستخراج مقدمة EAF;<br>كل EAF يحتاج إلى مجموعة من موردات تثبيت الطبعة (EAF-IF/EAF-OF)<br>(السعر لـ 1 مجموعة، تشمل 4 قطع تثبيت)',
+        accessory_eaf2_of_name: 'مورد تثبيت الطبعة الخارجية_نوع B2',
+        accessory_eaf2_if_config: 'تركيب سقف مُخفي ارتفاع>90mm<br>تركيب سقف مكشوف ارتفاع>140mm',
+        accessory_eaf2_of_note: 'للتركيب باستخراج مقدمة EAF;<br>كل EAF يحتاج إلى مجموعة من موردات تثبيت الطبعة (EAF-IF/EAF-OF)<br>(السعر لـ 1 مجموعة، تشمل 4 قطع تثبيت)',
+        accessory_afs003_name: 'مبدل تدفق الهواء',
+        accessory_afs003_config: '/',
+        accessory_afs003_note: 'مبدل تدفق الهواء مطلوب عند استخدام EAF كـ FFC',
+        accessory_mft_20_5_fc_name: 'شرائط الختم',
+        accessory_mft_20_5_fc_config: 'المادة: رغوة PE; تصنيف الحرائق: B1<br>المواصفات (ع×س): 20x5mm; الطول: 10م/لفة',
+        accessory_mft_20_5_fc_note: 'هذه هي الكمية الدنيا الموصى بها. يرجى إعداد المزيد للاستخدام في الموقع.',
+        // AHU配件翻译
+        accessory_sus301_2_name: 'مقابس أسلاك EAF-2"',
+        accessory_sus301_2_config: 'SUS301',
+        accessory_sus301_2_note: 'للتركيب باستخراج مقدمة في إطار شبكة AHU.<br>مطلوب 4 مقابس لكل EAF. السعر لـ 1 مقبس فقط.',
+        accessory_sus301_4_name: 'مقابس أسلاك EAF-4"',
+        accessory_sus301_4_config: 'SUS301',
+        accessory_sus301_4_note: 'للتركيب باستخراج مقدمة في إطار شبكة AHU.<br>مطلوب 4 مقابس لكل EAF. السعر لـ 1 مقبس فقط.',
+        accessory_dc5525_name: 'كابل طاقة EAF 1م',
+        accessory_dc5525_config: '1م',
+        accessory_dc5525_note: 'مطلوب 1 كابل طاقة لكل EAF أفقي ولكل طبقة',
+        accessory_eaf_box_c_name: 'صندوق توصيل EAF-BOX',
+        accessory_eaf_box_c_config: '/',
+        accessory_eaf_box_c_note: 'النسخة الصينية الاقتصادية، تحتاج إلى محول طاقة EAF-PS05M-60W',
+        accessory_eaf_ps05m_60w_name: 'محول طاقة DC12V',
+        accessory_eaf_ps05m_60w_config: 'نوع كتلة الطرف 100-240V، 50/60Hz',
+        accessory_eaf_ps05m_60w_note: 'عالمي',
+        accessory_eaf_ps03m_60w_name: 'محول طاقة DC12V',
+        accessory_eaf_ps03m_60w_config: 'نوع القارئ (المعيار الأمريكي) 100-240V، 50/60Hz',
+        accessory_eaf_ps03m_60w_note: 'فقط الولايات المتحدة، لا يوجد إعادة التوريد بعد النضور',
+        accessory_eaf_box1_dc12v_name: 'صندوق تحكم EAF-BOX',
+        accessory_eaf_box1_dc12v_config: '/',
+        accessory_eaf_box1_dc12v_note: 'لـ EAF 2"',
+        accessory_eaf_box1_dc24v_name: 'صندوق تحكم EAF-BOX',
+        accessory_eaf_box1_dc24v_config: '/',
+        accessory_eaf_box1_dc24v_note: 'لـ EAF 4"+5"',
+        accessory_mft_20_5_ahu_name: 'شرائط الختم',
+        accessory_mft_20_5_ahu_config: 'المادة: رغوة PE; تصنيف الحرائق: B1<br>المواصفات (ع×س): 20x5mm; الطول: 10م/لفة',
+        accessory_mft_20_5_ahu_note: 'هذه هي الكمية الدنيا الموصى بها. يرجى إعداد المزيد للاستخدام في الموقع.',
+        // US Duct配件翻译
+        accessory_usd_ps05m_60w_name: 'محول طاقة DC12V',
+        accessory_usd_ps05m_60w_config: 'نوع كتلة الطرف 100-240V، 50/60Hz',
+        accessory_usd_ps05m_60w_note: 'عالمي',
+        accessory_usd_ps03m_60w_name: 'محول طاقة DC12V',
+        accessory_usd_ps03m_60w_config: 'نوع القارئ (المعيار الأمريكي) 100-240V، 50/60Hz',
+        accessory_usd_ps03m_60w_note: 'فقط الولايات المتحدة، لا يوجد إعادة التوريد بعد النضور',
+        accessory_usd_mft_20_5_name: 'شرائط الختم',
+        accessory_usd_mft_20_5_config: 'المادة: رغوة PE; تصنيف الحرائق: B1<br>المواصفات (ع×س): 20x5mm; الطول: 10م/لفة',
+        accessory_usd_mft_20_5_note: 'هذه هي الكمية الدنيا الموصى بها. يرجى إعداد المزيد للاستخدام في الموقع.',
         reset: '🔄 إعادة التعيين إلى الافتراضي',
         width: 'العرض',
         height: 'الارتفاع',
@@ -1157,7 +2103,7 @@ const languages = {
         confirm_query: 'تأكيد الاستعلام',
         query_result: 'نتيجة الاستعلام',
         empty_state: 'حدد المعلمات وانقر على تأكيد',
-        calculation_info: 'تعليمات الحساب',
+        calculation_info: '📐 تعليمات الحساب',
         product_model: 'موديل المنتج',
         air_flow: 'تدفق الهواء المميز',
         dimensions: 'الأبعاد',
@@ -1246,7 +2192,12 @@ function changeLanguage(lang) {
         const key = element.getAttribute('data-lang');
         const translation = getLang(key);
         if (translation) {
-            element.textContent = translation;
+            // 如果内容包含HTML标签（如<br>），使用innerHTML；否则使用textContent
+            if (translation.includes('<') || translation.includes('>')) {
+                element.innerHTML = translation;
+            } else {
+                element.textContent = translation;
+            }
         }
     });
     
@@ -1292,10 +2243,74 @@ function changeLanguage(lang) {
     renderAdminPanel();
     searchData();
     
+    // 重新渲染配件表格（支持多语言）
+    renderAccessoryTables();
+    
+    // 更新尺寸范围说明（支持多语言）
+    updateSizeRange();
+    
+    // 更新温馨提示内容
+    const styleSelect = document.getElementById('styleSelect');
+    if (styleSelect) {
+        updateWarningTipMainModels(styleSelect.value);
+    }
+    
     // 如果产品列表显示中，则重新渲染产品列表
     if (productListSection && productListSection.style.display !== 'none') {
         renderProductList();
     }
+    
+    // 更新批量查询表格输入框的placeholder
+    const widthInputs = document.querySelectorAll('.width-input');
+    const heightInputs = document.querySelectorAll('.height-input');
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    
+    widthInputs.forEach(input => input.placeholder = getLang('width'));
+    heightInputs.forEach(input => input.placeholder = getLang('height'));
+    quantityInputs.forEach(input => input.placeholder = getLang('quantity'));
+    
+    // 动态调整选型规则选择框的宽度
+    adjustSelectWidth('selectionRuleSelect');
+}
+
+/**
+ * 动态调整select元素的宽度以适应最长选项
+ * @param {string} selectId - select元素的ID
+ */
+function adjustSelectWidth(selectId) {
+    const select = document.getElementById(selectId);
+    if (!select) return;
+    
+    // 创建一个临时span来测量文本宽度
+    const tempSpan = document.createElement('span');
+    tempSpan.style.position = 'absolute';
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.fontSize = '14px';
+    tempSpan.style.padding = '10px 12px';
+    document.body.appendChild(tempSpan);
+    
+    let maxWidth = 0;
+    // 遍历所有选项，找到最长的文本
+    for (let i = 0; i < select.options.length; i++) {
+        tempSpan.textContent = select.options[i].text;
+        const width = tempSpan.offsetWidth;
+        if (width > maxWidth) {
+            maxWidth = width;
+        }
+    }
+    
+    // 添加一些额外的宽度用于下拉箭头和边距
+    maxWidth += 40;
+    
+    // 设置最小宽度和最大宽度限制
+    const minWidth = 210;
+    const maxAllowedWidth = 350;
+    const finalWidth = Math.min(Math.max(maxWidth, minWidth), maxAllowedWidth);
+    
+    select.style.width = finalWidth + 'px';
+    
+    // 移除临时元素
+    document.body.removeChild(tempSpan);
 }
 
 /**
@@ -1596,6 +2611,7 @@ let equivalentMap = {};        // 数值等价关系映射表（输入值 -> 实
 let equivalentValues = [];     // 数值等价关系数组，用于管理界面展示
 let styleConfig = [];          // 款式配置数组，包含厚度、密度系数等参数
 let priceData = {};            // 面价数据对象
+let adminLoggedIn = false;     // 管理员登录状态
 
 // ==================== 工具函数 ====================
 
@@ -1653,6 +2669,188 @@ function getStyleInfo(style) {
  */
 function getEquivalentValue(key) {
     return equivalentMap[key] || key;
+}
+
+// ==================== 管理员登录功能 ====================
+
+/**
+ * 显示管理员登录模态框
+ */
+function showAdminLogin() {
+    const modal = document.createElement('div');
+    modal.className = 'login-modal';
+    
+    const adminLoginTitle = getLang('admin_login');
+    const usernameLabel = getLang('username');
+    const usernamePlaceholder = getLang('username_placeholder');
+    const passwordLabel = getLang('password');
+    const passwordPlaceholder = getLang('password_placeholder');
+    const loginButton = getLang('login');
+    
+    modal.innerHTML = `
+        <div class="login-modal-content">
+            <span class="login-close" onclick="closeLoginModal()">&times;</span>
+            <h2>${adminLoginTitle}</h2>
+            <div class="login-form">
+                <label>${usernameLabel}：</label>
+                <input type="text" id="adminUsername" placeholder="${usernamePlaceholder}">
+                <label>${passwordLabel}：</label>
+                <input type="password" id="adminPassword" placeholder="${passwordPlaceholder}">
+                <button onclick="adminLogin()">${loginButton}</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    modal.style.display = 'flex';
+}
+
+/**
+ * 关闭登录模态框
+ */
+function closeLoginModal() {
+    const modal = document.querySelector('.login-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+/**
+ * 管理员登录
+ */
+function adminLogin() {
+    const username = document.getElementById('adminUsername').value;
+    const password = document.getElementById('adminPassword').value;
+    
+    // 验证用户名和密码
+    if (username === 'airquality' && password === 'rktmbjhq') {
+        adminLoggedIn = true;
+        localStorage.setItem('adminLoggedIn', 'true');
+        
+        // 显示管理按钮，隐藏登录按钮，显示登出按钮
+        document.getElementById('adminBtn').style.display = 'inline-block';
+        document.getElementById('listBtn').style.display = 'inline-block';
+        document.getElementById('loginBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-block';
+        
+        // 显示计算说明区域
+        const calculationSection = document.getElementById('calculationSection');
+        if (calculationSection) {
+            calculationSection.style.display = 'block';
+        }
+        
+        closeLoginModal();
+        alert('登录成功！');
+    } else {
+        alert('用户名或密码错误！');
+    }
+}
+
+/**
+ * 管理员登出
+ */
+function adminLogout() {
+    adminLoggedIn = false;
+    localStorage.removeItem('adminLoggedIn');
+    
+    // 隐藏管理按钮，显示登录按钮，隐藏登出按钮
+    document.getElementById('adminBtn').style.display = 'none';
+    document.getElementById('listBtn').style.display = 'none';
+    document.getElementById('loginBtn').style.display = 'inline-block';
+    document.getElementById('logoutBtn').style.display = 'none';
+    
+    // 隐藏计算说明区域
+    const calculationSection = document.getElementById('calculationSection');
+    if (calculationSection) {
+        calculationSection.style.display = 'none';
+    }
+    
+    alert('已退出登录');
+}
+
+/**
+ * 检查管理员登录状态
+ */
+function checkAdminLoginStatus() {
+    const savedStatus = localStorage.getItem('adminLoggedIn');
+    if (savedStatus === 'true') {
+        adminLoggedIn = true;
+        document.getElementById('adminBtn').style.display = 'inline-block';
+        document.getElementById('listBtn').style.display = 'inline-block';
+        document.getElementById('loginBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-block';
+        
+        // 显示计算说明区域
+        const calculationSection = document.getElementById('calculationSection');
+        if (calculationSection) {
+            calculationSection.style.display = 'block';
+        }
+    }
+}
+
+// ==================== 管理员登录功能结束 ====================
+
+/**
+ * 根据款式获取主力型号列表
+ * @param {string} style - 款式代码
+ * @returns {string} 主力型号列表字符串
+ */
+function getMainModelsByStyle(style) {
+    const modelMap = {
+        '1': 'EAF08261M-E、EAF08301M-E、EAF16201M-E、EAF16251M-E、EAF20201M-E、EAF20241M-E、EAF20251M-E',
+        '2': 'EAF08262M-E、EAF08302M-E、EAF08352M-E、EAF08442M-E、EAF08562M-E、EAF16202M-E、EAF16252M-E、EAF20202M-E、EAF20242M-E、EAF20252M-E',
+        '4': 'EAF16204M-E、EAF20204M-E、EAF20244M-E、EAF20254M-E、EAF25254M-E',
+        '4biz': 'EAF16204MA-E、EAF20204MA-E、EAF20244MA-E、EAF20254MA-E、EAF25254MA-E',
+        '5': 'EAF16205MB-E、EAF20205MB-E、EAF20245MB-E、EAF20255MB-E、EAF25255MB-E'
+    };
+    return modelMap[style] || '';
+}
+
+/**
+ * 根据款式获取主力型号列表（英文）
+ * @param {string} style - 款式代码
+ * @returns {string} 主力型号列表字符串
+ */
+function getMainModelsByStyleEn(style) {
+    const modelMap = {
+        '1': 'EAF08261M-E, EAF08301M-E, EAF16201M-E, EAF16251M-E, EAF20201M-E, EAF20241M-E, EAF20251M-E',
+        '2': 'EAF08262M-E, EAF08302M-E, EAF08352M-E, EAF08442M-E, EAF08562M-E, EAF16202M-E, EAF16252M-E, EAF20202M-E, EAF20242M-E, EAF20252M-E',
+        '4': 'EAF16204M-E, EAF20204M-E, EAF20244M-E, EAF20254M-E, EAF25254M-E',
+        '4biz': 'EAF16204MA-E, EAF20204MA-E, EAF20244MA-E, EAF20254MA-E, EAF25254MA-E',
+        '5': 'EAF16205MB-E, EAF20205MB-E, EAF20245MB-E, EAF20255MB-E, EAF25255MB-E'
+    };
+    return modelMap[style] || '';
+}
+
+/**
+ * 更新温馨提示中的主力型号
+ * @param {string} style - 款式代码
+ */
+function updateWarningTipMainModels(style) {
+    const warningContent = document.getElementById('warningContent');
+    if (!warningContent) return;
+    
+    const currentLang = document.getElementById('languageSelect').value;
+    const mainModels = getMainModelsByStyle(style);
+    
+    const tipTemplates = {
+        'zh': '• 型号区分：EAF2016 与 EAF1620 为两款完全不同的产品，请勿混淆选型及使用\n• 旗舰型号：EAF2424、EAF1224，库存充足现货直发，价格优势明显\n• 主力型号：样册在册多款常规尺寸（{mainModels}），极速发货，价格亲民\n• 标准型号：页面可选规格，按常规周期排产供货，定价平稳\n• 定制型号：专属非标尺寸定制，生产周期较长，造价偏高',
+        'en': '• Model Differentiation: EAF2016 and EAF1620 are two completely different products. Please do not confuse them when selecting and using.\n• Flagship Models: EAF2424, EAF1224, with sufficient inventory for immediate delivery and significant price advantages\n• Main Models: Multiple regular sizes in catalog ({mainModels}), fast delivery, affordable prices\n• Standard Models: Optional specifications on page, produced and delivered according to regular cycle, stable pricing\n• Custom Models: Custom non-standard sizes, longer production cycle, relatively high cost',
+        'fr': '• Différenciation des modèles: EAF2016 et EAF1620 sont deux produits complètement différents. Veuillez ne pas les confondre lors de la sélection et de l\'utilisation.\n• Modèles phares: EAF2424, EAF1224, avec suffisamment d\'inventaire pour une livraison immédiate et des avantages de prix significatifs\n• Modèles principaux: Plusieurs tailles régulières dans le catalogue ({mainModels}), livraison rapide, prix abordables\n• Modèles standard: Spécifications optionnelles sur la page, produites et livrées selon un cycle régulier, prix stables\n• Modèles personnalisés: Tailles non standard personnalisées, cycle de production plus long, coût relativement élevé',
+        'de': '• Modellunterscheidung: EAF2016 und EAF1620 sind zwei völlig unterschiedliche Produkte. Bitte nicht verwechseln bei Auswahl und Verwendung.\n• Flaggschiff-Modelle: EAF2424, EAF1224, mit ausreichendem Bestand für sofortige Lieferung und signifikanten Preisvorteilen\n• Hauptmodelle: Mehrere reguläre Größen im Katalog ({mainModels}), schnelle Lieferung, erschwingliche Preise\n• Standardmodelle: Optionale Spezifikationen auf der Seite, nach regulärem Zyklus produziert und geliefert, stabile Preisgestaltung\n• Sonderanfertigungen: Individuelle nichtstandardmäßige Größen, längerer Produktionszyklus, relativ hoher Kostenaufwand',
+        'es': '• Diferenciación de modelos: EAF2016 y EAF1620 son dos productos completamente diferentes. Por favor, no los confunda al seleccionar y usar.\n• Modelos insignia: EAF2424, EAF1224, con suficiente inventario para entrega inmediata y ventajas de precio significativas\n• Modelos principales: Múltiples tamaños regulares en el catálogo ({mainModels}), entrega rápida, precios asequibles\n• Modelos estándar: Especificaciones opcionales en la página, producidos y entregados según ciclo regular, precios estables\n• Modelos personalizados: Tamaños no estándar personalizados, ciclo de producción más largo, costo relativamente alto',
+        'ja': '• モデルの違い: EAF2016とEAF1620は全く異なる二つの製品です。選択と使用時に混同しないでください。\n• フラッグシップモデル: EAF2424、EAF1224、在庫が豊富で即納可能、価格優位性が顕著\n• 主力モデル: カタログ掲載の複数の標準サイズ({mainModels})、迅速な発送、手頃な価格\n• 標準モデル: ページのオプション仕様、通常のサイクルで生産・納品、価格安定\n• カスタムモデル: オリジナルの非標準サイズ、生産期間が長い、コストが比較的高い',
+        'ko': '• 모델 구분: EAF2016과 EAF1620은 완전히 다른 두 제품입니다. 선택 및 사용 시 혼동하지 마십시오.\n• 플래그십 모델: EAF2424, EAF1224, 재고가 충분하여 즉시 배송 가능하며 가격 우위가 뚜렷합니다\n• 주력 모델: 카탈로그에 등재된 여러 표준 크기({mainModels}), 빠른 배송, 저렴한 가격\n• 표준 모델: 페이지에서 선택 가능한 사양, 일반 주기로 생산 및 공급, 가격 안정\n• 맞춤 모델: 맞춤 비표준 크기, 생산 주기가 길고 비용이 상대적으로 높음',
+        'pt': '• Diferenciação de modelos: EAF2016 e EAF1620 são dois produtos completamente diferentes. Por favor, não os confunda ao selecionar e usar.\n• Modelos bandeira: EAF2424, EAF1224, com estoque suficiente para entrega imediata e vantagens de preço significativas\n• Modelos principais: Vários tamanhos regulares no catálogo ({mainModels}), entrega rápida, preços acessíveis\n• Modelos padrão: Especificações opcionais na página, produzidos e entregues de acordo com ciclo regular, preços estáveis\n• Modelos personalizados: Tamanhos não padrão personalizados, ciclo de produção mais longo, custo relativamente alto',
+        'it': '• Differenziazione dei modelli: EAF2016 e EAF1620 sono due prodotti completamente diversi. Si prega di non confonderli durante la selezione e l\'uso.\n• Modelli bandiera: EAF2424, EAF1224, con inventario sufficiente per la consegna immediata e vantaggi di prezzo significativi\n• Modelli principali: Molte dimensioni regolari nel catalogo ({mainModels}), consegna rapida, prezzi accessibili\n• Modelli standard: Specifiche opzionali sulla pagina, prodotti e consegnati secondo ciclo regolare, prezzi stabili\n• Modelli personalizzati: Dimensioni non standard personalizzate, ciclo di produzione più lungo, costo relativamente alto',
+        'ru': '• Различия моделей: EAF2016 и EAF1620 — это два совершенно разных продукта. Пожалуйста, не путайте их при выборе и использовании.\n• Флагманские модели: EAF2424, EAF1224, с достаточным запасом для немедленной доставки и значительными преимуществами по цене\n• Основные модели: Несколько стандартных размеров в каталоге ({mainModels}), быстрая доставка, доступные цены\n• Стандартные модели: Дополнительные спецификации на странице, производство и доставка по стандартному циклу, стабильные цены\n• Кастомные модели: Индивидуальные нестандартные размеры, более длительный производственный цикл, относительно высокая стоимость',
+        'ar': '• تمييز النماذج: EAF2016 و EAF1620 هما منتجات مختلفة تمامًا. يرجى عدم الخلط بينهما عند الاختيار والاستخدام.\n• نماذج روعة: EAF2424، EAF1224، مع مخزون كافٍ للتسليم الفوري ومزايا سعرية كبيرة\n• النماذج الرئيسية: عدة أحجام عادية في الكتالوج ({mainModels})، تسليم سريع، أسعار معقولة\n• النماذج القياسية: مواصفات اختيارية على الصفحة، يتم إنتاجها وتسليمها حسب دورة عادية، أسعار مستقرة\n• النماذج المخصصة: أحجام غير قياسية مخصصة، دورة إنتاج أطول، تكلفة مرتفعة نسبيًا'
+    };
+    
+    if (mainModels && tipTemplates[currentLang]) {
+        warningContent.textContent = tipTemplates[currentLang].replace('{mainModels}', mainModels);
+    } else if (tipTemplates[currentLang]) {
+        warningContent.textContent = tipTemplates[currentLang].replace('（{mainModels}）', '').replace('({mainModels})', '');
+    }
 }
 
 /**
@@ -1870,6 +3068,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 加载保存的数据（必须先加载，确保styleConfig等配置就绪）
     loadData();
+    
+    // 检查管理员登录状态
+    checkAdminLoginStatus();
     
     // 页面加载时自动切换为中文
     changeLanguage('zh');
@@ -2714,6 +3915,7 @@ function updateHeightSelect(style, width) {
 function onStyleChange() {
     const style = document.getElementById('styleSelect').value;
     updateWidthSelect(style);
+    updateWarningTipMainModels(style);
 }
 
 /**
@@ -3332,6 +4534,9 @@ function toggleBatchQuerySection() {
         if (tbody && tbody.children.length === 0) {
             addBatchRow();
         }
+        
+        // 动态调整选型规则选择框的宽度以适应内容
+        adjustSelectWidth('selectionRuleSelect');
     } else {
         // 隐藏批量查询区域，显示输入和结果区域
         batchSection.style.display = 'none';
@@ -3362,10 +4567,14 @@ function addBatchRow() {
     const row = document.createElement('tr');
     row.setAttribute('data-row-index', rowIndex);
     
+    const widthPlaceholder = getLang('width');
+    const heightPlaceholder = getLang('height');
+    const quantityPlaceholder = getLang('quantity');
+    
     row.innerHTML = `
-        <td><input type="number" class="batch-input width-input" placeholder="宽度" min="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
-        <td><input type="number" class="batch-input height-input" placeholder="高度" min="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
-        <td><input type="number" class="batch-input quantity-input" placeholder="数量" min="1" value="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
+        <td><input type="number" class="batch-input width-input" placeholder="${widthPlaceholder}" min="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
+        <td><input type="number" class="batch-input height-input" placeholder="${heightPlaceholder}" min="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
+        <td><input type="number" class="batch-input quantity-input" placeholder="${quantityPlaceholder}" min="1" value="1" onchange="updateBatchRow(this.parentElement.parentElement)"></td>
         <td class="product-info-cell model-cell">-</td>
         <td class="product-info-cell air-flow-cell">-</td>
         <td class="product-info-cell dimensions-cell">-</td>
@@ -4168,6 +5377,43 @@ function renderAccessoryTables() {
     renderUsDuctAccessoryTableInBatch();
 }
 
+/**
+ * 根据当前语言获取配件的翻译内容
+ * @param {object} item - 配件数据项
+ * @param {string} field - 字段名（name, config, note）
+ * @param {string} lang - 当前语言代码
+ * @returns {string} - 翻译后的内容
+ */
+function getAccessoryTranslation(item, field, lang) {
+    // 中文直接返回中文字段
+    if (lang === 'zh') {
+        return item[field] || '';
+    }
+    
+    // 将配件id中的连字符转换为下划线，匹配翻译键格式
+    const cleanId = item.id.replace(/-/g, '_');
+    // 尝试从语言配置中获取翻译
+    const translationKey = `accessory_${cleanId}_${field}`;
+    const translated = getLang(translationKey);
+    
+    // 如果获取到了翻译（不是返回key本身），则使用翻译
+    if (translated && translated !== translationKey) {
+        return translated;
+    }
+    
+    // 回退到英文字段
+    const enField = field + 'En';
+    const enValue = item[enField];
+    
+    // 如果有英文值，使用英文
+    if (enValue && enValue !== '/') {
+        return enValue;
+    }
+    
+    // 如果英文为空或为"/"，回退到中文
+    return item[field] || '';
+}
+
 function renderFcAccessoryTableInBatch() {
     const tbody = document.querySelector('#fcCategory tbody');
     if (!tbody) return;
@@ -4175,6 +5421,7 @@ function renderFcAccessoryTableInBatch() {
     let html = '';
     const styleSelect = document.getElementById('batchStyleSelect');
     const currentStyle = styleSelect ? styleSelect.value : '4biz';
+    const currentLang = document.getElementById('languageSelect').value;
     
     fcAccessories.forEach(item => {
         // 使用配件数据中保存的styles，如果没有则默认为空数组（不显示）
@@ -4194,7 +5441,13 @@ function renderFcAccessoryTableInBatch() {
         } else if (bgColor === 'gray') {
             highlightClass = 'highlight-row-gray';
         }
-        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${item.name}</td><td>${item.config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${item.note}</td></tr>`;
+        
+        // 根据当前语言获取对应的翻译字段
+        const name = getAccessoryTranslation(item, 'name', currentLang);
+        const config = getAccessoryTranslation(item, 'config', currentLang);
+        const note = getAccessoryTranslation(item, 'note', currentLang);
+        
+        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${name}</td><td>${config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${note}</td></tr>`;
     });
     
     tbody.innerHTML = html;
@@ -4207,6 +5460,7 @@ function renderAhuAccessoryTableInBatch() {
     let html = '';
     const styleSelect = document.getElementById('batchStyleSelect');
     const currentStyle = styleSelect ? styleSelect.value : '4biz';
+    const currentLang = document.getElementById('languageSelect').value;
     
     ahuAccessories.forEach(item => {
         // 使用配件数据中保存的styles，如果没有则默认为空数组（不显示）
@@ -4226,7 +5480,13 @@ function renderAhuAccessoryTableInBatch() {
         } else if (bgColor === 'gray') {
             highlightClass = 'highlight-row-gray';
         }
-        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${item.name}</td><td>${item.config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${item.note}</td></tr>`;
+        
+        // 根据当前语言获取对应的翻译字段
+        const name = getAccessoryTranslation(item, 'name', currentLang);
+        const config = getAccessoryTranslation(item, 'config', currentLang);
+        const note = getAccessoryTranslation(item, 'note', currentLang);
+        
+        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${name}</td><td>${config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${note}</td></tr>`;
     });
     
     tbody.innerHTML = html;
@@ -4239,6 +5499,7 @@ function renderUsDuctAccessoryTableInBatch() {
     let html = '';
     const styleSelect = document.getElementById('batchStyleSelect');
     const currentStyle = styleSelect ? styleSelect.value : '4biz';
+    const currentLang = document.getElementById('languageSelect').value;
     
     usDuctAccessories.forEach(item => {
         // 使用配件数据中保存的styles，如果没有则默认为空数组（不显示）
@@ -4258,7 +5519,13 @@ function renderUsDuctAccessoryTableInBatch() {
         } else if (bgColor === 'gray') {
             highlightClass = 'highlight-row-gray';
         }
-        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${item.name}</td><td>${item.config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${item.note}</td></tr>`;
+        
+        // 根据当前语言获取对应的翻译字段
+        const name = getAccessoryTranslation(item, 'name', currentLang);
+        const config = getAccessoryTranslation(item, 'config', currentLang);
+        const note = getAccessoryTranslation(item, 'note', currentLang);
+        
+        html += `<tr id="row-${item.id}" class="${highlightClass}" style="display: ${showRow ? 'table-row' : 'none'};"><td class="row-header">${item.model}</td><td>${name}</td><td>${config}</td><td>¥${item.price}</td><td><input type="number" class="accessory-quantity" min="0" value="${quantity}" onchange="calculateAccessoryTotal()"></td><td class="accessory-subtotal">¥${subtotal}</td><td class="accessory-note">${note}</td></tr>`;
     });
     
     tbody.innerHTML = html;
@@ -4409,29 +5676,27 @@ window.openAccessoryAssistant = function(scene) {
         totalEafCount = 0;
     } else if (scene === 'ahu') {
         currentAssistantScene = 'ahu';
-        // 直接获取modal-body并设置内容
-        const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
         
-        // 隐藏其他场景内容
+        // 隐藏风机盘管和美式风管机场景内容
         if (fcContent) fcContent.style.display = 'none';
         const usDuctContent = document.getElementById('usDuctAssistantContent');
         if (usDuctContent) usDuctContent.style.display = 'none';
-        const ahuContent = document.getElementById('ahuAssistantContent');
-        if (ahuContent) ahuContent.style.display = 'none';
         
-        // 直接设置模态框内容 - 使用原来的样式
-        if (modalBody) {
-            modalBody.innerHTML = `
-                <div class="assistant-question">
-                    <p>1. 您需要为几台空调箱配置EAF？</p>
-                    <div class="input-row">
-                        <input type="number" id="tempAhuCount" min="0" placeholder="请输入非负整数" class="form-control">
-                        <button class="modal-action-btn" onclick="validateTempAhuCount()">下一步</button>
-                    </div>
-                    ${ahuRemarkHtml()}
-                </div>
-            `;
-        }
+        // 显示空调箱场景内容
+        const ahuContent = document.getElementById('ahuAssistantContent');
+        if (ahuContent) ahuContent.style.display = 'block';
+        
+        // 显示第一步，隐藏其他步骤
+        if (ahuStep1) ahuStep1.style.display = 'block';
+        if (ahuStep2) ahuStep2.style.display = 'none';
+        const ahuStep3 = document.getElementById('ahuStep3');
+        const ahuStep4 = document.getElementById('ahuStep4');
+        const ahuStep5 = document.getElementById('ahuStep5');
+        const ahuStep7 = document.getElementById('ahuStep7');
+        if (ahuStep3) ahuStep3.style.display = 'none';
+        if (ahuStep4) ahuStep4.style.display = 'none';
+        if (ahuStep5) ahuStep5.style.display = 'none';
+        if (ahuStep7) ahuStep7.style.display = 'none';
         
         if (modalTitle) {
             modalTitle.textContent = '空调箱配件选型助手';
@@ -4441,6 +5706,10 @@ window.openAccessoryAssistant = function(scene) {
         }
         // 清空输入框
         if (ahuCountInput) ahuCountInput.value = '';
+        const redSchemeCount = document.getElementById('redSchemeCount');
+        if (redSchemeCount) redSchemeCount.value = '';
+        const blueSchemeCount = document.getElementById('blueSchemeCount');
+        if (blueSchemeCount) blueSchemeCount.value = '';
         const totalEafRequired = document.getElementById('totalEafRequired');
         if (totalEafRequired) totalEafRequired.value = '';
         const horizontalCount = document.getElementById('horizontalCount');
@@ -4458,7 +5727,7 @@ window.openAccessoryAssistant = function(scene) {
         savedRedSchemeCount = 0;
         savedBlueSchemeCount = 0;
         savedHorizontalCount = 0;
-        savedMaxPerRow = 1;
+        savedMaxPerRow = 0;
         needWireClip = true;
         needSealCotton = false;
     } else if (scene === 'usDuct') {
@@ -4561,6 +5830,10 @@ function toggleAccessoryTable(category) {
     const thead = table ? table.querySelector('thead') : null;
     const tbody = document.getElementById(category + 'CategoryBody');
     const btn = document.querySelector(`#${category}Category .toggle-btn`);
+    const currentLang = document.getElementById('languageSelect').value;
+    
+    const expandText = currentLang === 'zh' ? '展开' : 'Expand';
+    const collapseText = currentLang === 'zh' ? '隐藏' : 'Collapse';
     
     if (thead && tbody && btn) {
         // 检查是否处于显示状态（style.display === 'table-row-group'）
@@ -4568,12 +5841,12 @@ function toggleAccessoryTable(category) {
             // 当前是展开状态，点击后隐藏
             thead.style.display = 'none';
             tbody.style.display = 'none';
-            btn.textContent = '展开';
+            btn.textContent = expandText;
         } else {
             // 当前是隐藏状态，点击后展开
             thead.style.display = 'table-header-group';
             tbody.style.display = 'table-row-group';
-            btn.textContent = '隐藏';
+            btn.textContent = collapseText;
         }
     }
 }
@@ -4835,7 +6108,7 @@ let selectedAhuScheme = 0; // 1: 电控箱, 2: 接线盒
 let savedRedSchemeCount = 0; // 保存第二步红方案数量
 let savedBlueSchemeCount = 0; // 保存第二步蓝方案数量
 let savedHorizontalCount = 0; // 保存第四步卧放数量
-let savedMaxPerRow = 1; // 保存第四步总行数
+let savedMaxPerRow = 0; // 保存第三步总行数
 let ahuGroups = []; // 保存空调箱分组信息
 let needWireClip = true; // 是否需要钢丝扣
 let needSealCotton = false; // 是否需要密封棉
@@ -5117,30 +6390,17 @@ function goToAhuStep4() {
     savedRedSchemeCount = redCount;
     savedBlueSchemeCount = blueCount;
     
-    // 动态生成第四步内容
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>3. 请填写您选用的 EAF 拼接方案信息：</p>
-                <div class="installation-options">
-                    <div class="installation-item">
-                        <label>EAF 拼接后的总行数</label>
-                        <input type="number" id="maxPerRow" min="1" placeholder="总行数" class="form-control">
-                    </div>
-                    <div class="installation-item">
-                        <label>卧放 EAF 的总数量</label>
-                        <input type="number" id="horizontalCount" min="0" placeholder="卧放数量" class="form-control">
-                    </div>
-                </div>
-                <div class="button-row">
-                    <button class="modal-action-btn secondary" onclick="goBackToAhuStep2()">上一步</button>
-                    <button class="modal-action-btn" onclick="goToAhuStep5()">下一步</button>
-                </div>
-                ${ahuRemarkHtml()}
-            </div>
-        `;
-    }
+    // 显示第三步（EAF拼接方案），隐藏第二步
+    const step2 = document.getElementById('ahuStep2');
+    const step3 = document.getElementById('ahuStep3');
+    if (step2) step2.style.display = 'none';
+    if (step3) step3.style.display = 'block';
+    
+    // 恢复第三步中已保存的值
+    const maxPerRowInput = document.getElementById('maxPerRow');
+    const horizontalCountInput = document.getElementById('horizontalCount');
+    if (maxPerRowInput) maxPerRowInput.value = (savedMaxPerRow > 0) ? savedMaxPerRow : '';
+    if (horizontalCountInput) horizontalCountInput.value = (savedHorizontalCount > 0) ? savedHorizontalCount : '';
 }
 
 function goToAhuStep5() {
@@ -5161,48 +6421,20 @@ function goToAhuStep5() {
         return;
     }
     
-    // 保存第四步填写的数据
+    // 保存第三步填写的数据
     savedHorizontalCount = horizontalCount;
     savedMaxPerRow = maxPerRow;
     
-    // 动态生成第五步内容
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>4.请填写选用「EAF-BOX 接线盒 + DC12V 电源适配器」方案的空调箱中，EAF 排布信息（行×列×组）：</p>
-                <div id="dynamicGroups" style="margin-bottom: 20px;">
-                    <div class="group-row">
-                        <span class="group-label">分组1：</span>
-                        <input type="number" id="groupRow1" min="1" placeholder="行" class="form-control small-input">
-                        <span class="operator">×</span>
-                        <input type="number" id="groupCol1" min="1" placeholder="列" class="form-control small-input">
-                        <span class="operator">×</span>
-                        <input type="number" id="groupSet1" min="1" placeholder="组" class="form-control small-input">
-                        <button class="delete-btn" onclick="deleteGroup(this)">删除</button>
-                    </div>
-                </div>
-                
-                <div class="hint-section">
-                    <p><strong>提示：</strong></p>
-                    <p>EAF排布复杂可按行录入，不同尺寸的EAF均按个数输入；</p>
-                    <p><strong>例如：</strong></p>
-                    <p>第1行放置了EAF2424、EAF2024、EAF1624，即录入：1行×3列×1组</p>
-                    <p>第2行及第3行均放置了EAF2223、EAF1523、EAF1223、EAF1123，即录入：1行×4列×2组</p>
-                    <p><strong style="color: red;">请注意：</strong><span style="color: red;">EAF08xx2M-E型号是无法电气拼接的，如有此类型号，请自行增加电源适配器。</span></p>
-                </div>
-                
-                <div class="button-row" style="margin-top: 20px;">
-                    <button class="modal-action-btn secondary add-group-btn" onclick="addGroup()">+ 添加分组</button>
-                </div>
-                
-                <div class="button-row">
-                    <button class="modal-action-btn secondary" onclick="goBackToAhuStep4()">上一步</button>
-                    <button class="modal-action-btn" onclick="goToAhuStep6()">下一步</button>
-                </div>
-                ${ahuRemarkHtml()}
-            </div>
-        `;
+    // 显示第四步（排布信息），隐藏第三步
+    const step3 = document.getElementById('ahuStep3');
+    const step4 = document.getElementById('ahuStep4');
+    if (step3) step3.style.display = 'none';
+    if (step4) step4.style.display = 'block';
+    
+    // 初始化动态分组 - 如果为空则添加一个默认分组
+    const dynamicGroups = document.getElementById('dynamicGroups');
+    if (dynamicGroups && dynamicGroups.children.length === 0) {
+        addGroup();
     }
 }
 
@@ -5287,36 +6519,13 @@ function generateDynamicGroups(maxPerRow) {
 }
 
 function goToAhuStep6() {
-    // 动态生成第六步内容
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>5.您是否需要采购我司的钢丝扣，来保障薄款设备正抽装入厚框架槽后稳固无晃动，或保障厚款设备正抽装入薄框架槽后稳固不掉落？</p>
-                <!-- 钢丝扣产品图 -->
-                <div class="accessory-diagram">
-                    <img src="gangsigou.jpg" alt="钢丝扣产品图" class="seal-image">
-                    <p class="diagram-caption">钢丝扣产品示意图</p>
-                </div>
-                <!-- 输入框区域 - 移到上方并居中 -->
-                <div style="margin-top: 16px; text-align: center;">
-                    <label style="font-size: 14px; display: block; margin-bottom: 8px;">需要使用钢丝扣的EAF数量：</label>
-                    <input type="number" id="wireClipCount" min="0" placeholder="请输入非负整数" class="form-control" style="width: 200px;">
-                </div>
-                <div class="button-row" style="margin-top: 16px;">
-                    <button class="modal-action-btn secondary" onclick="goBackToAhuStep4()">上一步</button>
-                    <button class="modal-action-btn" onclick="validateWireClipCount()">下一步</button>
-                </div>
-                <!-- 提示词 - 移到按钮下方，靠左显示 -->
-                <div class="hint-section" style="font-size: 11px; color: #666; margin-top: 16px; text-align: left;">
-                    <p>提示：</p>
-                    <p>空调箱田字格框架内正抽式安装，如现场有则无需选购。</p>
-                    <p>一个EAF需选配4根，本价格仅包括1根钢丝扣。</p>
-                </div>
-                ${ahuRemarkHtml()}
-            </div>
-        `;
-    }
+    // 显示第五步（钢丝扣），隐藏第四步和第七步
+    const step4 = document.getElementById('ahuStep4');
+    const step5 = document.getElementById('ahuStep5');
+    const step7 = document.getElementById('ahuStep7');
+    if (step4) step4.style.display = 'none';
+    if (step7) step7.style.display = 'none';
+    if (step5) step5.style.display = 'block';
 }
 
 function validateWireClipCount() {
@@ -5326,7 +6535,9 @@ function validateWireClipCount() {
     if (value === '') {
         input.value = '0';
         wireClipCount = 0;
-        selectWireClip(wireClipCount > 0);
+        needWireClip = false;
+        // 显示第七步（密封棉），隐藏第五步
+        showAhuSealStep();
         return;
     }
     
@@ -5337,42 +6548,22 @@ function validateWireClipCount() {
     }
     
     wireClipCount = num;
-    selectWireClip(num > 0);
+    needWireClip = num > 0;
+    // 显示第七步（密封棉），隐藏第五步
+    showAhuSealStep();
+}
+
+function showAhuSealStep() {
+    const step5 = document.getElementById('ahuStep5');
+    const step7 = document.getElementById('ahuStep7');
+    if (step5) step5.style.display = 'none';
+    if (step7) step7.style.display = 'block';
 }
 
 function selectWireClip(need) {
     needWireClip = need;
-    
-    // 动态生成第七步内容（密封棉选择）
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>您是否需要采购我司的密封条，来改善连接处的气密性？</p>
-                <!-- 密封条示意图 -->
-                <div class="accessory-diagram">
-                    <img src="seal.jpg" alt="密封条产品图" class="seal-image">
-                    <p class="diagram-caption">密封条产品示意图</p>
-                </div>
-                <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-                    <button class="modal-action-btn secondary" onclick="goToAhuStep6()">上一步</button>
-                </div>
-                <div class="option-buttons" style="justify-content: center;">
-                    <button class="modal-action-btn green-btn" onclick="confirmAhuSelection(true)">是，需要采购</button>
-                    <button class="modal-action-btn red-btn" onclick="confirmAhuSelection(false)">否，不需要</button>
-                </div>
-                <div class="hint-section" style="font-size: 11px; margin-top: 16px; color: #666;">
-                    <p><strong>提示：</strong></p>
-                    <p>密封条数量=向上取整[(EAF迎风面周长×数量)的总和÷10m/卷]</p>
-                    <p>我司核算为最低用量，现场建议适当多备。</p>
-                </div>
-                ${ahuRemarkHtml()}
-                <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-                    <button class="modal-action-btn" onclick="closeAccessoryAssistant()">关闭</button>
-                </div>
-            </div>
-        `;
-    }
+    // 显示第七步（密封棉），隐藏第五步
+    showAhuSealStep();
 }
 
 function selectAhuScheme(scheme) {
@@ -5711,142 +6902,50 @@ function validateTempAhuCount() {
 // 返回第二步
 // 返回第四步
 function goBackToAhuStep4() {
-    // 返回第四步：EAF排布信息
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>4.请填写选用「EAF-BOX 接线盒 + DC12V 电源适配器」方案的空调箱中，EAF 排布信息（行×列×组）：</p>
-                <div id="dynamicGroups" class="installation-options" style="margin-top: 16px;">
-                    <div class="installation-item" style="display: flex; align-items: center; gap: 10px;">
-                        <span style="font-weight: bold;">分组1:</span>
-                        <input type="number" id="row1" min="1" placeholder="行" class="form-control small-input">
-                        <span>×</span>
-                        <input type="number" id="col1" min="1" placeholder="列" class="form-control small-input">
-                        <span>×</span>
-                        <input type="number" id="group1" min="1" placeholder="组" class="form-control small-input">
-                        <button class="delete-btn" style="display: none;">删除</button>
-                    </div>
-                </div>
-                
-                <div class="hint-section" style="font-size: 10px; margin-top: 16px; padding: 12px; background: #f5f5f5; border-radius: 8px;">
-                    <p><strong>提示:</strong></p>
-                    <p>EAF排布复杂可按行录入，不同尺寸的EAF均按个数输入；</p>
-                    <p><strong>例如:</strong></p>
-                    <p>第1行放置了EAF2424、EAF2024、EAF1624，即录入：1行×3列×1组</p>
-                    <p>第2行及第3行均放置了EAF2223、EAF1523、EAF1223、EAF1123，即录入：1行×4列×2组</p>
-                    <p style="color: #dc3545;"><strong>请注意：</strong>EAF08xx2M-E型号是无法电气拼接的，如有此类型号，请自行增加电源适配器。</p>
-                </div>
-                
-                <div class="button-row" style="margin-top: 20px;">
-                    <button class="modal-action-btn secondary add-group-btn" onclick="addGroup()">+ 添加分组</button>
-                </div>
-                
-                <div class="button-row">
-                    <button class="modal-action-btn secondary" onclick="goBackToAhuStep3()">上一步</button>
-                    <button class="modal-action-btn" onclick="goToAhuStep6()">下一步</button>
-                </div>
-                ${ahuRemarkHtml()}
-            </div>
-        `;
-    }
+    // 返回第四步（排布信息），隐藏第五步（钢丝扣）
+    const step4 = document.getElementById('ahuStep4');
+    const step5 = document.getElementById('ahuStep5');
+    if (step5) step5.style.display = 'none';
+    if (step4) step4.style.display = 'block';
 }
 
-// 返回第三步：EAF拼接方案信息
 function goBackToAhuStep3() {
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>3. 请填写您选用的 EAF 拼接方案信息：</p>
-                <div class="installation-options">
-                    <div class="installation-item">
-                        <label>EAF 拼接后的总行数</label>
-                        <input type="number" id="maxPerRow" min="0" placeholder="总行数" class="form-control">
-                    </div>
-                    <div class="installation-item">
-                        <label>卧放 EAF 的总数量</label>
-                        <input type="number" id="horizontalCount" min="0" placeholder="卧放数量" class="form-control">
-                    </div>
-                </div>
-                <div class="button-row">
-                    <button class="modal-action-btn secondary" onclick="goBackToAhuStep2()">上一步</button>
-                    <button class="modal-action-btn" onclick="goToAhuStep5()">下一步</button>
-                </div>
-                ${ahuRemarkHtml()}
-            </div>
-        `;
-    }
+    // 返回第三步（EAF拼接方案），隐藏第四步（排布）
+    const step3 = document.getElementById('ahuStep3');
+    const step4 = document.getElementById('ahuStep4');
+    if (step4) step4.style.display = 'none';
+    if (step3) step3.style.display = 'block';
+    
+    // 恢复已保存的值
+    const maxPerRowInput = document.getElementById('maxPerRow');
+    if (maxPerRowInput) maxPerRowInput.value = (savedMaxPerRow > 0) ? savedMaxPerRow : '';
+    const horizontalCountInput = document.getElementById('horizontalCount');
+    if (horizontalCountInput) horizontalCountInput.value = (savedHorizontalCount > 0) ? savedHorizontalCount : '';
 }
 
 function goBackToAhuStep2() {
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        // 获取保存的数据，没有保存则为空
-        const redValue = typeof savedRedSchemeCount !== 'undefined' && savedRedSchemeCount > 0 ? savedRedSchemeCount : '';
-        const blueValue = typeof savedBlueSchemeCount !== 'undefined' && savedBlueSchemeCount > 0 ? savedBlueSchemeCount : '';
-        
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>2. 请选择配件配置方案：</p>
-                <div class="ahu-options">
-                    <div class="ahu-option">
-                        <div class="option-header premium-header">EAF-BOX 电控箱</div>
-                        <div class="option-content">
-                            <p class="option-desc">功能更全面，价格更贵</p>
-                        </div>
-                        <div class="option-input-wrapper">
-                            <input type="number" id="redSchemeCount" min="0" placeholder="选择此方案的空调箱台数" class="scheme-input-inner" value="${redValue}">
-                        </div>
-                        <div class="option-note">
-                            <p>单台 EAF-BOX 控制箱最大带载：</p>
-                            <p>18 个 EAF，且满足「每层≤8 个、最多 4 层」</p>
-                            <p>超出需按非标处理。</p>
-                        </div>
-                    </div>
-                    <div class="ahu-option">
-                        <div class="option-header basic-header">EAF-BOX 接线盒 +<br>DC12V 电源适配器</div>
-                        <div class="option-content">
-                            <p class="option-desc">基础方案，价格更实惠</p>
-                        </div>
-                        <div class="option-input-wrapper">
-                            <input type="number" id="blueSchemeCount" min="0" placeholder="选择此方案的空调箱台数" class="scheme-input-inner" value="${blueValue}">
-                        </div>
-                        <div class="option-note">
-                            <p>单台 DC12V 电源适配器最大带载：</p>
-                            <p>4 个 EAF</p>
-                            <p></p>
-                            <p>单台 EAF-BOX 接线盒最大带载：</p>
-                            <p>16 个 EAF，且满足「每层≤4 个、最多 4 层」</p>
-                            <p>超出需按非标处理。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="button-row">
-                    <button class="modal-action-btn secondary" onclick="goBackToAhuStep1()">上一步</button>
-                    <button class="modal-action-btn" onclick="goToAhuStep4()">下一步</button>
-                </div>
-                ${ahuRemarkHtml()}
-            </div>
-        `;
-    }
+    // 返回第二步（方案选择），隐藏第三步
+    const step2 = document.getElementById('ahuStep2');
+    const step3 = document.getElementById('ahuStep3');
+    if (step3) step3.style.display = 'none';
+    if (step2) step2.style.display = 'block';
+    
+    // 恢复已保存的方案数量值
+    const redInput = document.getElementById('redSchemeCount');
+    const blueInput = document.getElementById('blueSchemeCount');
+    if (redInput) redInput.value = (typeof savedRedSchemeCount !== 'undefined' && savedRedSchemeCount > 0) ? savedRedSchemeCount : '';
+    if (blueInput) blueInput.value = (typeof savedBlueSchemeCount !== 'undefined' && savedBlueSchemeCount > 0) ? savedBlueSchemeCount : '';
 }
 
 // 返回第一步
 function goBackToAhuStep1() {
-    const modalBody = document.querySelector('#accessoryAssistantModal .modal-body');
-    if (modalBody) {
-        // 获取当前已填写的空调箱数量
-        const currentCount = totalAhuCount > 0 ? totalAhuCount : '';
-        modalBody.innerHTML = `
-            <div class="assistant-question">
-                <p>1. 您需要为几台空调箱配置EAF？</p>
-                <div class="input-row">
-                    <input type="number" id="tempAhuCount" min="0" placeholder="请输入非负整数" class="form-control" value="${currentCount}">
-                    <button class="modal-action-btn" onclick="validateTempAhuCount()">下一步</button>
-                </div>
-                ${ahuRemarkHtml()}
-            </div>
-        `;
-    }
+    // 显示第一步（空调箱数量），隐藏其他步骤
+    const step1 = document.getElementById('ahuStep1');
+    const step2 = document.getElementById('ahuStep2');
+    if (step2) step2.style.display = 'none';
+    if (step1) step1.style.display = 'block';
+    
+    // 恢复已填写的空调箱数量
+    const ahuCountInput = document.getElementById('ahuCountInput');
+    if (ahuCountInput) ahuCountInput.value = totalAhuCount > 0 ? totalAhuCount : '';
 }
