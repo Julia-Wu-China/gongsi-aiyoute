@@ -63,7 +63,10 @@ function updateSizeRange() {
     const validInchValues = inchValues.map(v => parseInt(v)).filter(v => v > 0);
     
     // 如果没有有效数据或关键数据缺失，直接输出固定的预设尺寸范围
-    if (validInchValues.length === 0 || !equivalentMap['08'] || !equivalentMap['12'] || !equivalentMap['32'] || !equivalentMap['56']) {
+    // 检查条件：没有有效英寸值，或者关键尺寸数据缺失
+    if (validInchValues.length === 0 || 
+        !equivalentMap['08'] || !equivalentMap['12'] || !equivalentMap['32'] || !equivalentMap['56'] ||
+        parseInt(equivalentMap['08']) <= 0 || parseInt(equivalentMap['56']) <= 0) {
         rangeContent.innerHTML = `<div class="range-item">${getLang('size_range')}</div>`;
         return;
     }
