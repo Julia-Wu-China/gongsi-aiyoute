@@ -6949,3 +6949,33 @@ function goBackToAhuStep1() {
     const ahuCountInput = document.getElementById('ahuCountInput');
     if (ahuCountInput) ahuCountInput.value = totalAhuCount > 0 ? totalAhuCount : '';
 }
+
+// 额外的页面加载完成后初始化（确保翻译正确执行，防止网络延迟导致的问题）
+window.addEventListener('load', function() {
+    // 确保语言切换在所有资源加载完成后执行
+    const langSelect = document.getElementById('languageSelect');
+    if (langSelect) {
+        const selectedLang = langSelect.value;
+        if (selectedLang && selectedLang !== currentLang) {
+            changeLanguage(selectedLang);
+        } else if (!currentLang || currentLang === '') {
+            changeLanguage('zh');
+        }
+    } else {
+        // 如果语言选择器不存在，默认使用中文
+        changeLanguage('zh');
+    }
+    
+    // 强制重新渲染翻译内容
+    document.querySelectorAll('[data-lang]').forEach(element => {
+        const key = element.getAttribute('data-lang');
+        const translation = getLang(key);
+        if (translation && translation !== key) {
+            if (translation.includes('<') || translation.includes('>')) {
+                element.innerHTML = translation;
+            } else {
+                element.textContent = translation;
+            }
+        }
+    });
+});
